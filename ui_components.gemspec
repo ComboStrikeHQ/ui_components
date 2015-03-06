@@ -17,9 +17,14 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
   s.add_dependency 'rails', '~> 4.2.0'
+  s.add_dependency 'bootstrap_form'
+  s.add_dependency 'chosen-sass-bootstrap-rails'
+  s.add_dependency 'coffee-rails'
+  s.add_dependency 'jquery-rails'
+  s.add_dependency 'sprockets', '<= 2.11.0'
 
+  s.add_development_dependency 'slim-rails'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara-webkit'
-  s.add_development_dependency 'slim-rails'
   s.add_development_dependency 'pry-rails'
 end

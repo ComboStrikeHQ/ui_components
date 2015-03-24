@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  s.add_dependency 'rails', '~> 4.2.0'
+  #s.add_dependency 'rails', '~> 4.2.0'
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'chosen-sass-bootstrap-rails'
   s.add_dependency 'coffee-rails'

@@ -1,1 +1,1 @@
-console.log('UIComponents!')
+console.log('Welcome to UIComponents!')

@@ -1,11 +1,1 @@
-div{ class='form-group'  }
-  label{ for=component.name class='control-label' }= component.label
-  
-  select{
-    data-error=component.error
-    data-width=component.width
-    required=component.required
-    name=component.name
-    class="form-control js-chosen chosen-inline"
-    id=component.name
-  }= component.options and options_for_select(component.options)
+= component.select

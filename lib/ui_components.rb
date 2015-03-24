@@ -1,5 +1,6 @@
 require 'sass-rails'
 require 'jquery-rails'
+require 'coffee-rails'
 require 'chosen-rails'
 require 'bootstrap-sass'
 require 'bootstrap_form'

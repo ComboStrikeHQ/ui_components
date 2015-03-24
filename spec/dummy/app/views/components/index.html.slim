@@ -3,5 +3,5 @@ h1 UI Components
 = ui_component('sub_heading', text: 'Sub-heading component')
 
 = bootstrap_form_for :fox do |form|
-  = ui_component('select', name: 'fox[type_id]', \
+  = ui_component('select', name: 'type_id', form: form, \
     options: [['Red', 1], ['Fennec', 2], ['Arctic', 3]])

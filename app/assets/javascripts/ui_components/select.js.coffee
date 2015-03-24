@@ -1,5 +1,5 @@
-init = ($el) ->
-  $el.each ->
+$ ->
+  $('.ui-components-select').each ->
     $this = $(this)
 
     data = $this.data()
@@ -15,6 +15,3 @@ init = ($el) ->
     $helpBlock.css('top', '1.6em')
     $helpBlock.css('left', '3em')
 
-window.ui_components = window.ui_components || {}
-window.ui_components.select = window.ui_components.select || {}
-window.ui_components.select.init = init

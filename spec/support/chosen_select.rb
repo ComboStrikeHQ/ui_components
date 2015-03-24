@@ -1,6 +1,7 @@
 module ChosenSelect
   def chosen_select(item_text, options)
     field = find_field(options[:from], visible: false)
+    find("##{field[:id]}_chosen")
     id = field[:id]
     select item_text, options.merge(visible: false)
     page.execute_script("$('##{id}').trigger('chosen:updated')")

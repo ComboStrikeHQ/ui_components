@@ -1,6 +1,4 @@
-class SelectCell < Cell::ViewModel
-  include ActionView::Helpers::FormOptionsHelper
-
+class SelectCell < FormCellBase
   def show
     model.select(
       options[:name],
@@ -20,10 +18,6 @@ class SelectCell < Cell::ViewModel
   def select_options
     # TODO
     options[:options]
-  end
-
-  def label
-    options[:label] || controller.t(".#{options[:name]}")
   end
 
   def css_class

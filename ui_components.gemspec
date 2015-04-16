@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'chosen-rails'
+  s.add_dependency 'rails-assets-bootstrap-daterangepicker'
   s.add_dependency 'rails-assets-chosen-sass-bootstrap'
 
   s.add_dependency 'coffee-rails'

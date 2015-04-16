@@ -2,4 +2,5 @@ en:
   components:
     show:
       type_id: Type
+      report_rage: Report Range
 

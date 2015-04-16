@@ -1,6 +1,6 @@
 module UiComponents
   class Select < Component
-    include ActionView::Helpers::FormOptionsHelper 
+    include ActionView::Helpers::FormOptionsHelper
 
     def select
       form.select(
@@ -9,10 +9,10 @@ module UiComponents
         { label: label },
         data: {
           error: error,
-          width: width || '300px',
+          width: width || '300px'
         },
         required: required,
-        class: css_class,
+        class: css_class
       )
     end
 
@@ -21,8 +21,8 @@ module UiComponents
     end
 
     def label
-      super or
-        name.split(/[\[\]]/).select(&:present?).last.sub('_id\z', '').humanize
+      super ||
+        name.split(/[\[\]]/).reverse.find(&:present?).sub('_id\z', '').humanize
     end
 
     def css_class

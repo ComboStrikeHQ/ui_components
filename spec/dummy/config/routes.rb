@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root 'components#index'
+  get '/*name' => 'components#show'
 end

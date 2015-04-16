@@ -1,6 +1,6 @@
 RSpec.feature 'Select', :js do
   scenario 'is selectable' do
-    visit '/'
+    visit '/select'
 
     chosen_select('Arctic', from: 'Type')
   end

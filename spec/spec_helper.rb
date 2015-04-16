@@ -6,7 +6,6 @@ require 'rspec/rails'
 require 'pry-rails'
 require 'capybara/rspec'
 require 'capybara/webkit'
-require 'slim-rails'
 Capybara.javascript_driver = :webkit
 
 ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../')

@@ -1,29 +1,31 @@
 $:.push File.expand_path('../lib', __FILE__)
 
-# Maintain your gem's version:
-require 'ui_components/version'
-
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'ui_components'
-  s.version     = UiComponents::VERSION
-  s.authors     = ['Helge Rausch']
-  s.email       = ['helge@rausch.io']
+  s.version     = '1.0.0'
+  s.authors     = ['ad2games']
+  s.email       = ['developers@ad2games.com']
   s.homepage    = 'TODO'
   s.summary     = 'TODO: Summary of UiComponents.'
   s.description = 'TODO: Description of UiComponents.'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
-  #s.add_dependency 'rails', '~> 4.2.0'
+  s.add_dependency 'cells', '>= 4.0.0.beta2'
+  s.add_dependency 'slim'
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'compass-rails'
+  s.add_dependency 'sprockets'
+
+  s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'
-  s.add_dependency 'chosen-sass-bootstrap-rails'
+  s.add_dependency 'chosen-rails'
+  s.add_dependency 'rails-assets-chosen-sass-bootstrap'
+
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'sprockets', '<= 2.11.0'
 
-  s.add_development_dependency 'slim-rails'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara-webkit'
   s.add_development_dependency 'pry-rails'

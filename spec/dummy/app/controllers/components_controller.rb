@@ -1,4 +1,5 @@
 class ComponentsController < ApplicationController
-  def index
+  def show
+    render params[:name]
   end
 end

@@ -3,4 +3,7 @@ en:
     show:
       type_id: Type
       report_rage: Report Range
-
+      list:
+        apple: Apple
+        banana: Orange
+        kiwi: Kiwi

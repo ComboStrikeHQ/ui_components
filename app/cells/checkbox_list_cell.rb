@@ -1,9 +1,13 @@
 class CheckboxListCell < Cell::ViewModel
   def show
-    content_tag(:ul, box_li_tags, class: 'ui-components-checkbox-list')
+    content_tag(:ul, box_li_tags, class: css_class)
   end
 
   private
+
+  def css_class
+    "ui-components-checkbox-list #{'two-columns' if options[:two_columns]}"
+  end
 
   def box_li_tags
     boxes.map do |box|

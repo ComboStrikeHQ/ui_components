@@ -19,9 +19,10 @@ class DateRangeCell < FormCellBase
   end
 
   def select_div
-    model.static_control(:daterange, label: label) do
-      tag(
+    model.send(:form_group_builder, :daterange, label: label) do
+      content_tag(
         :div,
+        '',
         class: 'ui-components-date-range form-control',
         data: { start: "##{id}_from", end: "##{id}_to" }
       )

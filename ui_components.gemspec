@@ -17,15 +17,20 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'compass-rails'
   s.add_dependency 'sprockets'
+  s.add_dependency 'uglifier'
+  s.add_dependency 'haml-rails'
 
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'chosen-rails'
+  s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'rails-assets-bootstrap-daterangepicker'
   s.add_dependency 'rails-assets-chosen-sass-bootstrap'
 
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
+  s.add_dependency 'underscore-rails'
+  s.add_dependency 'rails-assets-jquery.floatThead'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara-webkit'

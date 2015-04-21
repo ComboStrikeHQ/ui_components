@@ -12,11 +12,12 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 
+  s.add_dependency 'rails', '~> 4.2.0'
   s.add_dependency 'cells', '>= 4.0.0.beta2'
+
   s.add_dependency 'slim'
   s.add_dependency 'sass-rails'
   s.add_dependency 'compass-rails'
-  s.add_dependency 'sprockets'
   s.add_dependency 'uglifier'
   s.add_dependency 'haml-rails'
 

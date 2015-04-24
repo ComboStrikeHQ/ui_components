@@ -28,6 +28,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-bootstrap-daterangepicker'
   s.add_dependency 'rails-assets-chosen-sass-bootstrap'
 
+  s.add_dependency 'turbolinks'
+  s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'underscore-rails'

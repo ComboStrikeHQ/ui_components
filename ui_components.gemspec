@@ -15,11 +15,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.2.0'
   s.add_dependency 'cells', '>= 4.0.0.beta2'
 
-  s.add_dependency 'slim'
+  s.add_dependency 'slim-rails'
   s.add_dependency 'sass-rails'
   s.add_dependency 'compass-rails'
   s.add_dependency 'uglifier'
-  s.add_dependency 'haml-rails'
+  s.add_dependency 'coffee-rails'
+  s.add_dependency 'turbolinks'
 
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'
@@ -29,9 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-bootstrap-daterangepicker'
   s.add_dependency 'rails-assets-chosen-sass-bootstrap'
 
-  s.add_dependency 'turbolinks'
   s.add_dependency 'jquery-turbolinks'
-  s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'underscore-rails'
   s.add_dependency 'rails-assets-jquery.floatThead'

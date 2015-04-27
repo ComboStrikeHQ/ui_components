@@ -5,7 +5,7 @@
 //= require moment
 //= require turbolinks
 
-//= require jquery.floatThead
+//= require jquery.floatThead/jquery.floatThead
 
 //= require chosen-jquery
 //= require bootstrap

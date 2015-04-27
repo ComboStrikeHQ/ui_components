@@ -4,16 +4,22 @@ class SelectCell < FormCellBase
       options[:name],
       options_for_select(select_options),
       { label: label },
+      html_options
+    )
+  end
+
+  private
+
+  def html_options
+    {
       data: {
         error: options[:error],
         width: options[:width] || '300px'
       },
       required: options[:required],
       class: css_class
-    )
+    }
   end
-
-  private
 
   def select_options
     # TODO

@@ -1,6 +1,6 @@
 class SelectCell < FormCellBase
   def show
-    model.select(
+    options[:form].select(
       options[:name],
       options_for_select(select_options),
       { label: label },

@@ -10,7 +10,7 @@ class DateRangeCell < FormCellBase
   private
 
   def date_field(type)
-    model.text_field(
+    options[:form].text_field(
       "#{options[:name]}_#{type}",
       id: "#{id}_#{type}",
       skip_label: true,
@@ -19,7 +19,7 @@ class DateRangeCell < FormCellBase
   end
 
   def select_div
-    model.send(:form_group_builder, :daterange, label: label) do
+    options[:form].send(:form_group_builder, :daterange, label: label) do
       content_tag(
         :div,
         '',

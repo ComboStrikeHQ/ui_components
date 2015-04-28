@@ -17,7 +17,7 @@ class CheckboxListCell < Cell::ViewModel
 
   def boxes
     options[:values].map do |value|
-      model.check_box(options[:name], { multiple: true, label: label(value) }, value, nil)
+      options[:form].check_box(options[:name], { multiple: true, label: label(value) }, value, nil)
     end
   end
 

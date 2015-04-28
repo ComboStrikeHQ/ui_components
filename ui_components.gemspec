@@ -1,14 +1,14 @@
-$:.push File.expand_path('../lib', __FILE__)
+$LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = 'ui_components'
-  s.version     = '1.0.0'
-  s.authors     = ['ad2games']
-  s.email       = ['developers@ad2games.com']
-  s.homepage    = 'TODO'
-  s.summary     = 'TODO: Summary of UiComponents.'
+  s.name = 'ui_components'
+  s.version = '1.0.0'
+  s.authors = ['ad2games']
+  s.email = ['developers@ad2games.com']
+  s.homepage = 'TODO'
+  s.summary = 'TODO: Summary of UiComponents.'
   s.description = 'TODO: Description of UiComponents.'
-  s.license     = 'MIT'
+  s.license = 'MIT'
 
   s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
 

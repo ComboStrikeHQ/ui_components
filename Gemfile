@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
+source('https://rails-assets.org') {}
 
 gemspec
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap-daterangepicker'
-  gem 'rails-assets-chosen-sass-bootstrap'
-end
 
 gem 'rubocop-ci', github: 'ad2games/rubocop-ci'

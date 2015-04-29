@@ -11,19 +11,18 @@ class SelectCell < FormCellBase
   private
 
   def html_options
-    {
-      data: {
-        error: options[:error],
-        width: options[:width] || '300px'
-      },
-      required: options[:required],
-      class: css_class
-    }
+    html_opts = { class: css_class }
+    html_opts.update(options.slice(:required, :multiple))
+    html_opts[:data] = options.slice(:placeholder, :error, :width)
+    html_opts
   end
 
   def select_options
-    # TODO
     options[:options]
+  end
+
+  def options
+    { width: '300px' }.merge(super)
   end
 
   def css_class

@@ -22,6 +22,14 @@ class SelectCell < FormCellBase
   end
 
   def options
+    unless super[:width]
+      warn 'DEPRECATED: UiComponents here, you did not provide a :width option' \
+        ' to the select component. The default value of "300px" still applies,' \
+        ' but will be dropped at some point in the future in favor of' \
+        ' bootstrap\'s default. Provide a :width option to make this warning go' \
+        ' away.'
+    end
+
     { width: '300px' }.merge(super)
   end
 

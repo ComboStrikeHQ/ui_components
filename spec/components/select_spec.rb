@@ -18,7 +18,7 @@ RSpec.describe 'select', type: :helper do
       expect(subject.css('label').attr('for').to_s).to eq('foo_bar')
     end
 
-    it 'renders the select with the corrent id' do
+    it 'renders the select with the correct id' do
       expect(subject.css('select').attr('id').to_s).to eq('foo_bar')
     end
 

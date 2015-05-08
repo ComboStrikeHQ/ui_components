@@ -5,6 +5,6 @@ class FormCellBase < Cell::ViewModel
 
   def label
     return options[:label] if options.key?(:label)
-    controller.t(".#{options[:name].sub(/_id/, '')}")
+    controller.t(".#{options[:name].sub(/_id\z/, '')}")
   end
 end

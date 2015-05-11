@@ -2,7 +2,7 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name = 'ui_components'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.authors = ['ad2games']
   s.email = ['developers@ad2games.com']
   s.homepage = 'TODO'

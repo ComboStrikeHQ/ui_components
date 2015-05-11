@@ -11,5 +11,6 @@
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-daterangepicker
+//= require marked
 
 //= require_tree .

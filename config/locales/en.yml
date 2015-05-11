@@ -1,0 +1,5 @@
+en:
+  ui_components:
+    markdown_textarea_cell:
+      edit: Edit
+      preview: Preview

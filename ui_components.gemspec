@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'rails-assets-bootstrap-daterangepicker'
   s.add_dependency 'rails-assets-bootstrap-chosen'
+  s.add_dependency 'rails-assets-marked'
 
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'

@@ -1,7 +1,7 @@
 en:
   components:
     show:
-      type_id: Type
+      type: Type
       report_rage: Report Range
       list:
         apple: Apple

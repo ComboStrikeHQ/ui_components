@@ -1,0 +1,9 @@
+= form_group do
+  ul.nav.nav-tabs.nav-tabs-borderless
+    li.active
+      a href="##{edit_id}" data-toggle='tab' = t('.edit')
+    li
+      a href="##{preview_id}" data-toggle='tab' = t('.preview')
+  .tab-content
+    .tab-pane.active id=edit_id = textarea
+    .tab-pane.panel.panel-default.panel-body id=preview_id

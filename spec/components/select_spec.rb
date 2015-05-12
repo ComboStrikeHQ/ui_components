@@ -9,10 +9,13 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
+  let(:select) do
+    helper.ui_component(:select, select_options.reverse_merge(form: form, width: '100%'))
+  end
+  let(:select_options) { {} }
+
   context 'with minimal required options' do
-    let(:select) do
-      helper.ui_component(:select, form: form, name: 'bar', options: [])
-    end
+    let(:select_options) { { name: 'bar', options: [] } }
 
     it 'renders the label with the correct for attribute' do
       expect(subject.css('label').attr('for').to_s).to eq('foo_bar')
@@ -21,30 +24,10 @@ RSpec.describe 'select', type: :helper do
     it 'renders the select with the correct id' do
       expect(subject.css('select').attr('id').to_s).to eq('foo_bar')
     end
-
-    it 'looks up the translation for the label using the name' do
-      expect(controller).to receive(:t).with('.bar').and_return('Bar')
-
-      expect(subject.css('label').text).to eq('Bar')
-    end
-  end
-
-  context 'for an *_id attribute' do
-    let(:select) do
-      helper.ui_component(:select, form: form, name: 'bar_id', options: [])
-    end
-
-    it 'strips the _id suffix off the name when looking up translations' do
-      expect(controller).to receive(:t).with('.bar').and_return('Bar')
-
-      expect(subject.css('label').text).to eq('Bar')
-    end
   end
 
   context 'with a label provided' do
-    let(:select) do
-      helper.ui_component(:select, form: form, name: 'bar', options: [], label: 'Game')
-    end
+    let(:select_options) { { options: [], label: 'Game' } }
 
     it 'uses this label' do
       expect(subject.css('label').text).to eq('Game')
@@ -52,9 +35,7 @@ RSpec.describe 'select', type: :helper do
   end
 
   context 'with an instance variable set' do
-    let(:select) do
-      helper.ui_component(:select, form: form, name: 'game_id', options: [['Commander Keen', 23]])
-    end
+    let(:select_options) { { name: 'game_id', options: [['Commander Keen', 23]] } }
 
     it "pre-selects the instance's attribute's value" do
       assign(:foo, double('some object', game_id: 23))

@@ -30,6 +30,6 @@ class DateRangeCell < FormCellBase
   end
 
   def id
-    @id ||= SecureRandom.hex(8)
+    "date_range_#{name_param}"
   end
 end

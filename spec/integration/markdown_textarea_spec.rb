@@ -19,4 +19,11 @@ RSpec.feature 'Markdown Textarea', :js do
     textarea = find(:css, '.tab-pane.active textarea')
     expect(textarea.value).to eq('I like _apples_.')
   end
+
+  it 'can get its value from a model' do
+    visit '/markdown_textarea?use_model=1'
+
+    textarea = find(:css, '.tab-pane.active textarea')
+    expect(textarea.value).to eq('test_from_model')
+  end
 end

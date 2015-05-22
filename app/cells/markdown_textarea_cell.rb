@@ -7,13 +7,21 @@ class MarkdownTextareaCell < FormCellBase
   private
 
   def textarea
-    form.text_area options[:name],
+    form.text_area options[:name], textarea_opts
+  end
+
+  def textarea_opts
+    opts = {
       skip_label: true,
-      value: options[:value],
       rows: options[:rows] || 10,
       control_col: 'col-sm-12',
       label_col: '',
       data: { toggle: 'markdown', target: "##{preview_id}" }
+    }
+
+    opts.merge!(value: options[:value]) if options[:value]
+
+    opts
   end
 
   def form_group

@@ -1,34 +1,35 @@
 $ ->
-  midnight = moment().startOf('day')
+  today = -> moment().startOf('day')
+  yesterday = today().subtract(1, 'days')
   ranges = {
-    'Yesterday': [moment(midnight).subtract(1, 'days'), moment(midnight).subtract(1, 'days')],
-    'Last 7 Days': [moment(midnight).subtract(7, 'days'), moment(midnight).subtract(1, 'days')],
-    'Last 14 Days': [moment(midnight).subtract(14, 'days'), moment(midnight).subtract(1, 'days')],
-    'Last 30 Days': [moment(midnight).subtract(30, 'days'), moment(midnight).subtract(1, 'days')],
+    'Yesterday': [yesterday, yesterday],
+    'Last 7 Days': [today().subtract(7, 'days'), yesterday],
+    'Last 14 Days': [today().subtract(14, 'days'), yesterday],
+    'Last 30 Days': [today().subtract(30, 'days'), yesterday],
     'Month to Date': [
-      moment(midnight).startOf('month'),
-      moment(midnight).endOf('month').startOf('day')
+      today().startOf('month'),
+      today()
     ],
     'Last Month': [
-      moment(midnight).subtract(1, 'month').startOf('month'),
-      moment(midnight).subtract(1, 'month').endOf('month').startOf('day')
+      today().subtract(1, 'month').startOf('month'),
+      today().subtract(1, 'month').endOf('month').startOf('day')
     ]
   }
 
   default_date = (date) ->
-    return moment(midnight).subtract(1, 'days') if date == ''
+    return yesterday if date == ''
     moment(date)
 
   $('.ui-components-date-range').each ->
     $this = $(this)
-    $start = $($this.data().start) || midnight
-    $end = $($this.data().end) || midnight
+    $start_input = $($this.data().start)
+    $end_input = $($this.data().end)
 
     callback = (start, end) ->
       end.startOf('day')
 
-      $start.val(start.format('YYYY-MM-DD'))
-      $end.val(end.format('YYYY-MM-DD'))
+      $start_input.val(start.format('YYYY-MM-DD'))
+      $end_input.val(end.format('YYYY-MM-DD'))
 
       label = 'Custom Range'
       for range_label, range of ranges
@@ -41,11 +42,11 @@ $ ->
 
     $this.daterangepicker(
       ranges: ranges,
-      startDate: $start.val(),
-      endDate: $end.val(),
+      startDate: default_date($start_input.val()),
+      endDate: default_date($end_input.val()),
       opens: 'right',
       format: 'YYYY-MM-DD',
       callback
     )
 
-    callback(default_date($start.val()), default_date($end.val()))
+    callback(default_date($start_input.val()), default_date($end_input.val()))

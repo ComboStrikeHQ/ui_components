@@ -5,9 +5,8 @@ Gem::Specification.new do |s|
   s.version = '1.0.1'
   s.authors = ['ad2games']
   s.email = ['developers@ad2games.com']
-  s.homepage = 'TODO'
-  s.summary = 'TODO: Summary of UiComponents.'
-  s.description = 'TODO: Description of UiComponents.'
+  s.homepage = 'http://www.ad2games.com'
+  s.summary = 'ad2games UiComponents'
   s.license = 'MIT'
 
   s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']

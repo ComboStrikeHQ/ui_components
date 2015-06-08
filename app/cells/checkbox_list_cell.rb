@@ -1,4 +1,4 @@
-class CheckboxListCell < Cell::ViewModel
+class CheckboxListCell < UiComponents::Cell
   def show
     content_tag(:ul, box_li_tags, class: css_class)
   end

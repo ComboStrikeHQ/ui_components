@@ -1,7 +1,6 @@
 class MarkdownTextareaCell < FormCellBase
   def show
-    # TODO: Remove 'base' when https://github.com/apotonick/cells/issues/280 is fixed.
-    render view: :show, base: [File.dirname(__FILE__)]
+    render :show
   end
 
   private

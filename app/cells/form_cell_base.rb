@@ -1,4 +1,4 @@
-class FormCellBase < Cell::ViewModel
+class FormCellBase < UiComponents::Cell
   include ActionView::Helpers::FormOptionsHelper
 
   private

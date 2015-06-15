@@ -8,8 +8,18 @@ $ ->
 
   selector.trigger('change')
 
+renderMarkdown = (el) ->
+  $el = $(el)
+
+  if $el.attr('data-toggle') != 'markdown-readonly'
+    $el = $el.find('[data-toggle="markdown-readonly"]')
+
+  $el.html(marked($el.html().trim()))
+  $el.show()
+
 $ ->
   $('[data-toggle="markdown-readonly"]').each (_, el) ->
-    $el = $(el)
-    $el.html(marked($el.html().trim()))
-    $el.show()
+    renderMarkdown(el)
+
+$(document).on 'shown.bs.modal', (e) ->
+  renderMarkdown(e.target)

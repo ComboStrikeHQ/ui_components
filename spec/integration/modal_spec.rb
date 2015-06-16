@@ -30,4 +30,18 @@ RSpec.feature 'Modal', :js do
     expect(page).to have_content('Some title')
     expect(page).to have_content('It works remotely!')
   end
+
+  scenario 'it fires a domchanged event after remote content was loaded' do
+    visit '/modal_with_remote_content'
+
+    page.execute_script(<<-JS)
+      $(document).on('uic:domchange', function(e) {
+        $(e.target).find('.modal-body').append('<h2>It still works remotely!');
+      });
+    JS
+
+    click_on('Show')
+
+    expect(page).to have_content('It still works remotely!')
+  end
 end

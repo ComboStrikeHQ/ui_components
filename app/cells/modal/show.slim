@@ -1,13 +1,4 @@
-.modal.fade.ui-components-modal{ data-trigger=options[:trigger] data-url=options[:remote] }
+.modal.fade.ui-components-modal{ id=options[:id] data-trigger=options[:trigger] data-url=options[:remote] }
   .modal-dialog
     .modal-content
-      .modal-header
-        button.close{ type="button" data-dismiss="modal" aria-label="Close" }
-          span{ aria-hidden="true"}
-            = '&times;'
-        h4.modal-title
-          = options[:title]
-      .modal-body
-        = options[:body]
-      - if options[:footer]
-        .modal-footer= options[:footer]
+      = cell(:modal_content, nil, options.slice(:title, :body, :footer))

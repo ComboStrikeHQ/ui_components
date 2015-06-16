@@ -1,0 +1,9 @@
+.modal-header
+  button.close{ type="button" data-dismiss="modal" aria-label="Close" }
+    span{ aria-hidden="true"} &times;
+  h4.modal-title
+    = yield :title
+.modal-body
+  = yield
+- if footer = yield(:footer)
+  .modal-footer= footer

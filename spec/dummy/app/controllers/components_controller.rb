@@ -1,11 +1,11 @@
 class ComponentsController < ApplicationController
   def show
-    render params[:name], layout: render_layout?
+    render params[:name], render_params
   end
 
   private
 
-  def render_layout?
-    params[:layout] != 'false'
+  def render_params
+    params.permit(:layout)
   end
 end

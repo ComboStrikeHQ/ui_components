@@ -4,4 +4,9 @@ $ ->
     selector = $($modal.attr('data-trigger'))
     return if selector.length == 0
     $(selector).click (e) ->
-      $modal.modal('show')
+      url = $modal.attr('data-url')
+      if url && url.length > 0
+        $modal.find('.modal-body').load url, ->
+          $modal.modal('show')
+      else
+        $modal.modal('show')

@@ -2,7 +2,12 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name = 'ui_components'
-  s.version = '1.0.1'
+
+  # PLEASE DO NOT CHANGE
+  # We don't publish this gem to a gemserver but use git commit references instead.
+  # There is no need for versioning on a gem level and changing this only creates more git noise.
+  s.version = '1.0.0'
+
   s.authors = ['ad2games']
   s.email = ['developers@ad2games.com']
   s.homepage = 'http://www.ad2games.com'

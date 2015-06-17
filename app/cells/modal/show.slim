@@ -1,0 +1,4 @@
+.modal.fade.ui-components-modal{ id=options[:id] data-trigger=options[:trigger] data-url=options[:remote] }
+  .modal-dialog
+    .modal-content
+      = cell(:modal_content, nil, options.slice(:title, :body, :footer))

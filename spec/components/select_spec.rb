@@ -34,6 +34,14 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
+  context 'skipping the label' do
+    let(:select_options) { { options: [], skip_label: true } }
+
+    it 'skips the label' do
+      expect(subject.css('label')).to be_empty
+    end
+  end
+
   context 'with an instance variable set' do
     let(:select_options) { { name: 'game_id', options: [['Commander Keen', 23]] } }
 

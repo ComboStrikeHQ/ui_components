@@ -3,7 +3,11 @@ class SelectCell < FormCellBase
     options[:form].select(
       options[:name],
       select_options,
-      { label: label, include_blank: true },
+      {
+        label: label,
+        include_blank: true,
+        skip_label: options.fetch(:skip_label, false)
+      },
       html_options
     )
   end

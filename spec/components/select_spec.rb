@@ -34,6 +34,14 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
+  context 'with additional classes' do
+    let(:select_options) { { options: [], classes: %w(some classes) } }
+
+    it 'adds the classes' do
+      expect(subject.css('select').first.attributes['class'].value).to include('some classes')
+    end
+  end
+
   context 'skipping the label' do
     let(:select_options) { { options: [], skip_label: true } }
 

@@ -40,6 +40,7 @@ class SelectCell < FormCellBase
   def css_class
     classes = %w(form-control ui-components-select chosen)
     classes << 'chosen-inline' if options[:inline]
+    classes << options[:classes] if options[:classes]
     classes.join(' ')
   end
 end

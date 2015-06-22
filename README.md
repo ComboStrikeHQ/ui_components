@@ -8,7 +8,7 @@ This gem provides common UI components for all
 To include this gem in the next big ad2games thing, add it to the Gemfile:
 
 ```ruby
-gem 'ui_components', github: 'ad2games/ui_components'
+gem 'ui_components', git: 'https://github.com/ad2games/ui_components'
 ```
 
 Require it in the application.js or wherever you want to use it:

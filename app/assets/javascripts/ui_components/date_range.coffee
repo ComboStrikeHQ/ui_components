@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'uic:domchange', (e) ->
   today = -> moment().startOf('day')
   yesterday = today().subtract(1, 'days')
   ranges = {
@@ -16,14 +16,32 @@ $ ->
     ]
   }
 
-  default_date = (date) ->
-    return yesterday if date == ''
-    moment(date)
+  defaults = {
+    ranges: ranges,
+    startDate: yesterday,
+    endDate: yesterday,
+    opens: 'right',
+    format: 'YYYY-MM-DD',
+  }
 
-  $('.ui-components-date-range').each ->
-    $this = $(this)
-    $start_input = $($this.data().start)
-    $end_input = $($this.data().end)
+  $(e.target).find('.ui-components-date-range').each (_i, el) ->
+    $el = $(el)
+    $start_input = $($el.data().start)
+    $end_input = $($el.data().end)
+
+    start_date = _.find [$start_input.val(), yesterday],
+                        (val) -> val && val.toString().length > 0
+    end_date = _.find [$end_input.val(), yesterday],
+                      (val) -> val && val.toString().length > 0
+
+    start_date = moment(start_date)
+    end_date = moment(end_date)
+
+    options = {}
+    _.extend(options, defaults)
+    _.extend(options, _.pick($el.data(), ['dateLimit', 'ranges']))
+    _.extend(options, { startDate: start_date, endDate: end_date })
+    options.ranges = _.mapObject(options.ranges, (v, k) -> _.map(v, (v) -> moment(v)))
 
     callback = (start, end) ->
       end.startOf('day')
@@ -32,21 +50,14 @@ $ ->
       $end_input.val(end.format('YYYY-MM-DD'))
 
       label = 'Custom Range'
-      for range_label, range of ranges
+      for range_label, range of options.ranges
         if range[0].diff(start) == 0 and range[1].diff(end) == 0
           label = range_label
 
-      $this.html(
+      $el.html(
         label + ' (' + start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD') + ')'
       )
 
-    $this.daterangepicker(
-      ranges: ranges,
-      startDate: default_date($start_input.val()),
-      endDate: default_date($end_input.val()),
-      opens: 'right',
-      format: 'YYYY-MM-DD',
-      callback
-    )
+    $el.daterangepicker(options, callback)
 
-    callback(default_date($start_input.val()), default_date($end_input.val()))
+    callback(options.startDate, options.endDate)

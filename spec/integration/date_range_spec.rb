@@ -53,4 +53,20 @@ RSpec.feature 'Date Range', :js do
     expect(datepicker(:start)).to eq((Date.today - 1.months).beginning_of_month.to_s)
     expect(datepicker(:end)).to eq((Date.today - 1.months).end_of_month.to_s)
   end
+
+  scenario 'ranges are configurable' do
+    visit '/date_range_custom_ranges'
+
+    field = find('.ui-components-date-range')
+
+    field.click
+
+    expect(page).to have_content('Next 10 days')
+
+    link = find('li:first-child')
+    expect(link.text).to eq('Next 10 days')
+    link.click
+
+    expect(field.text).to eq('Next 10 days (2015-06-22 - 2015-07-01)')
+  end
 end

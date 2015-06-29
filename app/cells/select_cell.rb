@@ -17,12 +17,12 @@ class SelectCell < FormCellBase
   def html_options
     html_opts = { class: css_class }
     html_opts.update(options.slice(:required, :multiple))
-    html_opts[:data] = options.slice(:placeholder, :error, :width)
+    html_opts[:data] = options.slice(:placeholder, :error, :width, :remote)
     html_opts
   end
 
   def select_options
-    options[:options]
+    options[:options] || []
   end
 
   def options

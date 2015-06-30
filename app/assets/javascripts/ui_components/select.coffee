@@ -27,3 +27,9 @@ $ ->
     $helpBlock.css('left', '3em')
 
     init_group_selectable($this)
+
+    if data.remote
+      $this.ajaxChosen
+        type: 'GET'
+        url: data.remote
+        dataType: 'json'

@@ -8,6 +8,7 @@
 //= require jquery.floatThead/jquery.floatThead
 
 //= require chosen-jquery
+//= require ajax-chosen
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-daterangepicker

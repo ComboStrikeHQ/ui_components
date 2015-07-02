@@ -28,8 +28,8 @@ $ ->
 
     init_group_selectable($this)
 
-    if data.remote
+    if data.remoteOptions
       $this.ajaxChosen
         type: 'GET'
-        url: data.remote
+        url: data.remoteOptions
         dataType: 'json'

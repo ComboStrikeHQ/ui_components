@@ -23,7 +23,7 @@ module ChosenSelect
     field = find_field(label, visible: false)
     chosen = find("##{field[:id]}_chosen")
     chosen.click
-    search = chosen.find('.chosen-search input')
+    search = chosen.find('.chosen-search input, .search-field input')
     search.set(input)
   end
 

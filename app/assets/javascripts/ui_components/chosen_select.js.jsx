@@ -1,15 +1,81 @@
 (function () {
-  window.Select = React.createClass({
+  var strategies = {
+    single: {
+      initialValue: '',
+
+      handleUpdate: function(current, update) {
+        return update ? update.selected : null;
+      },
+
+      updateOptions: function(existingOptions, newOptions) {
+        return newOptions;
+      }
+    },
+
+    multiple: {
+      initialValue: [],
+
+      handleUpdate: function(current, update) {
+        if (update.selected) {
+          return current.concat(update.selected);
+        } else if (update.deselected) {
+          return _.without(current, update.deselected);
+        }
+      },
+
+      updateOptions: function(existingOptions, newOptions) {
+        return _.union(existingOptions, newOptions);
+      }
+    }
+  };
+
+
+  var Select = React.createClass({
     getInitialState: function() {
-      return { value: '' };
+      return { value: this.strategy().initialValue, search: '' };
+    },
+
+    componentDidMount: function() {
+      if (this.props.remote_options) {
+        this.getChosenInput().on('keyup', _.bind(function(e) {
+          this.state.search = $(e.target).val();
+          var throttledFetch = _.throttle(this.fetchOptions, 1000);
+          if (this.state.search.length >= 3) throttledFetch(this.state.search);
+        }, this));
+      }
+    },
+
+    strategy: function() {
+      return this.props.multiple ? strategies.multiple : strategies.single;
+    },
+
+    componentDidUpdate: function() {
+      this.getChosenInput().val(this.state.search);
     },
 
     handleChange: function (event, update) {
-      this.setState({ value: update ? update.selected : null });
+      this.setState({ value: this.strategy().handleUpdate(this.state.value, update) });
+      this.getChosenInput().val('');
+    },
+
+    getChosenInput: function() {
+      return this.getChosen().find('input')
+    },
+
+    getChosen: function() {
+      return $(this.refs.chosen.refs.select.getDOMNode()).siblings('.chosen-container');
+    },
+
+    fetchOptions: function() {
+      $.getJSON(this.props.remote_options + '?term=' + this.state.search, _.bind(function(data) {
+        var newOptions = data.map(function(el) { return [el.text, el.value]; })
+        if (!newOptions.length) return;
+        this.setState({ options: this.strategy().updateOptions(this.options(), newOptions) });
+      }, this));
     },
 
     options: function () {
-      return this.props.options || [];
+      return this.state.options || this.props.options || [];
     },
 
     renderLabel: function () {
@@ -42,6 +108,8 @@
                        name={this.props.name}
                        value={this.state.value}
                        allowSingleDeselect={true}
+                       multiple={this.props.multiple}
+                       ref="chosen"
                        data-placeholder={this.props.placeholder}
                        onChange={this.handleChange}
                        className={this.classes()}>

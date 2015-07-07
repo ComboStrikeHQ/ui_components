@@ -1,5 +1,6 @@
 test:
   pre:
     - bundle exec rake rubocop
+    - bin/flow check
   override:
     - RAILS_ENV=development bundle exec rake spec

@@ -20,4 +20,4 @@
 //= require marked
 
 //= require ./ui_components/namespace
-//= require_tree .
+//= require_tree ./ui_components

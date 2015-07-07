@@ -1,0 +1,10 @@
+[ignore]
+
+[include]
+
+[libs]
+app/assets/javascripts/ui_components.js
+app/assets/javascripts/interfaces
+app/assets/javascripts/ui_components
+
+[options]

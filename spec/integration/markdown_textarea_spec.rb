@@ -1,6 +1,6 @@
 RSpec.feature 'Markdown Textarea', :js do
   def preview_html
-    find(:css, '.tab-pane.active').base.inner_html.strip
+    page.evaluate_script('$(".tab-pane.active").html()').strip
   end
 
   it 'has an edit and preview tab for markdown text' do

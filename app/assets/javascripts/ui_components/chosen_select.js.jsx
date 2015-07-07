@@ -5,7 +5,7 @@
     },
 
     handleChange: function (event, update) {
-      this.setState({ value: update.selected });
+      this.setState({ value: update ? update.selected : null });
     },
 
     options: function () {
@@ -41,6 +41,7 @@
                        key={this.props.name}
                        name={this.props.name}
                        value={this.state.value}
+                       allowSingleDeselect={true}
                        data-placeholder={this.props.placeholder}
                        onChange={this.handleChange}
                        className={this.classes()}>
@@ -51,5 +52,5 @@
     }
   });
 
-  //window.ui_components.Select = Select
+  window.ui_components.Select = Select
 })();

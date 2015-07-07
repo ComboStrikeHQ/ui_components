@@ -9,6 +9,7 @@
 
 //= require react
 //= require react_ujs
+//= require chosen
 //= require react-chosen
 
 //= require bootstrap

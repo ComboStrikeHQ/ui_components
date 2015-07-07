@@ -10,8 +10,8 @@ require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec/rails'
 require 'pry-rails'
 require 'capybara/rspec'
-require 'capybara/webkit'
-Capybara.javascript_driver = :webkit
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../')
 

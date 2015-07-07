@@ -1,15 +1,18 @@
 class SelectCell < FormCellBase
+  include React::Rails::ViewHelper
+
   def show
-    options[:form].select(
-      options[:name],
-      select_options,
-      {
-        label: label,
-        include_blank: true,
-        skip_label: options.fetch(:skip_label, false)
-      },
-      html_options
-    )
+    #options[:form].select(
+    #  options[:name],
+    #  select_options,
+    #  {
+    #    label: label,
+    #    include_blank: true,
+    #    skip_label: options.fetch(:skip_label, false)
+    #  },
+    #  html_options
+    #)
+    react_component('Select', options.slice(:name, :label, :options))
   end
 
   private

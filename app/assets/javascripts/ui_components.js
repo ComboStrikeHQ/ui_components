@@ -7,11 +7,15 @@
 
 //= require jquery.floatThead/jquery.floatThead
 
-//= require chosen
-//= require ajax-chosen
+//= require react
+//= require react_ujs
+//= require react-chosen
+
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-daterangepicker
+
 //= require marked
 
+//= require ./ui_components/namespace
 //= require_tree .

@@ -12,7 +12,7 @@ class SelectCell < FormCellBase
     #  },
     #  html_options
     #)
-    react_component('Select', options.slice(:name, :label, :options))
+    react_component('ui_components.Select', options.slice(:name, :label, :options))
   end
 
   private

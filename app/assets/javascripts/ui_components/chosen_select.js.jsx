@@ -39,8 +39,8 @@
       if (this.props.remote_options) {
         this.getChosenInput().on('keyup', _.bind(function(e) {
           this.state.search = $(e.target).val();
-          var throttledFetch = _.throttle(this.fetchOptions, 1000);
-          if (this.state.search.length >= 3) throttledFetch(this.state.search);
+          var fetch = _.debounce(this.fetchOptions, 1000);
+          if (this.state.search.length >= 3) fetch(this.state.search);
         }, this));
       }
     },
@@ -81,8 +81,6 @@
     renderLabel: function () {
       if (this.props.label)
         return <label htmlFor={this.props.name}>{this.props.label}</label>
-      else
-        return '';
     },
   
     renderOptions: function () {
@@ -92,7 +90,7 @@
     },
 
     classes: function () {
-      c = ['form-control'];
+      var c = ['form-control'];
       if (this.props.inline)
         c.push('chosen-inline');
       if (this.props.classes)
@@ -114,7 +112,7 @@
                        onChange={this.handleChange}
                        className={this.classes()}>
                  <option></option>
-                 { this.renderOptions() }
+                 {this.renderOptions()}
                </Chosen>
              </div>;
     }

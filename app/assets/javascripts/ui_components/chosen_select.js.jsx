@@ -31,14 +31,8 @@
 
 
   var Select = React.createClass({
-    propTypes: {
-      remote_options: React.PropTypes.string,
-      multiple: React.PropTypes.bool,
-      options: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.string)),
-      label: React.PropTypes.string,
-      name: React.PropTypes.string,
-      placeholder: React.PropTypes.string,
-      classes: React.PropTypes.string
+    chosenDefaults: {
+      searchContains: true
     },
 
     getInitialState: function() {
@@ -73,7 +67,7 @@
 
     fetchOptions: function() {
       $.getJSON(this.props.remote_options + '?term=' + this.state.search, _.bind(function(data) {
-        var newOptions = data.map(function(el) { return [el.text, el.value]; })
+        var newOptions = data.map(function(el) { return [el.text, el.value]; });
         if (!newOptions.length) return;
         this.setState({ options: this.strategy().updateOptions(this.options(), newOptions) });
       }, this));
@@ -83,45 +77,51 @@
       return this.state.options || this.props.options || [];
     },
 
-    renderLabel: function () {
-      if (this.props.label)
-        return <label htmlFor={this.props.name}>{this.props.label}</label>
-    },
-  
-    renderOptions: function () {
-      return this.options().map(function(pair) {
-        return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>
-      })
-    },
-
     classes: function () {
       var c = ['form-control'];
       if (this.props.inline)
         c.push('chosen-inline');
       if (this.props.classes)
-        c.push(this.props.classes)
+        c.push(this.props.classes);
       return c.join(' ');
+    },
+
+    renderLabel: function () {
+      if (this.props.label)
+        return <label htmlFor={this.props.name}>{this.props.label}</label>;
+    },
+  
+    renderOptions: function () {
+      return this.options().map(function(pair) {
+        return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>;
+      });
+    },
+
+    renderChosen: function() {
+      var options = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
+        id: this.props.name,
+        key: this.props.name,
+        name: this.props.name,
+        value: this.state.value,
+        multiple: this.props.multiple,
+        'data-placeholder': this.props.placeholder,
+        ref: 'chosen',
+        onChange: this.handleChange,
+        className: this.classes()
+      });
+
+      return React.createElement(Chosen, options,
+        React.createElement('option'), this.renderOptions()
+      );
     },
 
     render: function() {
       return <div className="form-group">
                {this.renderLabel()}
-               <Chosen id={this.props.name}
-                       key={this.props.name}
-                       name={this.props.name}
-                       value={this.state.value}
-                       allowSingleDeselect={true}
-                       multiple={this.props.multiple}
-                       ref="chosen"
-                       data-placeholder={this.props.placeholder}
-                       onChange={this.handleChange}
-                       className={this.classes()}>
-                 <option></option>
-                 {this.renderOptions()}
-               </Chosen>
+               {this.renderChosen()}
              </div>;
     }
   });
 
-  window.ui_components.Select = Select
+  window.ui_components.Select = Select;
 })();

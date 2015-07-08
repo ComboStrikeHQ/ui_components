@@ -4,7 +4,7 @@ class SelectCell < FormCellBase
   def show
     react_component(
       'ui_components.Select',
-      options.slice(:name, :label, :remote_options, :options, :multiple)
+      options.slice(:name, :label, :remote_options, :options, :chosenOptions, :multiple)
     )
   end
 

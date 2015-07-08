@@ -39,8 +39,7 @@
       if (this.props.remote_options) {
         this.getChosenInput().on('keyup', _.bind(function(e) {
           this.state.search = $(e.target).val();
-          var fetch = _.debounce(this.fetchOptions, 1000);
-          if (this.state.search.length >= 3) fetch(this.state.search);
+          if (this.state.search.length >= 3) this.fetchOptions(this.state.search);
         }, this));
       }
     },
@@ -59,11 +58,7 @@
     },
 
     getChosenInput: function() {
-      return this.getChosen().find('input')
-    },
-
-    getChosen: function() {
-      return $(this.refs.chosen.refs.select.getDOMNode()).siblings('.chosen-container');
+      return $(this.refs.chosen.getDOMNode()).find('input');
     },
 
     fetchOptions: function() {

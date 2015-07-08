@@ -3,7 +3,7 @@
     single: {
       initialValue: '',
 
-      handleUpdate: function(current, update) {
+      updateValue: function(current, update) {
         return update ? update.selected : null;
       },
 
@@ -15,7 +15,7 @@
     multiple: {
       initialValue: [],
 
-      handleUpdate: function(current, update) {
+      updateValue: function(current, update) {
         if (update.selected) {
           return current.concat(update.selected);
         } else if (update.deselected) {
@@ -54,7 +54,7 @@
     },
 
     handleChange: function (event, update) {
-      this.setState({ value: this.strategy().handleUpdate(this.state.value, update) });
+      this.setState({ value: this.strategy().updateValue(this.state.value, update) });
       this.getChosenInput().val('');
     },
 

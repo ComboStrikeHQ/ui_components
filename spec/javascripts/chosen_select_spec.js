@@ -91,6 +91,10 @@ describe('ui_components.Select', function() {
       })
     );
 
+    beforeEach(function() {
+      spyOn(subject, 'debouncedFetchOptions').and.callFake(subject.fetchOptions);
+    });
+
     it('sets the initial state', function() {
       expect(subject.state.value).toEqual('');
       expect(subject.state.search).toEqual('');
@@ -119,6 +123,10 @@ describe('ui_components.Select', function() {
         remote_options: '/assets/fixtures/options.json'
       })
     );
+
+    beforeEach(function() {
+      spyOn(subject, 'debouncedFetchOptions').and.callFake(subject.fetchOptions);
+    });
 
     it('sets the initial state', function() {
       expect(subject.state.value).toEqual([]);

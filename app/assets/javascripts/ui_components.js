@@ -1,3 +1,4 @@
+//= require es5-shim
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs

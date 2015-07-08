@@ -43,7 +43,7 @@
       if (this.props.remote_options) {
         this.getChosenInput().on('keyup', _.bind(function(e) {
           this.state.search = $(e.target).val();
-          if (this.state.search.length >= 3) this.fetchOptions(this.state.search);
+          if (this.state.search.length >= 3) this.debouncedFetchOptions(this.state.search);
         }, this));
       }
     },
@@ -72,6 +72,8 @@
         this.setState({ options: this.strategy().updateOptions(this.options(), newOptions) });
       }, this));
     },
+
+    debouncedFetchOptions: _.debounce(function() { this.fetchOptions() }, 250),
 
     options: function () {
       return this.state.options || this.props.options || [];

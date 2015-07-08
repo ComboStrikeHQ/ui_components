@@ -35,6 +35,16 @@
       searchContains: true
     },
 
+    propTypes: {
+      remote_options: React.PropTypes.string,
+      multiple: React.PropTypes.bool,
+      options: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.string)),
+      label: React.PropTypes.string,
+      name: React.PropTypes.string,
+      placeholder: React.PropTypes.string,
+      classes: React.PropTypes.string
+    },
+
     getInitialState: function() {
       return { value: this.strategy().initialValue, search: '' };
     },

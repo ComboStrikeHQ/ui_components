@@ -95,8 +95,55 @@ describe('ui_components.Select', function() {
       expect(subject.state.value).toEqual('');
       expect(subject.state.search).toEqual('');
     });
+
+    it('loads the remote options when a search term is given', function() {
+      spyOn($, 'getJSON').and.callFake(function(url, callback) {
+        callback([
+          { text: 'Australia', value: 'au'}, 
+          { text: 'Austria', value: 'at'}
+        ]);
+      });
+
+      triggerSearch(subject, 'Aus');
+      expect(subject.state.options).toEqual([
+        ['Australia', 'au'], ['Austria', 'at']
+      ]);
+    });
   });
 
   describe('multiple with remote options', function() {
+    var subject = React.addons.TestUtils.renderIntoDocument(
+      React.createElement(ui_components.Select, { 
+        multiple: true, 
+        options: [['Germany', 'de'], ['France', 'fr']],
+        remote_options: '/assets/fixtures/options.json'
+      })
+    );
+
+    it('sets the initial state', function() {
+      expect(subject.state.value).toEqual([]);
+      expect(subject.state.search).toEqual('');
+    });
+
+    it('loads the remote options when a search term is given', function() {
+      spyOn($, 'getJSON').and.callFake(function(url, callback) {
+        callback([
+          { text: 'Australia', value: 'au'}, 
+          { text: 'Austria', value: 'at'}
+        ]);
+      });
+
+      triggerSearch(subject, 'Aus');
+      expect(subject.options()).toEqual([
+        ['Germany', 'de'], ['France', 'fr'],
+        ['Australia', 'au'], ['Austria', 'at']
+      ]);
+    });
   });
+
+  function triggerSearch(node, value) {
+    $(node.refs.chosen.getDOMNode()).find('input')
+      .val(value)
+      .trigger('keyup');
+  }
 });

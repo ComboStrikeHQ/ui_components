@@ -38,7 +38,10 @@
     propTypes: {
       remote_options: React.PropTypes.string,
       multiple: React.PropTypes.bool,
-      options: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.string)),
+      options: React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.string)),
+        React.PropTypes.string
+      ]),
       label: React.PropTypes.string,
       name: React.PropTypes.string,
       placeholder: React.PropTypes.string,
@@ -104,13 +107,17 @@
     },
   
     renderOptions: function () {
-      return this.options().map(function(pair) {
-        return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>;
-      });
+      var options = this.options();
+      if (typeof(options) === 'string')
+        return options;
+      else
+        return options.map(function(pair) {
+          return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>;
+        });
     },
 
     renderChosen: function() {
-      var options = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
+      var props = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
         id: this.props.name,
         key: this.props.name,
         name: this.props.name,
@@ -122,9 +129,14 @@
         className: this.classes()
       });
 
-      return React.createElement(Chosen, options,
-        React.createElement('option'), this.renderOptions()
-      );
+      var options = this.renderOptions();
+
+      if (typeof(options) === 'string') {
+        props.dangerouslySetInnerHTML = { __html: options };
+        return React.createElement(Chosen, props);
+      } else {
+        return React.createElement(Chosen, props, options);
+      }
     },
 
     render: function() {

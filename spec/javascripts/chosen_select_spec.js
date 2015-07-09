@@ -37,9 +37,9 @@ describe('ui_components.Select', function() {
 
     it('renders the options', function() {
       var $node = $(subject.getDOMNode());
-      expect($node.find('option').length).toEqual(4);
+      expect($node.find('option').length).toEqual(3);
       expect($node.find('option').map(function() { return this.value }).get()).toEqual([
-        '', 'de', 'fr', 'es'
+        'de', 'fr', 'es'
       ]);
     });
 
@@ -66,9 +66,9 @@ describe('ui_components.Select', function() {
 
     it('renders the options', function() {
       var $options = $(subject.getDOMNode()).find('option');
-      expect($options.length).toEqual(4);
+      expect($options.length).toEqual(3);
       expect($options.map(function() { return this.value }).get()).toEqual([
-        '', 'de', 'fr', 'es'
+        'de', 'fr', 'es'
       ]);
     });
 
@@ -146,6 +146,20 @@ describe('ui_components.Select', function() {
         ['Germany', 'de'], ['France', 'fr'],
         ['Australia', 'au'], ['Austria', 'at']
       ]);
+    });
+  });
+
+  describe('with already rendered options', function() {
+    var subject = React.addons.TestUtils.renderIntoDocument(
+      React.createElement(ui_components.Select, {
+        options: '<option value="foo">Bar</option>'
+      })
+    );
+
+    it('just passes these along', function() {
+      var $select = $(subject.getDOMNode()).find('select');
+      expect($select.find('option').length).toEqual(1);
+      expect($select.find('option').last().text()).toEqual('Bar');
     });
   });
 

@@ -1,7 +1,9 @@
 (function () {
   var strategies = {
     single: {
-      initialValue: '',
+      initialValue: function(selected) {
+        return selected || '';
+      },
 
       updateValue: function(current, update) {
         return update ? update.selected : null;
@@ -13,7 +15,9 @@
     },
 
     multiple: {
-      initialValue: [],
+      initialValue: function(selected) {
+        return selected || [];
+      },
 
       updateValue: function(current, update) {
         if (update.selected) {
@@ -38,15 +42,18 @@
     propTypes: {
       remote_options: React.PropTypes.string,
       multiple: React.PropTypes.bool,
-      options: React.PropTypes.arrayOf(React.PropTypes.arrayOf(React.PropTypes.string)),
-      label: React.PropTypes.string,
+      options: React.PropTypes.any,
       name: React.PropTypes.string,
+      selected: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.arrayOf(React.PropTypes.string)
+      ]),
       placeholder: React.PropTypes.string,
       classes: React.PropTypes.string
     },
 
     getInitialState: function() {
-      return { value: this.strategy().initialValue, search: '' };
+      return { value: this.strategy().initialValue(this.props.selected), search: '' };
     },
 
     componentDidMount: function() {
@@ -98,20 +105,21 @@
       return c.join(' ');
     },
 
-    renderLabel: function () {
-      if (this.props.label)
-        return <label htmlFor={this.props.name}>{this.props.label}</label>;
+    id: function () {
+      return this.props.id || this.props.name;
     },
-  
+
     renderOptions: function () {
       return this.options().map(function(pair) {
+        if (typeof pair === 'string') 
+          pair = [pair, pair];
         return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>;
       });
     },
 
     renderChosen: function() {
       var options = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
-        id: this.props.name,
+        id: this.id(),
         key: this.props.name,
         name: this.props.name,
         value: this.state.value,
@@ -122,16 +130,13 @@
         className: this.classes()
       });
 
-      return React.createElement(Chosen, options,
+      return React.createElement(Chosen, options, 
         React.createElement('option'), this.renderOptions()
       );
     },
 
     render: function() {
-      return <div className="form-group">
-               {this.renderLabel()}
-               {this.renderChosen()}
-             </div>;
+      return this.renderChosen();
     }
   });
 

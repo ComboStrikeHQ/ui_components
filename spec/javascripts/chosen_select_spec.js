@@ -7,7 +7,6 @@ describe('ui_components.Select', function() {
       options: options,
       inline: true,
       classes: 'my-custom-class',
-      label: 'My label'
     })
   );
 
@@ -16,11 +15,6 @@ describe('ui_components.Select', function() {
     expect($select.hasClass('form-control')).toBe(true);
     expect($select.hasClass('chosen-inline')).toBe(true);
     expect($select.hasClass('my-custom-class')).toBe(true);
-  });
-
-  it('renders the label', function() {
-    var $label = $(subject.getDOMNode()).find('label');
-    expect($label.text()).toEqual('My label');
   });
 
   describe('single', function() {

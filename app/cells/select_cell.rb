@@ -2,13 +2,36 @@ class SelectCell < FormCellBase
   include React::Rails::ViewHelper
 
   def show
-    react_component(
-      'ui_components.Select',
-      options.slice(:name, :label, :remote_options, :options, :chosenOptions, :multiple)
-    )
+    content_tag(:div, class: 'form-group') do
+      label_tag(id, label, class: 'control-label col-sm-2') +
+        react_component('ui_components.Select', react_options, class: 'col-sm-10')
+    end
   end
 
   private
+
+  def name
+    return "#{super}[]" if options[:multiple]
+    super
+  end
+
+  def label
+    if options.key?(:label)
+      options[:label]
+    elsif form.object.respond_to?(:human_attribute_name)
+      form.object.human_attribute_name(options.fetch(:name))
+    else
+      options.fetch(:name).to_s.humanize
+    end
+  end
+
+  def selected
+    if form.object.nil? && form.object_name.is_a?(Symbol)
+      params[form.object_name].try(:[], options.fetch(:name))
+    else
+      form.object.try(:send, options.fetch(:name))
+    end
+  end
 
   def html_options
     html_opts = { class: css_class }
@@ -17,8 +40,10 @@ class SelectCell < FormCellBase
     html_opts
   end
 
-  def select_options
-    options[:options] || []
+  def react_options
+    options
+      .slice(:remote_options, :options, :chosenOptions, :multiple)
+      .merge(name: name, id: id, selected: selected)
   end
 
   def options

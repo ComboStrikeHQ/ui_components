@@ -3,12 +3,16 @@ class FormCellBase < UiComponents::Cell
 
   private
 
-  def name
-    options.fetch(:name)
+  def id
+    "#{form.object_name}_#{options.fetch(:name)}".underscore
   end
 
-  def name_param
-    "#{form.object_name}_#{name}".underscore
+  def name
+    if form.object_name.present?
+      "#{form.object_name}[#{options.fetch(:name)}]".underscore
+    else
+      options.fetch(:name)
+    end
   end
 
   def label

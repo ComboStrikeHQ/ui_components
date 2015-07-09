@@ -10,7 +10,7 @@
 
 //= require react
 //= require react_ujs
-//= require chosen
+//= require chosen-jquery
 //= require react-chosen
 
 //= require bootstrap

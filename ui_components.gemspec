@@ -50,4 +50,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'teaspoon-jasmine'
+  s.add_development_dependency 'sqlite3'
 end

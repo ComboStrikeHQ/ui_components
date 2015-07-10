@@ -17,12 +17,7 @@ class SelectCell < FormCellBase
 
   def label
     return options[:label] if options.key?(:label)
-
-    if form.object.respond_to?(:human_attribute_name)
-      form.object.human_attribute_name(name_option)
-    else
-      name_option.humanize
-    end
+    form.object.try(:class).try(:human_attribute_name, name_option) || name_option.humanize
   end
 
   def selected

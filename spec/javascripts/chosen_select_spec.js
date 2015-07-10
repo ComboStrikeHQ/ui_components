@@ -143,6 +143,49 @@ describe('ui_components.Select', function() {
     });
   });
 
+  describe('preselected selected options', function() {
+    describe('for single select', function() {
+      var subject = React.addons.TestUtils.renderIntoDocument(
+        React.createElement(ui_components.Select, {
+          options: [['Germany', 'de'], ['France', 'fr']],
+          selected: 'de'
+        })
+      );
+
+      it('has Germany preselected', function() {
+        expect($(subject.getDOMNode()).find('select').val()).toEqual('de');
+      });
+    });
+
+    describe('for multiple select, passing an array', function() {
+      var subject = React.addons.TestUtils.renderIntoDocument(
+        React.createElement(ui_components.Select, {
+          options: [['Germany', 'de'], ['France', 'fr']],
+          selected: ['de'],
+          multiple: true
+        })
+      );
+
+      it('has Germany preselected', function() {
+        expect($(subject.getDOMNode()).find('select').val()).toEqual(['de']);
+      });
+    });
+
+    describe('for multiple select, passing a single value', function() {
+      var subject = React.addons.TestUtils.renderIntoDocument(
+        React.createElement(ui_components.Select, {
+          options: [['Germany', 'de'], ['France', 'fr']],
+          selected: 'de',
+          multiple: true
+        })
+      );
+
+      it('has Germany preselected', function() {
+        expect($(subject.getDOMNode()).find('select').val()).toEqual(['de']);
+      });
+    });
+  });
+
   function triggerSearch(node, value) {
     $(node.refs.chosen.getDOMNode()).find('input')
       .val(value)

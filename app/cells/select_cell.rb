@@ -16,21 +16,33 @@ class SelectCell < FormCellBase
   end
 
   def label
-    if options.key?(:label)
-      options[:label]
-    elsif form.object.respond_to?(:human_attribute_name)
-      form.object.human_attribute_name(options.fetch(:name))
+    return options[:label] if options.key?(:label)
+
+    if form.object.respond_to?(:human_attribute_name)
+      form.object.human_attribute_name(name_option)
     else
-      options.fetch(:name).to_s.humanize
+      name_option.humanize
     end
   end
 
   def selected
-    if form.object.nil? && form.object_name.is_a?(Symbol)
-      params[form.object_name].try(:[], options.fetch(:name))
+    if form.object
+      value_from_object
     else
-      form.object.try(:send, options.fetch(:name))
+      value_from_params
     end
+  end
+
+  def value_from_params
+    params[form.object_name].try(:[], name_option)
+  end
+
+  def value_from_object
+    form.object.try(:send, name_option)
+  end
+
+  def name_option
+    options.fetch(:name).to_s
   end
 
   def html_options

@@ -7,3 +7,7 @@ en:
         apple: Apple
         banana: Orange
         kiwi: Kiwi
+  activerecord:
+    attributes:
+      fox:
+        species: Fox species

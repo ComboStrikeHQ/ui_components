@@ -3,6 +3,7 @@ require File.expand_path('../boot', __FILE__)
 # Pick the frameworks you want:
 require 'action_controller/railtie'
 require 'action_view/railtie'
+require 'active_record/railtie'
 require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)

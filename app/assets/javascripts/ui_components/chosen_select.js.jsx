@@ -16,7 +16,7 @@
 
     multiple: {
       initialValue: function(selected) {
-        return selected || [];
+        return selected ? _.flatten([selected]) : [];
       },
 
       updateValue: function(current, update) {

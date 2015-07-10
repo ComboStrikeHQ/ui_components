@@ -20,3 +20,5 @@ load 'rails/tasks/engine.rake'
 load 'rails/tasks/statistics.rake'
 
 Bundler::GemHelper.install_tasks
+
+task spec: ['app:spec', 'app:teaspoon']

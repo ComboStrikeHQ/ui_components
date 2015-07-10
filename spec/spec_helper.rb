@@ -10,8 +10,8 @@ require File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec/rails'
 require 'pry-rails'
 require 'capybara/rspec'
-require 'capybara/webkit'
-Capybara.javascript_driver = :webkit
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../')
 
@@ -24,3 +24,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 end
+
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+load File.expand_path('../dummy/db/schema.rb', __FILE__)

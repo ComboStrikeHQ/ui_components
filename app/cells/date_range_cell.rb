@@ -30,7 +30,7 @@ class DateRangeCell < FormCellBase
   end
 
   def id
-    "date_range_#{name_param}"
+    "date_range_#{super}"
   end
 
   def label

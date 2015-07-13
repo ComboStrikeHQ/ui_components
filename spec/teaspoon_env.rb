@@ -7,7 +7,7 @@ Teaspoon.configure do |config|
   config.fixture_paths = ['spec/javascripts/fixtures']
 
   config.suite do |suite|
-    suite.use_framework :jasmine, '2.2.0'
+    suite.use_framework :jasmine
     suite.matcher = '{spec/javascripts,app/assets}/**/*_spec.{js,js.coffee,coffee}'
     suite.helper = 'spec_helper'
     suite.boot_partial = 'boot'

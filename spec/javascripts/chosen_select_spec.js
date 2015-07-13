@@ -11,7 +11,7 @@ describe('ui_components.Select', function() {
   );
 
   it('renders the classes', function() {
-    var $select = $(subject.getDOMNode()).find('select');
+    var $select = $(React.findDOMNode(subject)).find('select');
     expect($select.hasClass('form-control')).toBe(true);
     expect($select.hasClass('chosen-inline')).toBe(true);
     expect($select.hasClass('my-custom-class')).toBe(true);
@@ -30,7 +30,7 @@ describe('ui_components.Select', function() {
     });
 
     it('renders the options', function() {
-      var $node = $(subject.getDOMNode());
+      var $node = $(React.findDOMNode(subject));
       expect($node.find('option').length).toEqual(4);
       expect($node.find('option').map(function() { return this.value }).get()).toEqual([
         '', 'de', 'fr', 'es'
@@ -59,7 +59,7 @@ describe('ui_components.Select', function() {
     });
 
     it('renders the options', function() {
-      var $options = $(subject.getDOMNode()).find('option');
+      var $options = $(React.findDOMNode(subject)).find('option');
       expect($options.length).toEqual(4);
       expect($options.map(function() { return this.value }).get()).toEqual([
         '', 'de', 'fr', 'es'
@@ -153,7 +153,7 @@ describe('ui_components.Select', function() {
       );
 
       it('has Germany preselected', function() {
-        expect($(subject.getDOMNode()).find('select').val()).toEqual('de');
+        expect($(React.findDOMNode(subject)).find('select').val()).toEqual('de');
       });
     });
 
@@ -167,7 +167,7 @@ describe('ui_components.Select', function() {
       );
 
       it('has Germany preselected', function() {
-        expect($(subject.getDOMNode()).find('select').val()).toEqual(['de']);
+        expect($(React.findDOMNode(subject)).find('select').val()).toEqual(['de']);
       });
     });
 
@@ -181,13 +181,13 @@ describe('ui_components.Select', function() {
       );
 
       it('has Germany preselected', function() {
-        expect($(subject.getDOMNode()).find('select').val()).toEqual(['de']);
+        expect($(React.findDOMNode(subject)).find('select').val()).toEqual(['de']);
       });
     });
   });
 
   function triggerSearch(node, value) {
-    $(node.refs.chosen.getDOMNode()).find('input')
+    $(React.findDOMNode(node.refs.chosen)).find('input')
       .val(value)
       .trigger('keyup');
   }

@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-chosen'
   s.add_dependency 'rails-assets-marked'
   s.add_dependency 'react-rails'
+  s.add_dependency 'rails-assets-es5-shim'
 
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'

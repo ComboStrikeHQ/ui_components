@@ -10,3 +10,15 @@ module JsConsole
     end
   end
 end
+
+RSpec.configure do |config|
+  config.include JsConsole
+
+  config.before do
+    clear_console_messages
+  end
+end
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new app, phantomjs_logger: StringIO.new
+end

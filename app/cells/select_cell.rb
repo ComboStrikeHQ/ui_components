@@ -21,11 +21,7 @@ class SelectCell < FormCellBase
   end
 
   def selected
-    if form.object
-      value_from_object
-    else
-      value_from_params
-    end
+    form.object ? value_from_object : value_from_params
   end
 
   def value_from_params

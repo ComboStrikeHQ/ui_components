@@ -26,5 +26,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 end
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+dbconfig = YAML.load(File.read(File.expand_path('../dummy/config/database.yml', __FILE__)))
+ActiveRecord::Base.establish_connection(dbconfig[:test])
 load File.expand_path('../dummy/db/schema.rb', __FILE__)

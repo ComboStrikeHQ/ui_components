@@ -1,12 +1,10 @@
 (function () {
   var strategies = {
     single: {
-      initialValue: function(selected) {
-        return selected || '';
-      },
-
       updateValue: function(current, update) {
-        return update ? update.selected : null;
+        if (!update) return current;
+
+        return update.selected ? [update.selected] : [];
       },
 
       updateOptions: function(existingOptions, newOptions) {
@@ -15,16 +13,15 @@
     },
 
     multiple: {
-      initialValue: function(selected) {
-        return selected ? _.flatten([selected]) : [];
-      },
-
       updateValue: function(current, update) {
-        if (update.selected) {
+        if (!update) return current;
+
+        if (update.selected)
           return current.concat(update.selected);
-        } else if (update.deselected) {
+        else if (update.deselected)
           return _.without(current, update.deselected);
-        }
+        else
+          return current;
       },
 
       updateOptions: function(existingOptions, newOptions) {
@@ -32,7 +29,6 @@
       }
     }
   };
-
 
   var Select = React.createClass({
     chosenDefaults: {
@@ -42,7 +38,9 @@
     propTypes: {
       remote_options: React.PropTypes.string,
       multiple: React.PropTypes.bool,
-      options: React.PropTypes.any,
+      options: React.PropTypes.arrayOf(
+        React.PropTypes.oneOfType(React.PropTypes.string,
+                                  React.PropTypes.arrayOf(React.PropTypes.string))),
       name: React.PropTypes.string,
       selected: React.PropTypes.oneOfType([
         React.PropTypes.string,
@@ -53,13 +51,15 @@
     },
 
     getInitialState: function() {
-      return { value: this.strategy().initialValue(this.props.selected), search: '' };
+      var value = this.props.selected ? _.flatten([this.props.selected]) : [];
+      return { value: value, search: '', options: [] };
     },
 
     componentDidMount: function() {
       if (this.props.remote_options) {
         this.getChosenInput().on('keyup', _.bind(function(e) {
-          this.state.search = $(e.target).val();
+          var search = $(e.target).val() || '';
+          this.setState({ search: search });
           if (this.state.search.length >= 3) this.debouncedFetchOptions(this.state.search);
         }, this));
       }
@@ -73,7 +73,7 @@
       this.getChosenInput().val(this.state.search);
     },
 
-    handleChange: function (event, update) {
+    handleChange: function(event, update) {
       this.setState({ value: this.strategy().updateValue(this.state.value, update) });
       this.getChosenInput().val('');
     },
@@ -83,7 +83,9 @@
     },
 
     fetchOptions: function() {
-      $.getJSON(this.props.remote_options + '?term=' + this.state.search, _.bind(function(data) {
+      var remote_options = this.props.remote_options || '';
+
+      $.getJSON(remote_options + '?term=' + this.state.search, _.bind(function(data) {
         var newOptions = data.map(function(el) { return [el.text, el.value]; });
         if (!newOptions.length) return;
         this.setState({ options: this.strategy().updateOptions(this.options(), newOptions) });
@@ -93,7 +95,19 @@
     debouncedFetchOptions: _.debounce(function() { this.fetchOptions() }, 250),
 
     options: function () {
-      return this.state.options || this.props.options || [];
+      if (this.state.options.length > 0)
+        return this.state.options;
+      else if (this.props.options)
+        return this.normalizeOptions(this.props.options);
+      else
+        return [];
+    },
+
+    normalizeOptions: function(options) {
+      if (typeof(options) == 'array' && typeof(_.first(options)) == 'string')
+        return _.map(options, function(option) { [option, option] });
+      else
+        return options;
     },
 
     classes: function () {
@@ -118,11 +132,11 @@
     },
 
     renderChosen: function() {
-      var options = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
+      var props = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
         id: this.id(),
         key: this.props.name,
         name: this.props.name,
-        value: this.state.value,
+        value: this.props.multiple ? this.state.value : _.first(this.state.value),
         multiple: this.props.multiple,
         'data-placeholder': this.props.placeholder,
         ref: 'chosen',
@@ -130,7 +144,7 @@
         className: this.classes()
       });
 
-      return React.createElement(Chosen, options, 
+      return React.createElement(Chosen, props,
         React.createElement('option'), this.renderOptions()
       );
     },

@@ -25,7 +25,7 @@ describe('ui_components.Select', function() {
     );
 
     it('sets the initial state', function() {
-      expect(subject.state.value).toEqual('');
+      expect(subject.state.value).toEqual([]);
       expect(subject.state.search).toEqual('');
     });
 
@@ -39,10 +39,10 @@ describe('ui_components.Select', function() {
 
     it('handles changes', function() {
       subject.refs.chosen.props.onChange({}, { selected: 'fr' });
-      expect(subject.state.value).toEqual('fr');
+      expect(subject.state.value).toEqual(['fr']);
 
       subject.refs.chosen.props.onChange({}, {});
-      expect(subject.state.value).toBe(undefined);
+      expect(subject.state.value).toEqual([]);
     });
   });
 
@@ -90,7 +90,7 @@ describe('ui_components.Select', function() {
     });
 
     it('sets the initial state', function() {
-      expect(subject.state.value).toEqual('');
+      expect(subject.state.value).toEqual([]);
       expect(subject.state.search).toEqual('');
     });
 

@@ -5,7 +5,7 @@ module JsConsole
   end
 
   def clear_console_messages
-    page.driver.phantomjs_logger.rewind if defined?(page)
+    page.driver.phantomjs_logger.reopen if defined?(page)
   end
 end
 

@@ -76,4 +76,17 @@ RSpec.describe 'select', type: :helper do
       expect(subject.css('span.help-block').text).to include('does not exist')
     end
   end
+
+  describe 'classes option' do
+    let(:select) do
+      options = select_options.reverse_merge(form: form, name: 'species', classes: ['foo', 'bar'])
+      helper.ui_component(:select, options)
+    end
+
+    it 'is passed on to chosen' do
+      component = subject.css('[data-react-class="ui_components.Select"]').first
+      props = JSON.parse(component['data-react-props'])
+      expect(props['className']).to eq('foo bar')
+    end
+  end
 end

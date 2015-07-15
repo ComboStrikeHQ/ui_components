@@ -81,7 +81,7 @@ describe('ui_components.Select', function() {
   describe('single with remote options', function() {
     var subject = React.addons.TestUtils.renderIntoDocument(
       React.createElement(ui_components.Select, { 
-        multiple: false, remote_options: '/assets/fixtures/options.json'
+        multiple: false, remoteOptions: '/assets/fixtures/options.json'
       })
     );
 
@@ -114,7 +114,7 @@ describe('ui_components.Select', function() {
       React.createElement(ui_components.Select, { 
         multiple: true, 
         options: [['Germany', 'de'], ['France', 'fr']],
-        remote_options: '/assets/fixtures/options.json'
+        remoteOptions: '/assets/fixtures/options.json'
       })
     );
 

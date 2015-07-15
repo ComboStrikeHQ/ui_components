@@ -36,7 +36,7 @@
     },
 
     propTypes: {
-      remote_options: React.PropTypes.string,
+      remoteOptions: React.PropTypes.string,
       multiple: React.PropTypes.bool,
       options: React.PropTypes.arrayOf(
         React.PropTypes.oneOfType(React.PropTypes.string,
@@ -47,7 +47,7 @@
         React.PropTypes.arrayOf(React.PropTypes.string)
       ]),
       placeholder: React.PropTypes.string,
-      classes: React.PropTypes.string
+      className: React.PropTypes.string
     },
 
     getInitialState: function() {
@@ -56,7 +56,7 @@
     },
 
     componentDidMount: function() {
-      if (this.props.remote_options) {
+      if (this.props.remoteOptions) {
         this.getChosenInput().on('keyup', _.bind(function(e) {
           var search = $(e.target).val() || '';
           this.setState({ search: search });
@@ -83,9 +83,9 @@
     },
 
     fetchOptions: function() {
-      var remote_options = this.props.remote_options || '';
+      var remoteOptions = this.props.remoteOptions || '';
 
-      $.getJSON(remote_options + '?term=' + this.state.search, _.bind(function(data) {
+      $.getJSON(remoteOptions + '?term=' + this.state.search, _.bind(function(data) {
         var newOptions = data.map(function(el) { return [el.text, el.value]; });
         if (!newOptions.length) return;
         this.setState({ options: this.strategy().updateOptions(this.options(), newOptions) });

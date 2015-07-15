@@ -36,13 +36,13 @@ class SelectCell < FormCellBase
   def react_options
     opts = options
       .slice(:remote_options, :options, :multiple, :width)
-      .merge(name: name, id: id, selected: selected)
+      .merge(name: name, id: id, selected: selected, class_name: class_name)
     # Explicitly set default width here instead of doing it in CSS to prevent
     # chosen from automagically figuring out the wrong value.
     unless opts.key?(:width)
       opts[:width] = inline? ? 'auto' : '100%'
     end
-    opts
+    opts.transform_keys { |k| k.to_s.camelize(:lower) }
   end
 
   def inline?
@@ -51,5 +51,9 @@ class SelectCell < FormCellBase
 
   def errors
     form.object.try(:errors).try(:[], name_option.to_sym) || []
+  end
+
+  def class_name
+    Array.wrap(options[:classes]).join(' ')
   end
 end

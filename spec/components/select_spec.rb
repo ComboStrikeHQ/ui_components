@@ -45,4 +45,24 @@ RSpec.describe 'select', type: :helper do
       end
     end
   end
+
+  describe 'has error' do
+    let(:erroneous_fox) do
+      Fox.new.tap { |f| f.errors.add(:species, 'does not exist') }
+    end
+
+    let(:form) do
+      helper.bootstrap_form_for erroneous_fox, url: '/' do |f|
+        return f
+      end
+    end
+
+    it 'adds has-error class to form group' do
+      expect(subject.css('.form-group').attr('class').to_s).to eq('form-group has-error')
+    end
+
+    it 'displays the error' do
+      expect(subject.css('span.help-block').text).to include('does not exist')
+    end
+  end
 end

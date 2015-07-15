@@ -46,6 +46,10 @@ class SelectCell < FormCellBase
   end
 
   def inline?
-    options[:form].layout == :inline
+    form.layout == :inline
+  end
+
+  def errors
+    form.object.try(:errors).try(:[], name_option.to_sym) || []
   end
 end

@@ -132,7 +132,7 @@
     },
 
     renderChosen: function() {
-      var props = _.extend({}, this.chosenDefaults, this.props.chosenOptions, {
+      var props = _.extend({}, this.chosenDefaults, _.pick(this.props, 'width'), {
         id: this.id(),
         key: this.props.name,
         name: this.props.name,

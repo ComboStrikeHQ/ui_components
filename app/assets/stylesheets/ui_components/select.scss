@@ -1,0 +1,8 @@
+.form-inline [data-react-class="ui_components.Select"] {
+  display: inline-block;
+  vertical-align: middle;
+
+  .search-field > input {
+    min-width: 222px;
+  }
+}

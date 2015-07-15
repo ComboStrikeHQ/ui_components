@@ -110,15 +110,6 @@
         return options;
     },
 
-    classes: function () {
-      var c = ['form-control'];
-      if (this.props.inline)
-        c.push('chosen-inline');
-      if (this.props.classes)
-        c.push(this.props.classes);
-      return c.join(' ');
-    },
-
     id: function () {
       return this.props.id || this.props.name;
     },
@@ -132,7 +123,7 @@
     },
 
     renderChosen: function() {
-      var props = _.extend({}, this.chosenDefaults, _.pick(this.props, 'width'), {
+      var props = _.extend({}, this.chosenDefaults, _.pick(this.props, 'width', 'className'), {
         id: this.id(),
         key: this.props.name,
         name: this.props.name,
@@ -141,7 +132,6 @@
         'data-placeholder': this.props.placeholder,
         ref: 'chosen',
         onChange: this.handleChange,
-        className: this.classes()
       });
 
       return React.createElement(Chosen, props,

@@ -6,14 +6,12 @@ describe('ui_components.Select', function() {
     React.createElement(ui_components.Select, { 
       options: options,
       inline: true,
-      classes: 'my-custom-class',
+      className: 'my-custom-class'
     })
   );
 
   it('renders the classes', function() {
     var $select = $(subject.getDOMNode()).find('select');
-    expect($select.hasClass('form-control')).toBe(true);
-    expect($select.hasClass('chosen-inline')).toBe(true);
     expect($select.hasClass('my-custom-class')).toBe(true);
   });
 

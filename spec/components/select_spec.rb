@@ -44,6 +44,17 @@ RSpec.describe 'select', type: :helper do
         expect(subject.css('label').text).to eq('Species')
       end
     end
+
+    context 'with skip_label option' do
+      let(:select) do
+        options = select_options.reverse_merge(form: form, name: 'species', skip_label: true)
+        helper.ui_component(:select, options)
+      end
+
+      it 'does not render the label' do
+        expect(subject.css('label')).to be_empty
+      end
+    end
   end
 
   describe 'has error' do

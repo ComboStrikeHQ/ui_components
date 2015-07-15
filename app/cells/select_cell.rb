@@ -2,10 +2,7 @@ class SelectCell < FormCellBase
   include React::Rails::ViewHelper
 
   def show
-    content_tag(:div, class: 'form-group') do
-      label_tag(id, label, class: 'control-label col-sm-2') +
-        react_component('ui_components.Select', react_options, class: 'col-sm-10')
-    end
+    render :show
   end
 
   private
@@ -37,8 +34,18 @@ class SelectCell < FormCellBase
   end
 
   def react_options
-    options
-      .slice(:remote_options, :options, :chosenOptions, :multiple)
+    opts = options
+      .slice(:remote_options, :options, :multiple, :width)
       .merge(name: name, id: id, selected: selected)
+    # Explicitly set default width here instead of doing it in CSS to prevent
+    # chosen from automagically figuring out the wrong value.
+    unless opts.key?(:width)
+      opts[:width] = inline? ? 'auto' : '100%'
+    end
+    opts
+  end
+
+  def inline?
+    options[:form].layout == :inline
   end
 end

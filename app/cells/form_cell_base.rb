@@ -4,6 +4,7 @@ class FormCellBase < UiComponents::Cell
   private
 
   def id
+    return options[:id] if options.key?(:id)
     [form.try(:object_name), options.fetch(:name)].compact.join('_').underscore
   end
 

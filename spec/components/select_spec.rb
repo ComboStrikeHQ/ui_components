@@ -99,4 +99,30 @@ RSpec.describe 'select', type: :helper do
       expect { subject }.to_not raise_error
     end
   end
+
+  describe 'id prop' do
+    context 'without id option provided' do
+      let(:select) do
+        helper.ui_component(:select, name: 'foo')
+      end
+
+      it 'uses the id option' do
+        component = subject.css('[data-react-class="ui_components.Select"]').first
+        props = JSON.parse(component['data-react-props'])
+        expect(props['id']).to eq('foo')
+      end
+    end
+
+    context 'with id option provided' do
+      let(:select) do
+        helper.ui_component(:select, name: 'foo', id: 'bar')
+      end
+
+      it 'uses the id option' do
+        component = subject.css('[data-react-class="ui_components.Select"]').first
+        props = JSON.parse(component['data-react-props'])
+        expect(props['id']).to eq('bar')
+      end
+    end
+  end
 end

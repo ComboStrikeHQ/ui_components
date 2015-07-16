@@ -11,7 +11,7 @@ RSpec.describe 'select', type: :helper do
 
   let(:select) do
     helper.ui_component(
-      :select, select_options.reverse_merge(form: form, name: 'species', width: '100%'))
+      :select, select_options.reverse_merge(form: form, name: 'species'))
   end
 
   let(:select_options) { {} }
@@ -87,6 +87,16 @@ RSpec.describe 'select', type: :helper do
       component = subject.css('[data-react-class="ui_components.Select"]').first
       props = JSON.parse(component['data-react-props'])
       expect(props['className']).to eq('foo bar')
+    end
+  end
+
+  describe 'without a form' do
+    let(:select) do
+      helper.ui_component(:select, name: 'something')
+    end
+
+    it 'still works' do
+      expect { subject }.to_not raise_error
     end
   end
 end

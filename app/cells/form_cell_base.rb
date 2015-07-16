@@ -4,11 +4,11 @@ class FormCellBase < UiComponents::Cell
   private
 
   def id
-    "#{form.object_name}_#{options.fetch(:name)}".underscore
+    [form.try(:object_name), options.fetch(:name)].compact.join('_').underscore
   end
 
   def name
-    if form.object_name.present?
+    if form.try(:object_name).present?
       "#{form.object_name}[#{options.fetch(:name)}]".underscore
     else
       options.fetch(:name)
@@ -20,7 +20,7 @@ class FormCellBase < UiComponents::Cell
   end
 
   def form
-    options.fetch(:form)
+    options[:form]
   end
 
   def t(key)

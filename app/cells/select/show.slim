@@ -6,4 +6,4 @@
   = react_component('ui_components.Select', react_options)
   - if errors.any?
     span.help-block
-      = errors.join('<br />')
+      = simple_format(errors.join("\n"))

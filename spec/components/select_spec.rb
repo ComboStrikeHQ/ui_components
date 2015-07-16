@@ -3,6 +3,11 @@ RSpec.describe 'select', type: :helper do
     Nokogiri::HTML.parse(select)
   end
 
+  let(:props) do
+    component = subject.css('[data-react-class="ui_components.Select"]').first
+    JSON.parse(component['data-react-props'])
+  end
+
   let(:form) do
     helper.bootstrap_form_for :foo, url: '/' do |f|
       return f
@@ -79,7 +84,7 @@ RSpec.describe 'select', type: :helper do
 
   describe 'classes option' do
     let(:select) do
-      options = select_options.reverse_merge(form: form, name: 'species', classes: ['foo', 'bar'])
+      options = select_options.reverse_merge(form: form, name: 'species', classes: %w(foo bar))
       helper.ui_component(:select, options)
     end
 
@@ -100,15 +105,13 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
-  describe 'id prop' do
+  describe 'id option' do
     context 'without id option provided' do
       let(:select) do
         helper.ui_component(:select, name: 'foo')
       end
 
       it 'uses the id option' do
-        component = subject.css('[data-react-class="ui_components.Select"]').first
-        props = JSON.parse(component['data-react-props'])
         expect(props['id']).to eq('foo')
       end
     end
@@ -119,9 +122,19 @@ RSpec.describe 'select', type: :helper do
       end
 
       it 'uses the id option' do
-        component = subject.css('[data-react-class="ui_components.Select"]').first
-        props = JSON.parse(component['data-react-props'])
         expect(props['id']).to eq('bar')
+      end
+    end
+  end
+
+  describe 'selected option' do
+    context 'as an array' do
+      let(:select) do
+        helper.ui_component(:select, selected: ['foo'], name: 'foo')
+      end
+
+      it 'is passed on to the JS' do
+        expect(props['selected']).to eq(['foo'])
       end
     end
   end

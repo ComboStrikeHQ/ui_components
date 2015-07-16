@@ -6,13 +6,19 @@ describe('ui_components.Select', function() {
     React.createElement(ui_components.Select, { 
       options: options,
       inline: true,
-      className: 'my-custom-class'
+      className: 'my-custom-class',
+      id: 'my-custom-id'
     })
   );
 
   it('renders the classes', function() {
     var $select = $(subject.getDOMNode()).find('select');
     expect($select.hasClass('my-custom-class')).toBe(true);
+  });
+
+  it('renders the id', function() {
+    var $select = $(subject.getDOMNode()).find('select');
+    expect($select.is('#my-custom-id')).toBe(true);
   });
 
   describe('single', function() {

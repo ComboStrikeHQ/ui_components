@@ -5,14 +5,14 @@ module JsConsole
   end
 
   def clear_console_messages
-    page.driver.phantomjs_logger.reopen if defined?(page)
+    page.driver.phantomjs_logger.reopen
   end
 end
 
 RSpec.configure do |config|
   config.include JsConsole
 
-  config.before do
+  config.before(:example, :js) do
     clear_console_messages
   end
 end

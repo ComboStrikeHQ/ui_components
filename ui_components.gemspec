@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'rails_bootstrap_navbar'
   s.add_dependency 'bootstrap-datepicker-rails'
-  s.add_dependency 'rails-assets-bootstrap-daterangepicker', '< 2'
+  s.add_dependency 'rails-assets-bootstrap-daterangepicker', '< 2' # TODO: Update!
   s.add_dependency 'chosen-rails'
   s.add_dependency 'rails-assets-bootstrap-chosen'
   s.add_dependency 'rails-assets-chosen'

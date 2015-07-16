@@ -18,7 +18,7 @@ class SelectCell < FormCellBase
   end
 
   def selected
-    form_object ? value_from_object : value_from_params
+    options[:selected] || value_from_object || value_from_params
   end
 
   def value_from_params

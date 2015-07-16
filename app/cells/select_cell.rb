@@ -14,19 +14,19 @@ class SelectCell < FormCellBase
 
   def label
     return options[:label] if options.key?(:label)
-    form.object.try(:class).try(:human_attribute_name, name_option) || name_option.humanize
+    form_object.try(:class).try(:human_attribute_name, name_option) || name_option.humanize
   end
 
   def selected
-    form.object ? value_from_object : value_from_params
+    form_object ? value_from_object : value_from_params
   end
 
   def value_from_params
-    params[form.object_name].try(:[], name_option)
+    params[form.try(:object_name)].try(:[], name_option)
   end
 
   def value_from_object
-    form.object.try(:send, name_option)
+    form_object.try(:send, name_option)
   end
 
   def name_option
@@ -46,14 +46,18 @@ class SelectCell < FormCellBase
   end
 
   def inline?
-    form.layout == :inline
+    form.try(:layout) == :inline
   end
 
   def errors
-    form.object.try(:errors).try(:[], name_option.to_sym) || []
+    form_object.try(:errors).try(:[], name_option.to_sym) || []
   end
 
   def class_name
     Array.wrap(options[:classes]).join(' ')
+  end
+
+  def form_object
+    form.try(:object)
   end
 end

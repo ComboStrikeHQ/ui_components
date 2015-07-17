@@ -74,8 +74,7 @@
     },
 
     handleChange: function(event, update) {
-      this.setState({ value: this.strategy().updateValue(this.state.value, update) });
-      this.getChosenInput().val('');
+      this.setState({ value: this.strategy().updateValue(this.state.value, update), search: '' });
     },
 
     getChosenInput: function() {

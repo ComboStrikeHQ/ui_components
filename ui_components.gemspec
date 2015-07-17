@@ -30,12 +30,15 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'rails_bootstrap_navbar'
-  s.add_dependency 'chosen-rails'
   s.add_dependency 'bootstrap-datepicker-rails'
-  s.add_dependency 'rails-assets-bootstrap-daterangepicker'
+  s.add_dependency 'rails-assets-bootstrap-daterangepicker', '< 2' # TODO: Update!
+  s.add_dependency 'chosen-rails'
   s.add_dependency 'rails-assets-bootstrap-chosen'
+  s.add_dependency 'rails-assets-chosen'
+  s.add_dependency 'rails-assets-react-chosen'
   s.add_dependency 'rails-assets-marked'
-  s.add_dependency 'rails-assets-ajax-chosen'
+  s.add_dependency 'react-rails'
+  s.add_dependency 'rails-assets-es5-shim'
 
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'
@@ -43,7 +46,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-jquery.floatThead'
 
   s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'capybara-webkit'
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'launchy'
+  s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'teaspoon-jasmine'
+  s.add_development_dependency 'sqlite3'
 end

@@ -30,10 +30,10 @@ class MarkdownTextareaCell < FormCellBase
   end
 
   def preview_id
-    "markdown_textarea_preview_#{name_param}"
+    "markdown_textarea_preview_#{id}"
   end
 
   def edit_id
-    "markdown_textarea_edit_#{name_param}"
+    "markdown_textarea_edit_#{id}"
   end
 end

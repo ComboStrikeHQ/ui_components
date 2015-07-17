@@ -1,3 +1,5 @@
 test:
   pre:
     - bundle exec rake rubocop
+  override:
+    - RAILS_ENV=development bundle exec rake spec

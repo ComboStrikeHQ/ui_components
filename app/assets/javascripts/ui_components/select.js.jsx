@@ -56,13 +56,12 @@
     },
 
     componentDidMount: function() {
-      if (this.props.remoteOptions) {
-        this.getChosenInput().on('keyup', _.bind(function(e) {
-          var search = $(e.target).val() || '';
-          this.setState({ search: search });
-          if (this.state.search.length >= 3) this.debouncedFetchOptions(this.state.search);
-        }, this));
-      }
+      this.getChosenInput().on('keyup', _.bind(function(e) {
+        var search = $(e.target).val() || '';
+        this.setState({ search: search });
+        if (this.props.remoteOptions && this.state.search.length >= 3)
+          this.debouncedFetchOptions(this.state.search);
+      }, this));
     },
 
     strategy: function() {

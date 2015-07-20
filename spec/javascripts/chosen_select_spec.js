@@ -149,11 +149,25 @@ describe('ui_components.Select', function() {
       });
 
       triggerSearch(subject, 'Aus');
-      expect(subject.options()).toEqual([
-        ['Germany', 'de'], ['France', 'fr'],
-        ['Australia', 'au'], ['Austria', 'at']
-      ]);
-    });
+      expect(subject.state.options).toEqual([['Australia', 'au'], ['Austria', 'at']]);
+	});
+
+	it('keeps previously selected options around', function() {
+	  subject.setState({ value: ['de'], options: [['Germany', 'de']] })
+
+      spyOn($, 'getJSON').and.callFake(function(url, callback) {
+        callback([
+          { text: 'Australia', value: 'au'},
+          { text: 'Austria', value: 'at'}
+        ]);
+      });
+
+      triggerSearch(subject, 'Aus');
+	  var australia = $(subject.getDOMNode()).find('.chosen-results li:nth-child(2)');
+	  australia.trigger('mouseup');
+      expect(subject.state.value).toEqual(['de', 'au']);
+      expect(subject.state.options).toEqual([['Germany', 'de'], ['Australia', 'au']]);
+	});
   });
 
   describe('preselected selected options', function() {

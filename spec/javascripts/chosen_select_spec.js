@@ -10,15 +10,24 @@ describe('ui_components.Select', function() {
       id: 'my-custom-id'
     })
   );
+  var $subject = $(subject.getDOMNode());
+  var $search = $subject.find('input');
 
   it('renders the classes', function() {
-    var $select = $(subject.getDOMNode()).find('select');
+    var $select = $subject.find('select');
     expect($select.hasClass('my-custom-class')).toBe(true);
   });
 
   it('renders the id', function() {
-    var $select = $(subject.getDOMNode()).find('select');
+    var $select = $subject.find('select');
     expect($select.is('#my-custom-id')).toBe(true);
+  });
+
+  it('keeps the search state up-to-date', function() {
+	expect($search.val()).toEqual('');
+	triggerSearch(subject, 'foo')
+	expect($search.val()).toEqual('foo');
+	expect(subject.state.search).toEqual('foo');
   });
 
   describe('single', function() {
@@ -34,7 +43,7 @@ describe('ui_components.Select', function() {
     });
 
     it('renders the options', function() {
-      var $node = $(subject.getDOMNode());
+      var $node = $subject;
       expect($node.find('option').length).toEqual(4);
       expect($node.find('option').map(function() { return this.value }).get()).toEqual([
         '', 'de', 'fr', 'es'
@@ -63,7 +72,7 @@ describe('ui_components.Select', function() {
     });
 
     it('renders the options', function() {
-      var $options = $(subject.getDOMNode()).find('option');
+      var $options = $subject.find('option');
       expect($options.length).toEqual(4);
       expect($options.map(function() { return this.value }).get()).toEqual([
         '', 'de', 'fr', 'es'

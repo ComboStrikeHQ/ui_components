@@ -24,10 +24,10 @@ describe('ui_components.Select', function() {
   });
 
   it('keeps the search state up-to-date', function() {
-	expect($search.val()).toEqual('');
-	triggerSearch(subject, 'foo')
-	expect($search.val()).toEqual('foo');
-	expect(subject.state.search).toEqual('foo');
+    expect($search.val()).toEqual('');
+    triggerSearch(subject, 'foo')
+    expect($search.val()).toEqual('foo');
+    expect(subject.state.search).toEqual('foo');
   });
 
   describe('single', function() {
@@ -150,10 +150,10 @@ describe('ui_components.Select', function() {
 
       triggerSearch(subject, 'Aus');
       expect(subject.state.options).toEqual([['Australia', 'au'], ['Austria', 'at']]);
-	});
+    });
 
-	it('keeps previously selected options around', function() {
-	  subject.setState({ value: ['de'], options: [['Germany', 'de']] })
+    it('keeps previously selected options around', function() {
+      subject.setState({ value: ['de'], options: [['Germany', 'de']] })
 
       spyOn($, 'getJSON').and.callFake(function(url, callback) {
         callback([
@@ -163,11 +163,15 @@ describe('ui_components.Select', function() {
       });
 
       triggerSearch(subject, 'Aus');
-	  var australia = $(subject.getDOMNode()).find('.chosen-results li:nth-child(2)');
-	  australia.trigger('mouseup');
+      var australia = $(subject.getDOMNode()).find('.chosen-results li:nth-child(2)');
+      australia.trigger('mouseup');
       expect(subject.state.value).toEqual(['de', 'au']);
-      expect(subject.state.options).toEqual([['Germany', 'de'], ['Australia', 'au']]);
-	});
+      expect(subject.state.options).toEqual([
+        ['Germany', 'de'],
+        ['Australia', 'au'],
+        ['Austria', 'at']
+      ]);
+    });
   });
 
   describe('preselected selected options', function() {

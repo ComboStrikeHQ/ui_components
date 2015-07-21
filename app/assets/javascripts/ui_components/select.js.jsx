@@ -58,19 +58,37 @@
       };
     },
 
+    normalizeOptions: function(options) {
+      if (typeof(options) == 'array' && typeof(_.first(options)) == 'string')
+        return _.map(options, function(option) { [option, option] });
+      else
+        return options;
+    },
+
     componentDidMount: function() {
       this.getChosenInput().onkeyup = _.bind(function(e) {
-        if (e.keyCode >= 37 && e.keyCode <= 40) // Ignore arrow keys
-          return;
-        var search = e.target.value || '';
-        this.setState({ search: search });
-        if (this.props.remoteOptions && this.state.search.length >= 3)
-          this.debouncedFetchOptions(this.state.search);
+        var searchTerm = e.target.value;
+
+        this.updateSearch(searchTerm);
+
+        if (searchTerm.length === 0)
+          this.setState({ options: this.selectedOptions() });
+        else if (this.props.remoteOptions && searchTerm.length === 3 && e.keyCode != 8)
+          this.debouncedFetchOptions(searchTerm);
       }, this);
     },
 
-    strategy: function() {
-      return this.props.multiple ? strategies.multiple : strategies.single;
+    updateSearch: _.throttle(function(term) {
+      this.setState({ search: term });
+    }, 0),
+
+    debouncedFetchOptions: _.debounce(function(term) { this.fetchOptions(term) }, 250),
+
+    shouldComponentUpdate: function(nextProps, nextState) {
+      if (nextState.options === this.state.options)
+        return false;
+      else
+        return true;
     },
 
     componentDidUpdate: function() {
@@ -79,61 +97,32 @@
       input.style.width = '100%';
     },
 
-    handleChange: function(event, update) {
-      var newState = {
-        value: this.strategy().updateValue(this.state.value, update),
-        search: ''
-      };
-
-      if (this.props.remoteOptions)
-        newState.options = this.selectedOptions(newState.value);
-
-      this.setState(newState);
-    },
-
     selectedOptions: function(values) {
-      var component = this;
-      return _.filter(component.state.options, function(o) {
-        return _.contains(values || component.state.value, _.last(o));
-      });
+      return _.filter(this.state.options, _.bind(function(o) {
+        return _.contains(values || this.state.value, _.last(o));
+      }, this));
     },
 
     getChosenInput: function() {
-      return this.refs.chosen.getDOMNode().getElementsByTagName('input')[0];
+      if (this.refs.chosen)
+        return this.refs.chosen.getDOMNode().getElementsByTagName('input')[0];
+      else
+        null;
     },
 
-    fetchOptions: function() {
-      var component = this;
-
-      $.getJSON(this.props.remoteOptions + '?term=' + this.state.search, function(data) {
+    fetchOptions: function(term) {
+      $.getJSON(this.props.remoteOptions + '?term=' + term, _.bind(function(data) {
         var newOptions = data.map(function(el) { return [el.text, el.value]; });
         if (!newOptions.length) return;
-        component.setState({ options: component.strategy().updateOptions(component, newOptions) });
-      });
+        this.setState({ options: this.strategy().updateOptions(this, newOptions) });
+      }, this));
     },
 
-    debouncedFetchOptions: _.debounce(function() { this.fetchOptions() }, 250),
-
-    normalizeOptions: function(options) {
-      if (typeof(options) == 'array' && typeof(_.first(options)) == 'string')
-        return _.map(options, function(option) { [option, option] });
-      else
-        return options;
+    strategy: function() {
+      return this.props.multiple ? strategies.multiple : strategies.single;
     },
 
-    id: function () {
-      return this.props.id || this.props.name;
-    },
-
-    renderOptions: function () {
-      return this.state.options.map(function(pair) {
-        if (typeof pair === 'string') 
-          pair = [pair, pair];
-        return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>;
-      });
-    },
-
-    renderChosen: function() {
+    render: function() {
       var props = _.extend({}, this.chosenDefaults, _.pick(this.props, 'width', 'className'), {
         id: this.id(),
         key: this.props.name,
@@ -150,8 +139,20 @@
       );
     },
 
-    render: function() {
-      return this.renderChosen();
+    id: function () {
+      return this.props.id || this.props.name;
+    },
+
+    renderOptions: function () {
+      return this.state.options.map(function(pair) {
+        if (typeof pair === 'string')
+          pair = [pair, pair];
+        return <option key={pair[1]} value={pair[1]}>{pair[0]}</option>;
+      });
+    },
+
+    handleChange: function(event, update) {
+      this.setState({ value: this.strategy().updateValue(this.state.value, update), search: '' });
     }
   });
 

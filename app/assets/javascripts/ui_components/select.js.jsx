@@ -62,7 +62,7 @@
       this.getChosenInput().on('keyup', _.bind(function(e) {
         if (e.key.match(/^Arrow/))
           return;
-        var search = $(e.target).val() || '';
+        var search = e.target.value || '';
         this.setState({ search: search });
         if (this.props.remoteOptions && this.state.search.length >= 3)
           this.debouncedFetchOptions(this.state.search);

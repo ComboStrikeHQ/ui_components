@@ -60,6 +60,8 @@
 
     componentDidMount: function() {
       this.getChosenInput().on('keyup', _.bind(function(e) {
+        if (e.key.match(/^Arrow/))
+          return;
         var search = $(e.target).val() || '';
         this.setState({ search: search });
         if (this.props.remoteOptions && this.state.search.length >= 3)

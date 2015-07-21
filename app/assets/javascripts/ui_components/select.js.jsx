@@ -123,6 +123,7 @@
     },
 
     render: function() {
+      var options = this.renderOptions();
       var props = _.extend({}, this.chosenDefaults, _.pick(this.props, 'width', 'className'), {
         id: this.id(),
         key: this.props.name,
@@ -134,9 +135,7 @@
         onChange: this.handleChange,
       });
 
-      return React.createElement(Chosen, props,
-        React.createElement('option'), this.renderOptions()
-      );
+      return React.createElement(Chosen, props, React.createElement('option'), options);
     },
 
     id: function () {

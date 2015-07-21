@@ -59,14 +59,14 @@
     },
 
     componentDidMount: function() {
-      this.getChosenInput().on('keyup', _.bind(function(e) {
-        if (e.key.match(/^Arrow/))
+      this.getChosenInput().onkeyup = _.bind(function(e) {
+        if (e.keyCode >= 37 && e.keyCode <= 40) // Ignore arrow keys
           return;
         var search = e.target.value || '';
         this.setState({ search: search });
         if (this.props.remoteOptions && this.state.search.length >= 3)
           this.debouncedFetchOptions(this.state.search);
-      }, this));
+      }, this);
     },
 
     strategy: function() {
@@ -75,8 +75,8 @@
 
     componentDidUpdate: function() {
       var input = this.getChosenInput();
-      input.val(this.state.search);
-      input.css({ width: '100%' });
+      input.value = this.state.search;
+      input.style.width = '100%';
     },
 
     handleChange: function(event, update) {
@@ -99,7 +99,7 @@
     },
 
     getChosenInput: function() {
-      return $(this.refs.chosen.getDOMNode()).find('input');
+      return this.refs.chosen.getDOMNode().getElementsByTagName('input')[0];
     },
 
     fetchOptions: function() {

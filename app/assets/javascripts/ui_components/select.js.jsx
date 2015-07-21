@@ -123,20 +123,19 @@
     },
 
     render: function() {
+      var options = this.renderOptions();
       var props = _.extend({}, this.chosenDefaults, _.pick(this.props, 'width', 'className'), {
         id: this.id(),
         key: this.props.name,
         name: this.props.name,
-        value: this.props.multiple ? this.state.value : _.first(this.state.value),
         multiple: this.props.multiple,
         'data-placeholder': this.props.placeholder,
         ref: 'chosen',
         onChange: this.handleChange,
+        value: this.props.multiple ? this.state.value : _.first(this.state.value)
       });
 
-      return React.createElement(Chosen, props,
-        React.createElement('option'), this.renderOptions()
-      );
+      return React.createElement(Chosen, props, React.createElement('option'), options);
     },
 
     id: function () {

@@ -10,8 +10,9 @@
 
 //= require react
 //= require react_ujs
-//= require chosen-jquery
-//= require react-chosen
+//= require react-input-autosize
+//= require classnames
+//= require react-select/react-select
 
 //= require bootstrap
 //= require bootstrap-datepicker/core

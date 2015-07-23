@@ -2,10 +2,10 @@ RSpec.feature 'Select', :js do
   scenario 'is selectable' do
     visit '/select'
 
-    chosen_select('Arctic', from: 'Type')
+    component_select('Arctic', from: 'Type')
   end
 
-  scenario 'loads data asynchronously' do
+  pending 'loads data asynchronously' do
     visit '/select_async'
 
     chosen_search('Type', 'Baa')

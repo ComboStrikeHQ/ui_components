@@ -25,5 +25,19 @@ describe('ui_components.Select', function() {
         { value: 'baz', label: 'Baz' }
       ]);
     });
+
+    it('does not touch the options otherwise', function(){
+      var props = { options: [
+        { value: 'foo', label: 'Foo' },
+        { value: 'bar', label: 'Bar' },
+        { value: 'baz', label: 'Baz' }
+      ]};
+
+      expect(subject(props).state.options).toEqual([
+        { value: 'foo', label: 'Foo' },
+        { value: 'bar', label: 'Bar' },
+        { value: 'baz', label: 'Baz' }
+      ]);
+    });
   });
 });

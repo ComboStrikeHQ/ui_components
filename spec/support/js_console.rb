@@ -18,5 +18,5 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new app, phantomjs_logger: StringIO.new
+  Capybara::Poltergeist::Driver.new app, phantomjs_logger: StringIO.new, js_errors: false
 end

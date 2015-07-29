@@ -14,6 +14,7 @@
 //= require classnames
 //= require react-select/react-select
 
+//= require chosen-jquery
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-daterangepicker

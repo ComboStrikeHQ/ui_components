@@ -2,7 +2,6 @@
   - unless options[:skip_label]
     label.control-label for=id
       = label
-  = hidden_field_tag name
   = react_component('ui_components.Select', react_options)
   - if errors.any?
     span.help-block

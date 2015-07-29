@@ -14,4 +14,12 @@ RSpec.feature 'Select', :js do
     expect(page).to have_content('Baaz')
     expect(page).to_not have_content('Fooo')
   end
+
+  scenario 'multi-selects' do
+    visit '/multiselect'
+
+    ui_component_select('Arctic', from: 'Type')
+    ui_component_select('Fennec', from: 'Type')
+    expect(page.find('.Select-control').text).to eq('×Arctic×Fennec×')
+  end
 end

@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   var UiComponentsSelect = React.createClass({
     propTypes: {
       remoteOptions: React.PropTypes.string,
@@ -14,18 +16,64 @@
     },
 
     getInitialState: function() {
+      var options = this.normalizeOptions(this.props.options) || [];
+      var selected = this.props.selected || this.props.value || [];
+      var selectedOptions = _.filter(options, function(o) {
+        return _.contains(selected, o.value)
+      });
+
       return {
-        options: this.normalizeOptions(this.props.options) || []
+        options: options,
+        value: selectedOptions
       };
     },
 
     render: function() {
-      var props = _.extend({}, this.props, {
+      var props = _.extend({}, _.omit(this.props, 'name', 'multiple', 'className'), {
         options: this.state.options,
-        asyncOptions: this.props.remoteOptions ? this.fetchOptions : null
+        asyncOptions: this.props.remoteOptions ? this.fetchOptions : null,
+        onChange: this.handleChange,
+        value: this.state.value,
+        multi: this.props.multiple
       });
 
-      return React.createElement(Select, props);
+      if (!this.props.multiple || this.state.value.length === 0)
+        props.name = this.props.name
+
+      return React.createElement('div', { className: this.props.className },
+		                         React.createElement(Select, props),
+                                 this.renderValueMultiSelect());
+    },
+
+    renderValueMultiSelect: function() {
+      if (!this.props.multiple)
+        return null;
+
+      var selectedOptions = _.map(this.state.value, function(v) {
+        return React.createElement('option', { value: v.value, key: v.value, selected: true });
+      });
+
+      var props = {
+        multiple: true,
+        name: this.props.name,
+        ref: 'valueSelect',
+        value: _.pluck(this.state.value, 'value'), // TODO: Y U NO WORK?
+        style: { display: 'none' }
+      };
+
+      return React.createElement('select', props, selectedOptions);
+    },
+
+    handleChange: function(newValue, newValues) {
+      this.setState({ value: newValues });
+    },
+
+    componentDidUpdate: function(_prevProps, prevState) {
+	  if (prevState.value !== this.state.value)
+		if (this.props.multiple)
+          $(this.getDOMNode()).find('select').trigger('change');
+		else
+          $(this.getDOMNode()).find('input[type="hidden"]').trigger('change');
     },
 
     fetchOptions: function(term, callback) {

@@ -44,17 +44,16 @@
         multi: this.props.multiple
       });
 
-      if (!this.props.multiple || this.state.value.length === 0)
+      if (!this.shouldRenderHiddenMultiSelect())
         props.name = this.props.name
 
       return React.createElement('div', { className: this.props.className },
                                  React.createElement(Select, props),
-                                 this.renderValueMultiSelect());
+                                 this.renderHiddenMultiSelect());
     },
 
-    renderValueMultiSelect: function() {
-      if (!this.props.multiple)
-        return null;
+    renderHiddenMultiSelect: function() {
+      if (!this.shouldRenderHiddenMultiSelect()) return null;
 
       var selectedOptions = _.map(this.state.value, function(v) {
         return React.createElement('option', { value: v.value, key: v.value });
@@ -69,6 +68,10 @@
       };
 
       return React.createElement('select', props, selectedOptions);
+    },
+
+    shouldRenderHiddenMultiSelect: function() {
+      return this.props.multiple && this.state.value.length > 0;
     },
 
     handleChange: function(newValue, newValues) {

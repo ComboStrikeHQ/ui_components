@@ -45,7 +45,7 @@ class SelectCell < FormCellBase
     unless opts.key?(:width)
       opts[:width] = inline? ? 'auto' : '100%'
     end
-    opts.deep_transform_keys { |k| k.to_s.camelize(:lower) }
+    opts.deep_transform_keys { |k| k.to_s.camelize(:lower) }.compact
   end
 
   def inline?

@@ -17,7 +17,7 @@ class SelectCell < FormCellBase
     form_object.try(:class).try(:human_attribute_name, name_option) || name_option.humanize
   end
 
-  def selected
+  def value
     options[:selected] || value_from_object || value_from_params
   end
 
@@ -38,7 +38,7 @@ class SelectCell < FormCellBase
       .slice(:remote_options, :options, :width, :multiple)
       .merge(name: name,
              id: id,
-             selected: selected,
+             value: value,
              class_name: class_name)
     # Explicitly set default width here instead of doing it in CSS to prevent
     # chosen from automagically figuring out the wrong value.

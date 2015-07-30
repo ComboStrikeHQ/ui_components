@@ -14,6 +14,13 @@ describe('ui_components.Select', function() {
     expect($subject().find('select').length).toEqual(0);
   });
 
+  it('sets the pre-selected value', function() {
+    var props = { options: [['Foo', 'foo']],
+                  value: 'foo',
+                  name: 'bar' };
+    expect($subject(props).find('[name="bar"]').val()).toEqual('foo');
+  });
+
   describe('normalizeOptions()', function() {
     it('normalizes an array of strings', function(){
       var props = { options: ['foo', 'bar', 'baz'] };
@@ -71,5 +78,14 @@ describe('ui_components.Select', function() {
       component.setState({ value: [] });
       expect(hiddenInput().attr('name')).toBe('foo');
     });
+
+    it('sets the pre-selected values', function() {
+      var props = { options: [['Foo', 'foo']],
+                    value: ['foo'],
+                    name: 'bar',
+                    multiple: true };
+      expect($subject(props).find('[name="bar"]').val()).toEqual(['foo']);
+    });
+
   });
 });

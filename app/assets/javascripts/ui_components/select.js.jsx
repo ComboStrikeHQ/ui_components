@@ -9,7 +9,7 @@
           React.PropTypes.oneOfType(React.PropTypes.string,
                                     React.PropTypes.arrayOf(React.PropTypes.string))),
       name: React.PropTypes.string,
-      selected: React.PropTypes.oneOfType([React.PropTypes.string,
+      value: React.PropTypes.oneOfType([React.PropTypes.string,
                                            React.PropTypes.arrayOf(React.PropTypes.string)]),
       placeholder: React.PropTypes.string,
       className: React.PropTypes.string
@@ -17,7 +17,7 @@
 
     getInitialState: function() {
       var options = this.normalizeOptions(this.props.options) || [];
-      var selected = this.props.selected || this.props.value || [];
+      var selected = this.props.value ? _.flatten([this.props.value]) : [];
       var selectedOptions = _.filter(options, function(o) {
         return _.contains(selected, o.value)
       });

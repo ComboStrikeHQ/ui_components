@@ -134,7 +134,7 @@ RSpec.describe 'select', type: :helper do
       end
 
       it 'is passed on to the JS' do
-        expect(props['selected']).to eq(['foo'])
+        expect(props['value']).to eq(['foo'])
       end
     end
   end

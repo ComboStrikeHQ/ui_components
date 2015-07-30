@@ -30,7 +30,7 @@
 
     normalizeValue: function(value) {
       if (value)
-        return _.map(_.flatten([this.props.value]), function(v) { return v; });
+        return _.map(_.filter(_.flatten([value]), _.identity), function(v) { return v; });
       else
         return [];
     },

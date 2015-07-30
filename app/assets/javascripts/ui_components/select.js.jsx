@@ -16,16 +16,23 @@
     },
 
     getInitialState: function() {
-      var options = this.normalizeOptions(this.props.options) || [];
-      var selected = this.props.value ? _.flatten([this.props.value]) : [];
-      var selectedOptions = _.filter(options, function(o) {
-        return _.contains(selected, o.value)
+      var options = this.normalizeOptions(this.props.options);
+      var selected = this.normalizeValue(this.props.value);
+      var selectedOptions = _.map(selected, function(s) {
+        return _.find(options, function(o) { return o.value == s; });
       });
 
       return {
         options: options,
         value: selectedOptions
       };
+    },
+
+    normalizeValue: function(value) {
+      if (value)
+        return _.map(_.flatten([this.props.value]), function(v) { return v; });
+      else
+        return [];
     },
 
     render: function() {
@@ -41,7 +48,7 @@
         props.name = this.props.name
 
       return React.createElement('div', { className: this.props.className },
-		                         React.createElement(Select, props),
+                                 React.createElement(Select, props),
                                  this.renderValueMultiSelect());
     },
 
@@ -50,14 +57,14 @@
         return null;
 
       var selectedOptions = _.map(this.state.value, function(v) {
-        return React.createElement('option', { value: v.value, key: v.value, selected: true });
+        return React.createElement('option', { value: v.value, key: v.value });
       });
 
       var props = {
         multiple: true,
         name: this.props.name,
         ref: 'valueSelect',
-        value: _.pluck(this.state.value, 'value'), // TODO: Y U NO WORK?
+        value: _.pluck(this.state.value, 'value'),
         style: { display: 'none' }
       };
 
@@ -69,10 +76,10 @@
     },
 
     componentDidUpdate: function(_prevProps, prevState) {
-	  if (prevState.value !== this.state.value)
-		if (this.props.multiple)
+      if (prevState.value !== this.state.value)
+        if (this.props.multiple)
           $(this.getDOMNode()).find('select').trigger('change');
-		else
+        else
           $(this.getDOMNode()).find('input[type="hidden"]').trigger('change');
     },
 
@@ -95,8 +102,10 @@
         });
       else if (Array.isArray(_.first(options)))
         return _.map(options, function(o) {
-          return { value: o[1], label: o[0] };
+          return { value: '' + o[1], label: o[0] };
         });
+      else if (options === undefined)
+        return [];
       else
         return options;
     }

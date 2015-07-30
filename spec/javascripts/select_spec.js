@@ -61,7 +61,7 @@ describe('ui_components.Select', function() {
     var component = subject({
       name: 'foo',
       multiple: true,
-      value: [1, 3],
+      value: [1, '3'],
       options: [['One', 1], ['Two', 2], ['Three', 3]]
     });
 
@@ -69,7 +69,7 @@ describe('ui_components.Select', function() {
       var $select = $(component.getDOMNode()).find('select');
       expect($select.length).toEqual(1);
       expect($select.attr('name')).toEqual('foo');
-      expect(_.pluck($select.find('option[selected]'), 'value')).toEqual(['1', '3']);
+      expect($select.val()).toEqual(['1', '3']);
     });
 
     it("does not set the hidden input field's name if anything is selected", function() {

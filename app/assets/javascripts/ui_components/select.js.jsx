@@ -88,13 +88,13 @@
 
     fetchOptions: function(term, callback) {
       if (term.length < 3) {
-        callback([]);
+        callback(null, { options: this.normalizeOptions([]) });
         return;
       }
 
       $.getJSON(this.props.remoteOptions + '?term=' + term, _.bind(function(data) {
         if (data.length === 0) return;
-        callback(null, { options: this.normalizeOptions(data) });
+        callback(null, { options: this.normalizeOptions(data), complete: true });
       }, this));
     },
 

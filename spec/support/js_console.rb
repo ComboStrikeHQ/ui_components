@@ -1,11 +1,11 @@
 module JsConsole
   def console_messages
-    page.driver.phantomjs_logger.rewind
-    page.driver.phantomjs_logger.read.split("\n")
+    page.driver.phantomjs_logger.try(:rewind)
+    page.driver.phantomjs_logger.try(:read).try(:split, "\n")
   end
 
   def clear_console_messages
-    page.driver.phantomjs_logger.reopen
+    page.driver.phantomjs_logger.try(:reopen)
   end
 end
 

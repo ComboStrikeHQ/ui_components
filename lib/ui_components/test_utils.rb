@@ -1,16 +1,20 @@
 module UiComponents
   module TestUtils
-    %i(select search).each do |method|
-      define_method("ui_component_#{method}") do |*args|
-        args.each do |arg|
-          arg.deep_transform_keys! { |k| k.to_s.camelize(:lower) } if arg.is_a?(Hash)
-        end
-        page.execute_script("ui_components.TestUtils.#{method}.apply(this, #{args.to_json})")
-      end
+    def ui_component_select(what, opts = {})
+      opts.deep_transform_keys! { |k| k.to_s.camelize(:lower) }
+      page.execute_script("ui_components.TestUtils.select.apply(this, #{[what, opts].to_json})")
+      find('.Select-item, .Select-placeholder', text: what)
+    end
+
+    def ui_component_trigger(event, selector)
+      page.execute_script(<<-JS)
+        _.map($('#{selector}'), _.partial(ui_components.TestUtils.trigger, '#{event}'));
+      JS
     end
 
     def ui_component_select_value(name)
-      find("[name=\"#{name}\"]").value
+      css = "[name=\"#{name}\"]"
+      find(css, visible: false).value
     end
   end
 end

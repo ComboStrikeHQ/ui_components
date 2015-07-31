@@ -1,37 +1,36 @@
 (function() {
   var TestUtils = {}
 
-  var select = function(selectOption, options) {
+  var select = function(selectedOption, options) {
     var component = findComponent(options);
-    if (!component)
-      throw 'Component not found, options where ' + $.serialize(options);
-
     var $component = $(component);
     var input = $component.find('.Select-input input').get()[0];
 
     trigger('focus', input);
     trigger('mouseDown', input);
+    trigger('change', input, { target: { value: selectedOption }})
 
-    var option = _.find($component.find('.Select-option'), function(o) {
-      return o.innerText.trim().indexOf(selectOption) >= 0;
-    });
-    trigger('mouseDown', option);
-
-    if (componentProps(component).multiple)
-      trigger('mouseDown', $component.find('.Select-arrow').get()[0]);
+    var waitForOptions = function(i) {
+      if ($component.find('.Select-menu').text().indexOf(selectedOption) >= 0 || i <= 0)
+        selectOption(selectedOption, $component);
+      else {
+        _.delay(waitForOptions, 100, i - 1);
+      }
+    };
+    waitForOptions(20);
   };
-  
-  var search = function(label, term) {
-    var $component = $(findComponent({ from: label }));
-    var input = $component.find('.Select-input input').get()[0];
 
-    trigger('focus', input);
-    trigger('change', input, { target: { value: term }});
-
-    var option = _.find($component.find('.Select-option'), function(o) {
-      return o.innerText.indexOf(term) >= 0;
+  var selectOption = function(selectedOption, $component) {
+    var options = $component.find('.Select-option');
+    var option = _.find(options, function(o) {
+      return o.innerText.trim().indexOf(selectedOption) >= 0;
     });
+    if (!option)
+      throw 'Option "' + selectedOption + '" not found in [' + _.pluck(options, 'innerText') + ']';
     trigger('mouseDown', option);
+
+    if (componentProps($component[0]).multiple)
+      trigger('mouseDown', $component.find('.Select-arrow').get()[0]);
   };
 
   var trigger = function(eventType, node, options) {
@@ -64,7 +63,6 @@
 
   window.ui_components.TestUtils = {
     select: select,
-    search: search,
     trigger: trigger,
   };
 })();

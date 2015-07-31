@@ -9,9 +9,10 @@ RSpec.feature 'Select', :js do
   scenario 'loads data asynchronously' do
     visit '/select_async'
 
-    ui_component_search('Type', 'Baa')
-    expect(page).to have_content('Baar')
-    expect(page).to have_content('Baaz')
+    ui_component_select('Baa', from: 'Type')
+
+    expect(page.find('.Select-placeholder')).to have_content('Baar')
+    expect(page).to_not have_content('Baaz')
     expect(page).to_not have_content('Fooo')
   end
 

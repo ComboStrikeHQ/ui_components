@@ -1,46 +1,66 @@
 class SelectCell < FormCellBase
+  include React::Rails::ViewHelper
+
   def show
-    options[:form].select(
-      options[:name],
-      select_options,
-      {
-        label: label,
-        include_blank: true,
-        skip_label: options.fetch(:skip_label, false)
-      },
-      html_options
-    )
+    render :show
   end
 
   private
 
-  def html_options
-    html_opts = { class: css_class }
-    html_opts.update(options.slice(:required, :multiple))
-    html_opts[:data] = options.slice(:placeholder, :error, :width, :remote_options)
-    html_opts
+  def name
+    return "#{super}[]" if options[:multiple]
+    super
   end
 
-  def select_options
-    options[:options] || []
+  def label
+    return options[:label] if options.key?(:label)
+    form_object.try(:class).try(:human_attribute_name, name_option) || name_option.humanize
   end
 
-  def options
-    unless super[:width]
-      warn 'DEPRECATED: UiComponents here, you did not provide a :width option' \
-        ' to the select component. The default value of "300px" still applies,' \
-        ' but will be dropped at some point in the future in favor of' \
-        ' bootstrap\'s default. Provide a :width option to make this warning go' \
-        ' away.'
+  def value
+    options[:selected] || value_from_object || value_from_params
+  end
+
+  def value_from_params
+    params[form.try(:object_name)].try(:[], name_option)
+  end
+
+  def value_from_object
+    form_object.try(:send, name_option)
+  end
+
+  def name_option
+    options.fetch(:name).to_s
+  end
+
+  def react_options
+    opts = options
+      .slice(:remote_options, :options, :width, :multiple)
+      .merge(name: name,
+             id: id,
+             value: value,
+             class_name: class_name)
+    # Explicitly set default width here instead of doing it in CSS to prevent
+    # chosen from automagically figuring out the wrong value.
+    unless opts.key?(:width)
+      opts[:width] = inline? ? 'auto' : '100%'
     end
-
-    { width: '300px' }.merge(super)
+    opts.deep_transform_keys { |k| k.to_s.camelize(:lower) }.compact
   end
 
-  def css_class
-    classes = %w(form-control ui-components-select chosen)
-    classes << 'chosen-inline' if options[:inline]
-    classes << options[:classes] if options[:classes]
-    classes.join(' ')
+  def inline?
+    form.try(:layout) == :inline
+  end
+
+  def errors
+    form_object.try(:errors).try(:[], name_option.to_sym) || []
+  end
+
+  def class_name
+    Array.wrap(options[:classes]).join(' ')
+  end
+
+  def form_object
+    form.try(:object)
   end
 end

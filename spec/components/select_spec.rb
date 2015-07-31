@@ -3,6 +3,11 @@ RSpec.describe 'select', type: :helper do
     Nokogiri::HTML.parse(select)
   end
 
+  let(:props) do
+    component = subject.css('[data-react-class="ui_components.Select"]').first
+    JSON.parse(component['data-react-props'])
+  end
+
   let(:form) do
     helper.bootstrap_form_for :foo, url: '/' do |f|
       return f
@@ -10,56 +15,127 @@ RSpec.describe 'select', type: :helper do
   end
 
   let(:select) do
-    helper.ui_component(:select, select_options.reverse_merge(form: form, width: '100%'))
+    helper.ui_component(
+      :select, select_options.reverse_merge(form: form, name: 'species'))
   end
+
   let(:select_options) { {} }
 
-  context 'with minimal required options' do
-    let(:select_options) { { name: 'bar', options: [] } }
+  describe 'label magic' do
+    context 'with a label param passed in' do
+      let(:select_options) { { label: 'Fox species' } }
 
-    it 'renders the label with the correct for attribute' do
-      expect(subject.css('label').attr('for').to_s).to eq('foo_bar')
+      it 'renders that label' do
+        expect(subject.css('label').text).to eq('Fox species')
+      end
     end
 
-    it 'renders the select with the correct id' do
-      expect(subject.css('select').attr('id').to_s).to eq('foo_bar')
+    context 'with no label passed in but a model on the form' do
+      let(:model) { Fox.new(id: 1, species: 'Fennec') }
+
+      let(:form) do
+        helper.bootstrap_form_for model, url: '/' do |f|
+          return f
+        end
+      end
+
+      it 'renders uses the human attribute name' do
+        expect(subject.css('label').text).to eq('Fox species')
+      end
     end
-  end
 
-  context 'with a label provided' do
-    let(:select_options) { { options: [], label: 'Game' } }
-
-    it 'uses this label' do
-      expect(subject.css('label').text).to eq('Game')
+    context 'with no label and no model around' do
+      it 'humanizes the name param' do
+        expect(subject.css('label').text).to eq('Species')
+      end
     end
-  end
 
-  context 'with additional classes' do
-    let(:select_options) { { options: [], classes: %w(some classes) } }
+    context 'with skip_label option' do
+      let(:select) do
+        options = select_options.reverse_merge(form: form, name: 'species', skip_label: true)
+        helper.ui_component(:select, options)
+      end
 
-    it 'adds the classes' do
-      expect(subject.css('select').first.attributes['class'].value).to include('some classes')
-    end
-  end
-
-  context 'skipping the label' do
-    let(:select_options) { { options: [], skip_label: true } }
-
-    it 'skips the label' do
-      expect(subject.css('label')).to be_empty
-    end
-  end
-
-  context 'with an instance variable set' do
-    let(:select_options) { { name: 'game_id', options: [['Commander Keen', 23]] } }
-
-    it "pre-selects the instance's attribute's value" do
-      assign(:foo, double('some object', game_id: 23))
-
-      expect(subject.css('option[selected="selected"]').attr('value').to_s).to eq('23')
-      expect(subject.css('option[selected="selected"]').text).to eq('Commander Keen')
+      it 'does not render the label' do
+        expect(subject.css('label')).to be_empty
+      end
     end
   end
 
-  pending 'with a model instance provided to the form'
+  describe 'has error' do
+    let(:erroneous_fox) do
+      Fox.new.tap { |f| f.errors.add(:species, 'does not exist') }
+    end
+
+    let(:form) do
+      helper.bootstrap_form_for erroneous_fox, url: '/' do |f|
+        return f
+      end
+    end
+
+    it 'adds has-error class to form group' do
+      expect(subject.css('.form-group').attr('class').to_s).to eq('form-group has-error')
+    end
+
+    it 'displays the error' do
+      expect(subject.css('span.help-block').text).to include('does not exist')
+    end
+  end
+
+  describe 'classes option' do
+    let(:select) do
+      options = select_options.reverse_merge(form: form, name: 'species', classes: %w(foo bar))
+      helper.ui_component(:select, options)
+    end
+
+    it 'is passed on to chosen' do
+      component = subject.css('[data-react-class="ui_components.Select"]').first
+      props = JSON.parse(component['data-react-props'])
+      expect(props['className']).to eq('foo bar')
+    end
+  end
+
+  describe 'without a form' do
+    let(:select) do
+      helper.ui_component(:select, name: 'something')
+    end
+
+    it 'still works' do
+      expect { subject }.to_not raise_error
+    end
+  end
+
+  describe 'id option' do
+    context 'without id option provided' do
+      let(:select) do
+        helper.ui_component(:select, name: 'foo')
+      end
+
+      it 'uses the id option' do
+        expect(props['id']).to eq('foo')
+      end
+    end
+
+    context 'with id option provided' do
+      let(:select) do
+        helper.ui_component(:select, name: 'foo', id: 'bar')
+      end
+
+      it 'uses the id option' do
+        expect(props['id']).to eq('bar')
+      end
+    end
+  end
+
+  describe 'selected option' do
+    context 'as an array' do
+      let(:select) do
+        helper.ui_component(:select, selected: ['foo'], name: 'foo')
+      end
+
+      it 'is passed on to the JS' do
+        expect(props['value']).to eq(['foo'])
+      end
+    end
+  end
 end

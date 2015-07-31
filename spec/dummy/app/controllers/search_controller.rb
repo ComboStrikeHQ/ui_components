@@ -1,10 +1,10 @@
 class SearchController < ApplicationController
   def search
     result = [
-      { value: 'foo', text: 'Fooo' },
-      { value: 'bar', text: 'Baar' },
-      { value: 'baz', text: 'Baaz' }
-    ].select { |item| item[:text].include?(params.require(:term)) }
+      { value: 'foo', label: 'Fooo' },
+      { value: 'bar', label: 'Baar' },
+      { value: 'baz', label: 'Baaz' }
+    ].select { |item| item[:label].include?(params.require(:term)) }
     render json: result
   end
 end

@@ -13,5 +13,6 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-daterangepicker
 //= require marked
+//= require mountain_view
 
 //= require_tree .

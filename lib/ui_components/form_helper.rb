@@ -17,5 +17,13 @@ module UiComponents
         &block
       )
     end
+
+    def datagrid_filters(form, filters, options = {})
+      filter_markup = filters.map do |filter|
+        ui_component(:datagrid_filter, options.merge(form: form, filter: filter))
+      end
+
+      safe_join filter_markup
+    end
   end
 end

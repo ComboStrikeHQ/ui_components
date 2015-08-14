@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 4.2.0'
   s.add_dependency 'cells', '>= 4.0.0.beta2'
   s.add_dependency 'cells-slim', '>= 0.0.3'
-  # s.add_dependency 'mountain_view'
+  s.add_dependency 'mountain_view'
 
   s.add_dependency 'slim-rails'
   s.add_dependency 'sass-rails'

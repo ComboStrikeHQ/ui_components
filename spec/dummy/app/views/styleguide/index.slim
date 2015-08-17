@@ -1,24 +1,51 @@
-- @components.each do |component|
-  h1= component.to_s
+.navbar.navbar-fixed-top
+  .container
+    .row
+      button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand href="/"
+        span.company-name= "ad2games "
+        span.environment styleguide
+      nav.collapse.navbar-collapse role="navigation"
+        ul.nav.navbar-nav.pull-right
+          li
+            a href="#"  Components
+          li
+            a href="#"  Patterns
 
-  h2 Example
-  .component
-    = ui_component(component.component_name, component.example_attributes)
+.row
+  #left-col.col-md-3
+    ul#sidebar.nav.nav-stacked.hidden-xs
+      - @components.each_with_index do |component, index|
+        li
+          a href="#sec#{index}"= component.to_s
 
-  h2 Attributes
-  table
-    - component.attributes.each do |attr|
-      tr
-        th name
-        th mandatory?
-        th description
-      tr
-        td= attr[:name]
-        td= attr[:mandatory].to_s
-        td= attr[:description]
-  h2 Usage
+  #main-col.col-md-9
+    br/
+    - @components.each_with_index do |component, index|
+      h2(id="sec#{index}")= component.to_s
 
-  pre
-    = "ui_component('#{component.to_s.underscore.sub('_cell', '')}', {attributes})"
+      h3 Example
+      .component
+        = ui_component(component.component_name, component.example_attributes)
 
+      h3 Attributes
+      table
+        - component.attributes.each do |attr|
+          tr
+            th name
+            th mandatory?
+            th description
+          tr
+            td= attr[:name]
+            td= attr[:mandatory].to_s
+            td= attr[:description]
+      h3 Usage
 
+      pre
+        = "ui_component('#{component.to_s.underscore.sub('_cell', '')}', {attributes})"
+
+      hr/

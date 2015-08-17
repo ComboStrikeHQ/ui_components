@@ -1,0 +1,150 @@
+// variables
+
+$brand-primary:   #ff5909;
+$gray-darker:     #222;
+$gray-dark:       #444;
+$gray:            #888;
+$gray-light:      #ccc;
+$gray-lighter:    #eee;
+$gray-white:      #f5f5f5;
+$white:           #fff;
+
+// general
+
+body {
+  background-color: $gray-white;
+  padding-top: 50px;
+}
+
+// navbar
+
+.navbar {
+  background-color: white;
+  border: 0;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+
+  a {
+		color: $gray;
+	}
+
+	li > a:hover {
+		background-color: $brand-primary;
+    color: $white;
+	}
+
+  .navbar-brand {
+    background: url(image_path("logo.svg")) no-repeat left center;
+    background-size: 60px;
+    font-size: 16px;
+    height: 50px;
+    margin: 0;
+    padding-left: 50px;
+
+    span.environment {
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    span.company-name {
+      color: black;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .icon-bar {
+  	background-color: $gray-light;
+  }
+}
+
+// sidebar
+
+#sidebar {
+  padding-top: 30px;
+
+  a {
+    border-radius: 2px 0 0 2px;
+    color: $gray;
+
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+
+  li.active {
+  	border: 0 $brand-primary solid;
+  	border-right-width: 4px;
+
+    a {
+      color: $brand-primary;
+    }
+  }
+
+	&.affix-top {
+		position: static;
+    width: 277px;
+	}
+	&.affix {
+		position: fixed;
+    width: 277px;
+	}
+}
+
+@media(max-width: 992px) {
+  #left-col {
+    display: none;
+  }
+}
+
+
+// main column
+
+#main-col {
+  background-color: white;
+  border: 1px solid $gray-lighter;
+  min-height: 110vh;
+
+  h2 {
+  	margin-top: -55px;
+  	padding-top: 55px;
+  }
+
+  h3 {
+    color: $gray;
+    font-style: italic;
+  }
+
+  table {
+  	border-radius: 2px;
+  	border: 1px solid $gray-lighter;
+  	width: 100%;
+
+    td,
+    th {
+    	border-bottom: 1px solid $gray-lighter;
+    }
+
+    th {
+    	font-weight: normal;
+    	line-height: 1.3em;
+    	padding: 10px 10px;
+    	text-align: left;
+      background-color: $gray-white;
+      color: $gray;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+
+    td {
+    	font-size: 0.9em;
+    	padding: 5px 15px;
+    	vertical-align: top;
+    }
+  }
+
+  pre {
+  	border-radius: 2px;
+  	border: 1px solid $gray-lighter;
+  	width: 100%;
+  }
+}

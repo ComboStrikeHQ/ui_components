@@ -5,5 +5,6 @@ require 'active_model/railtie'
 require 'ui_components/engine'
 require 'ui_components/cell'
 require 'ui_components/form_helper'
+require 'ui_components/styleguide'
 
 ActionView::Base.include UiComponents::FormHelper

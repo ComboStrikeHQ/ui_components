@@ -1,5 +1,5 @@
 class MarkdownReadonlyCell < UiComponents::Cell
-  def show
-    render :show
-  end
+  attribute :content, mandatory: true,
+                      description: 'Markdown text',
+                      example: "# Heading\nSome text."
 end

@@ -1,0 +1,24 @@
+- @components.each do |component|
+  h1= component.to_s
+
+  h2 Example
+  .component
+    = ui_component(component.component_name, component.example_attributes)
+
+  h2 Attributes
+  table
+    - component.attributes.each do |attr|
+      tr
+        th name
+        th mandatory?
+        th description
+      tr
+        td= attr[:name]
+        td= attr[:mandatory].to_s
+        td= attr[:description]
+  h2 Usage
+
+  pre
+    = "ui_component('#{component.to_s.underscore.sub('_cell', '')}', {attributes})"
+
+

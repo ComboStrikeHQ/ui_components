@@ -1,5 +1,9 @@
 module UiComponents
   class Styleguide
+    # TODO: Implement attributes in cells and remove respective classes from
+    # this list.
+    EXCLUDED_COMPONENTS = [::SelectCell, ::CheckboxListCell, ::DateRangeCell, ::MarkdownTextareaCell]
+
     def self.components
       component_paths =
         Dir.glob(File.join(File.expand_path('../../../app/cells', __FILE__), '*.rb'))
@@ -11,9 +15,7 @@ module UiComponents
         .select { |name| name.ends_with?('Cell') }
         .map(&:constantize)
 
-      # TODO: Implement properties in cells and remove respective classes from
-      # this list.
-      component_classes - [SelectCell, CheckboxListCell, DateRangeCell, MarkdownTextareaCell]
+      component_classes - EXCLUDED_COMPONENTS
     end
   end
 end

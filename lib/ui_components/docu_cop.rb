@@ -4,10 +4,11 @@ module UiComponents
   
     def initialize(*args)
       super
+      return if UiComponents::Styleguide::EXCLUDED_COMPONENTS.include?(self.class)
       options.except(:controller).each do |k, v|
         self.send(:"#{k}=", v)
       end
-      validate_mandatory_arguments
+      validate_mandatory_attributes
     end
   
     def attributes
@@ -18,7 +19,7 @@ module UiComponents
   
     private
   
-    def validate_mandatory_arguments
+    def validate_mandatory_attributes
       missing_arguments = self.class.attributes
         .select { |a| a[:mandatory] && self.send(a[:name]).nil? }
       if missing_arguments.present?

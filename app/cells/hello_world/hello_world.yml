@@ -1,0 +1,7 @@
+attributes:
+  name:
+    description: 'A name.'
+
+examples:
+  - attributes:
+      name: 'John'

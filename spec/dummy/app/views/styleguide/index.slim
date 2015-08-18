@@ -28,9 +28,14 @@
     - @components.each_with_index do |component, index|
       h2(id="sec#{index}")= component.to_s
 
-      h3 Example
-      .component
-        = ui_component(component.component_name, component.example_attributes)
+      h3 Examples
+
+      - component.examples.each do |example|
+        .component
+          = ui_component(component.component_name, example[:attributes]).html_safe
+
+        pre
+          = "ui_component('#{component.component_name}', #{example[:attributes].inspect})"
 
       h3 Attributes
       table

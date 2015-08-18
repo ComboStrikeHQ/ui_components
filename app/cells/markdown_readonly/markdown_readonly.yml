@@ -1,0 +1,7 @@
+attributes:
+  content:
+    description: 'Markdown text.'
+
+examples:
+  - attributes:
+      content: "# Heading\n\nLorem ipsum..."

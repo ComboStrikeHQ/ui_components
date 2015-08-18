@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/styleguide' => 'styleguide#index'
+  mount UiComponents::Engine, at: "/styleguide"
   get '/select_async_data' => 'search#search'
   get '/*name' => 'components#show'
 end

@@ -36,8 +36,7 @@ module UiComponents
         attributes << {
           name: name,
           mandatory: options.require(:mandatory),
-          description: attribute_description(name),
-          example: options.require(:example)
+          description: attribute_description(name)
         }
   
         define_method(name) do
@@ -58,7 +57,8 @@ module UiComponents
       end
   
       def examples
-        documentation[:examples]
+        documentation[:examples].presence or
+          fail "No examples provided for #{component_name} component"
       end
   
       def attribute_description(attribute)

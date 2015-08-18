@@ -3,4 +3,3 @@ class StyleguideController < ApplicationController
     @components = UiComponents::Styleguide.components
   end
 end
-

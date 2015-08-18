@@ -2,7 +2,10 @@ module UiComponents
   class Styleguide
     # TODO: Implement attributes in cells and remove respective classes from
     # this list.
-    EXCLUDED_COMPONENTS = [::SelectCell, ::CheckboxListCell, ::DateRangeCell, ::MarkdownTextareaCell]
+    EXCLUDED_COMPONENTS = [::SelectCell,
+                           ::CheckboxListCell,
+                           ::DateRangeCell,
+                           ::MarkdownTextareaCell]
 
     def self.components
       component_paths =

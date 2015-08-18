@@ -102,7 +102,7 @@ body {
 #main-col {
   background-color: white;
   border: 1px solid $gray-lighter;
-  min-height: 110vh;
+  min-height: 100vh;
 
   h2 {
   	margin-top: -55px;
@@ -114,14 +114,32 @@ body {
     font-style: italic;
   }
 
+  .component {
+    border-radius: 2px 2px 0 0;
+    border: 1px dashed $gray-light;
+    border-bottom: 0;
+    padding: 15px;
+
+    + pre {
+      border-radius: 0 0 2px 2px;
+      border-top-color: $gray-lighter;
+    }
+  }
+
+  hr {
+    border-color: $gray-white;
+    border-width: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
   table {
   	border-radius: 2px;
-  	border: 1px solid $gray-lighter;
+  	border: 1px solid $gray-light;
   	width: 100%;
 
-    td,
-    th {
-    	border-bottom: 1px solid $gray-lighter;
+    td {
+    	border-top: 1px solid $gray-lighter;
     }
 
     th {
@@ -144,7 +162,8 @@ body {
 
   pre {
   	border-radius: 2px;
-  	border: 1px solid $gray-lighter;
+  	border: 1px solid $gray-light;
   	width: 100%;
+    padding: 15px;
   }
 }

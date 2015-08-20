@@ -1,2 +1,3 @@
 = bootstrap_form_for :fox do |form|
-  = ui_component('select', remote_options: '/select_async_data', form: form, name: 'type', width: '100%')
+  - opts = { remote_options: '/select_async_data', form: form, name: 'type', width: '100%' }
+  = ui_component('select', opts)

@@ -24,7 +24,7 @@ class MarkdownTextareaCell < FormCellBase
   end
 
   def form_group
-    form.send(:form_group_builder, name, label: label) do
+    form.__send__(:form_group_builder, name, label: label) do
       yield.html_safe
     end
   end

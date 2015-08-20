@@ -7,7 +7,8 @@ require 'ui_components/docu_cop'
 require 'ui_components/cell'
 require 'ui_components/form_helper'
 require UiComponents::Engine.root.join('app', 'cells', 'form_cell_base')
-Dir.glob(UiComponents::Engine.root.join('app', 'cells', '*.rb')).each { |c| require c }
+require 'pry'
+Dir.glob(UiComponents::Engine.root.join('app', 'cells', '*', '*.rb')).each { |c| require c }
 require 'ui_components/styleguide'
 
 ActionView::Base.include UiComponents::FormHelper

@@ -4,7 +4,6 @@ module UiComponents
 
     def initialize(*args)
       super
-      return if UiComponents::Styleguide::EXCLUDED_COMPONENTS.include?(self.class)
       options.except(:controller).each do |k, v|
         send(:"#{k}=", v)
       end

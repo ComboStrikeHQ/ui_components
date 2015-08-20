@@ -4,6 +4,11 @@ module UiComponents
       app.config.assets.paths += self.class.components_paths
     end
 
+    initializer 'ui_components.assets.precompile' do |app|
+      app.config.assets.precompile += %w(styleguide.js
+                                         styleguide.css)
+    end
+
     def self.components_paths
       Dir.glob(root.join('app', 'cells', '*'))
         .map { |path| Pathname.new(path) }

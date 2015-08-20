@@ -5,6 +5,7 @@ module UiComponents
     def initialize(*args)
       super
       return if Styleguide::EXCLUDED_COMPONENTS.include?(self.class.to_s)
+      self.class.attributes.keys.each { |attr_name| self.class.define_accessors(attr_name) }
       options.except(:controller).each do |k, v|
         send(:"#{k}=", v)
       end
@@ -21,24 +22,19 @@ module UiComponents
 
     def validate_mandatory_attributes
       missing_arguments = self.class.attributes
-        .select { |a| a[:mandatory] && send(a[:name]).nil? }
+        .select { |name, config| config[:mandatory] && send(name).nil? }
       return unless missing_arguments.present?
       fail MandatoryPropertyNotSet,
-        'Following mandatory arguments have not been provided: ' +
-          missing_arguments.map { |m| m[:name] }.join(', ')
+        'Following mandatory arguments have not been provided ' +
+          "in an example for the #{self.class.component_name} component: " +
+          missing_arguments.keys.join(', ')
     end
 
     class MandatoryPropertyNotSet < StandardError; end
 
     class_methods do
-      def attribute(name, options = {})
-        options = ActionController::Parameters.new(options)
-        attributes << {
-          name: name,
-          mandatory: options.require(:mandatory),
-          description: attribute_description(name)
-        }
-        define_accessors(name)
+      def attributes
+        @attributes ||= documentation[:attributes]
       end
 
       def define_accessors(name)
@@ -49,10 +45,6 @@ module UiComponents
         define_method(:"#{name}=") do |value|
           instance_variable_set(:"@#{name}", value)
         end
-      end
-
-      def attributes
-        @attributes ||= []
       end
 
       def component_name

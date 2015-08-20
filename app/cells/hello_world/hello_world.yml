@@ -1,6 +1,7 @@
 attributes:
   name:
     description: 'A name.'
+    mandatory: true
 
 examples:
   - attributes:

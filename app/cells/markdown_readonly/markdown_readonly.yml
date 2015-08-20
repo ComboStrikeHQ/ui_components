@@ -1,6 +1,7 @@
 attributes:
   content:
     description: 'Markdown text.'
+    mandatory: true
 
 examples:
   - attributes:

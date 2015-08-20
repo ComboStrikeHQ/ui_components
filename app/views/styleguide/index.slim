@@ -40,13 +40,13 @@
 
       h3 Attributes
       table
-        - component.attributes.each do |attr|
+        - component.attributes.each do |name, config|
           tr
             th name
             th mandatory?
             th description
           tr
-            td= attr[:name]
-            td= attr[:mandatory].to_s
-            td= attr[:description]
+            td= name
+            td= config[:mandatory].to_s
+            td= config[:description]
       hr/

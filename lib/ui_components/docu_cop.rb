@@ -5,7 +5,6 @@ module UiComponents
     def initialize(*args)
       super
       return if Styleguide::EXCLUDED_COMPONENTS.include?(self.class.to_s)
-      self.class.attributes.keys.each { |attr_name| self.class.define_accessors(attr_name) }
       options.except(:controller).each do |k, v|
         send(:"#{k}=", v)
       end
@@ -22,19 +21,24 @@ module UiComponents
 
     def validate_mandatory_attributes
       missing_arguments = self.class.attributes
-        .select { |name, config| config[:mandatory] && send(name).nil? }
+        .select { |a| a[:mandatory] && send(a[:name]).nil? }
       return unless missing_arguments.present?
       fail MandatoryPropertyNotSet,
-        'Following mandatory arguments have not been provided ' +
-          "in an example for the #{self.class.component_name} component: " +
-          missing_arguments.keys.join(', ')
+        'Following mandatory arguments have not been provided: ' +
+          missing_arguments.map { |m| m[:name] }.join(', ')
     end
 
     class MandatoryPropertyNotSet < StandardError; end
 
     class_methods do
-      def attributes
-        @attributes ||= documentation[:attributes]
+      def attribute(name, options = {})
+        options = ActionController::Parameters.new(options)
+        attributes << {
+          name: name,
+          mandatory: !!options[:mandatory],
+          description: options.require(:description)
+        }
+        define_accessors(name)
       end
 
       def define_accessors(name)
@@ -47,6 +51,10 @@ module UiComponents
         end
       end
 
+      def attributes
+        @attributes ||= []
+      end
+
       def component_name
         to_s.underscore.sub(/_cell\Z/, '')
       end
@@ -54,15 +62,6 @@ module UiComponents
       def examples
         documentation[:examples].presence ||
           fail("No examples provided for #{component_name} component")
-      end
-
-      def attribute_description(attribute)
-        description = documentation
-          .try(:[], :attributes)
-          .try(:[], attribute.to_sym)
-          .try(:[], :description)
-        description.presence ||
-          fail("Key 'attributes.#{attribute}.description' missing from #{component_name}.yml")
       end
 
       def documentation

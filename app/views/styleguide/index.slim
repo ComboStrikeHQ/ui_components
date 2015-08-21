@@ -32,21 +32,21 @@
 
       - component.examples.each do |example|
         .component
-          = ui_component(component.component_name, example[:attributes]).html_safe
+          = ui_component_execute_example_call(component.component_name, example).html_safe
 
         pre
           code.ruby
-            = ui_component_example_call(component.component_name, example[:attributes])
+            = ui_component_example_call(component.component_name, example)
 
       h3 Attributes
       table
-        - component.attributes.each do |name, config|
+        tr
+          th name
+          th mandatory?
+          th description
+        - component.attributes.each do |config|
           tr
-            th name
-            th mandatory?
-            th description
-          tr
-            td= name
+            td= config[:name]
             td= config[:mandatory].to_s
             td= config[:description]
       hr/

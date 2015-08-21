@@ -1,7 +1,7 @@
 module UiComponents
   class Styleguide
     # TODO: Implement cells and remove from here.
-    EXCLUDED_COMPONENTS = %w(ToolbarCell MarkdownTextareaCell SelectCell
+    EXCLUDED_COMPONENTS = %w(ToolbarCell SelectCell
                              DateRangeCell CheckboxListCell)
 
     def self.components

@@ -10,12 +10,12 @@ RSpec.describe 'select', type: :helper do
   end
 
   let(:select) do
-    helper.ui_component(:select, select_options.reverse_merge(form: form, width: '100%'))
+    helper.ui_component(:select, select_options.reverse_merge(form: form, name: 'bar'))
   end
   let(:select_options) { {} }
 
   context 'with minimal required options' do
-    let(:select_options) { { name: 'bar', options: [] } }
+    let(:select_options) { { select_options: [] } }
 
     it 'renders the label with the correct for attribute' do
       expect(subject.css('label').attr('for').to_s).to eq('foo_bar')
@@ -27,7 +27,7 @@ RSpec.describe 'select', type: :helper do
   end
 
   context 'with a label provided' do
-    let(:select_options) { { options: [], label: 'Game' } }
+    let(:select_options) { { select_options: [], label: 'Game' } }
 
     it 'uses this label' do
       expect(subject.css('label').text).to eq('Game')
@@ -35,7 +35,7 @@ RSpec.describe 'select', type: :helper do
   end
 
   context 'with additional classes' do
-    let(:select_options) { { options: [], classes: %w(some classes) } }
+    let(:select_options) { { select_options: [], classes: %w(some classes) } }
 
     it 'adds the classes' do
       expect(subject.css('select').first.attributes['class'].value).to include('some classes')
@@ -43,7 +43,7 @@ RSpec.describe 'select', type: :helper do
   end
 
   context 'skipping the label' do
-    let(:select_options) { { options: [], skip_label: true } }
+    let(:select_options) { { select_options: [], skip_label: true } }
 
     it 'skips the label' do
       expect(subject.css('label')).to be_empty
@@ -51,7 +51,7 @@ RSpec.describe 'select', type: :helper do
   end
 
   context 'with an instance variable set' do
-    let(:select_options) { { name: 'game_id', options: [['Commander Keen', 23]] } }
+    let(:select_options) { { name: 'game_id', select_options: [['Commander Keen', 23]] } }
 
     it "pre-selects the instance's attribute's value" do
       assign(:foo, double('some object', game_id: 23))

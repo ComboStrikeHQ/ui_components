@@ -1,5 +1,7 @@
 class DatagridFilterCell < FormCellBase
-  include UiComponents::ViewHelper
+  attribute :form, mandatory: true, description: 'A form object.'
+  attribute :filter, mandatory: true, description: 'A Datagrid filter object.'
+  attribute :width, description: 'The width of the component.'
 
   def show
     case options[:filter].type
@@ -15,7 +17,7 @@ class DatagridFilterCell < FormCellBase
   def select_options
     options.slice(:form, :width).merge(
       name: options[:filter].name,
-      options: options[:filter].options[:select].call,
+      select_options: options[:filter].options[:select].call,
       label: options[:filter].header
     )
   end

@@ -32,7 +32,7 @@
 
       - component.examples.each do |example|
         .component
-          = ui_component_execute_example_call(component.component_name, example).html_safe
+          = ui_component_execute_example_call(component.component_name, example)
 
         pre
           code.ruby

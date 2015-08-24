@@ -11,7 +11,7 @@ module UiComponents::StyleguideHelper
   def ui_component_execute_example_call(name, example)
     case example.keys.first
     when :attributes then
-      eval ui_component_example_call(name, example)
+      eval ui_component_example_call(name, example) # rubocop:disable Lint/Eval
     when :slim then
       Slim::Template.new { example.values.last }.render(self).html_safe
     else

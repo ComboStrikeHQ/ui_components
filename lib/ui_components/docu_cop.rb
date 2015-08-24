@@ -6,14 +6,14 @@ module UiComponents
       super
       return if Styleguide::EXCLUDED_COMPONENTS.include?(self.class.to_s)
       options.except(:controller).each do |k, v|
-        send(:"#{k}=", v)
+        public_send(:"#{k}=", v)
       end
       validate_mandatory_attributes
     end
 
     def attributes
       self.class.attributes.keys.map do |k|
-        [k, send(k)]
+        [k, public_send(k)]
       end.to_h
     end
 
@@ -21,7 +21,7 @@ module UiComponents
 
     def validate_mandatory_attributes
       missing_arguments = self.class.attributes
-        .select { |a| a[:mandatory] && send(a[:name]).nil? }
+        .select { |a| a[:mandatory] && public_send(a[:name]).nil? }
       return unless missing_arguments.present?
       fail MandatoryPropertyNotSet,
         'Following mandatory arguments have not been provided: ' +
@@ -35,7 +35,7 @@ module UiComponents
         options = ActionController::Parameters.new(options)
         attributes << {
           name: name,
-          mandatory: !!options[:mandatory],
+          mandatory: options[:mandatory] == true,
           description: options.require(:description)
         }
         define_accessors(name)

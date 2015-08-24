@@ -7,7 +7,7 @@
         span.icon-bar
         span.icon-bar
       a.navbar-brand href="/"
-        span.company-name= "ad2games "
+        span.company-name= 'ad2games '
         span.environment styleguide
       nav.collapse.navbar-collapse role="navigation"
         ul.nav.navbar-nav.pull-right
@@ -17,13 +17,13 @@
             a href="#"  Patterns
 
 .row
-  #left-col.col-md-3
-    ul#sidebar.nav.nav-stacked.hidden-xs
+  .left-col.col-md-3
+    ul.sidebar.nav.nav-stacked.hidden-xs
       - @components.each_with_index do |component, index|
         li
           a href="#sec#{index}"= component.to_s
 
-  #main-col.col-md-9
+  .main-col.col-md-9
     br/
     - @components.each_with_index do |component, index|
       h2(id="sec#{index}")= component.to_s

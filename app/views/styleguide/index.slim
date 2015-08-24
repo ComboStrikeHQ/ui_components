@@ -48,5 +48,5 @@
           tr
             td= config[:name]
             td= config[:mandatory].to_s
-            td= config[:description]
+            td= ui_component('markdown_readonly', content: config[:description])
       hr/

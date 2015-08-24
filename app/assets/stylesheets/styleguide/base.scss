@@ -167,6 +167,10 @@ body {
   }
 }
 
+td [data-toggle="markdown-readonly"] p:last-child {
+  margin: 0;
+}
+
 // Overrides
 
 .hljs {

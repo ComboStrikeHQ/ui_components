@@ -1,0 +1,5 @@
+examples:
+  - slim: |
+      - bootstrap_form_for(:foo, url: '/') do |f|
+        = ui_component 'date_range', form: f,
+                                     name: 'foo'

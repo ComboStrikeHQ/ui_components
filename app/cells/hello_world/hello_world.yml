@@ -1,4 +1,5 @@
 description: 'Just a test component.'
 examples:
-  - attributes:
+  - description: 'A basic example.'
+    attributes:
       name: 'John'

@@ -33,6 +33,9 @@
       h3 Examples
 
       - component.examples.each do |example|
+        - if example[:description].present?
+          = ui_component('markdown_readonly', content: example[:description])
+
         .component
           = ui_component_execute_example_call(component.component_name, example)
 

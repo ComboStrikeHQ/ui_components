@@ -27,6 +27,15 @@ Use the helper method in the views:
 
 ## Creating a component
 
+### Using the generator
+
+```
+thor generate_component NAME
+```
+Proceed according to step 3 below.
+
+### Manually
+
 In order to create a component, you need to follow these 17 simple steps:
 
 1. Create a directory (`my_component`) with the component's intended name

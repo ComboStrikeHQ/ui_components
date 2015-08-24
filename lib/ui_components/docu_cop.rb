@@ -63,6 +63,11 @@ module UiComponents
           fail("No examples provided for #{component_name} component")
       end
 
+      def description
+        documentation[:description].presence ||
+          fail("No description provided for '#{component_name}' component")
+      end
+
       def documentation
         file = Engine.root.join('app', 'cells', component_name, "#{component_name}.yml")
         YAML.load(File.read(file)).deep_symbolize_keys

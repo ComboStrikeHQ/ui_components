@@ -1,3 +1,4 @@
+description: 'A searchable selectbox.'
 examples:
   - slim: |
       - bootstrap_form_for(:foo, url: '/') do |f|

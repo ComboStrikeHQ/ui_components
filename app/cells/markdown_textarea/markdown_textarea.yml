@@ -1,3 +1,4 @@
+description: 'A Markdown editor with preview functionality.'
 examples:
   - slim: |
       - bootstrap_form_for(:foo, url: '/') do |f|

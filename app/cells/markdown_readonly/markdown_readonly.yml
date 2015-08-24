@@ -1,8 +1,4 @@
-attributes:
-  content:
-    description: 'Markdown text.'
-    mandatory: true
-
+description: 'Renders markdown text on the client side.'
 examples:
   - attributes:
       content: "# Heading\n\nLorem ipsum..."

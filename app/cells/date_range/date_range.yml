@@ -1,3 +1,4 @@
+description: 'A date-range selector with configurable ranges.'
 examples:
   - slim: |
       - bootstrap_form_for(:foo, url: '/') do |f|

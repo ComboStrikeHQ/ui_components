@@ -28,6 +28,8 @@
     - @components.each_with_index do |component, index|
       h2(id="sec#{index}")= component.to_s
 
+      = ui_component('markdown_readonly', content: component.description)
+
       h3 Examples
 
       - component.examples.each do |example|

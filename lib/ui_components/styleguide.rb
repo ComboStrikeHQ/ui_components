@@ -1,8 +1,7 @@
 module UiComponents
   class Styleguide
     # TODO: Implement cells and remove from here.
-    EXCLUDED_COMPONENTS = %w(ToolbarCell SelectCell
-                             DateRangeCell CheckboxListCell)
+    EXCLUDED_COMPONENTS = %w(ToolbarCell SelectCell DateRangeCell)
 
     def self.components
       Engine.components_paths.map(&:basename)

@@ -1,0 +1,7 @@
+examples:
+  - slim: |
+      - bootstrap_form_for(:foo, url: '/') do |f|
+        = ui_component 'checkbox_list', form: f,
+                                        name: 'foo',
+                                        values: %w(foo bar baz)
+

@@ -1,6 +1,6 @@
 RSpec.feature 'Styleguide', :js do
   scenario 'all components are properly documented' do
-    visit '/styleguide'
+    visit '/'
 
     expect(page.status_code).to eq(200)
     expect(page).to have_css('h1', text: 'Hello, John!')

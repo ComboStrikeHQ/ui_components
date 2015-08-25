@@ -15,7 +15,7 @@ class DatagridFilterCell < FormCellBase
   def select_options
     options.slice(:form, :width).merge(
       name: options[:filter].name,
-      options: options[:filter].options[:select],
+      options: options[:filter].options[:select].call,
       label: options[:filter].header
     )
   end

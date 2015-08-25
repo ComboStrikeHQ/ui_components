@@ -13,7 +13,7 @@ class TestGrid
   filter(
     :some_attribute,
     :enum,
-    select: [['a', 5], ['b', 6]],
+    select: -> { [['a', 5], ['b', 6]] },
     header: 'B'
   ) do |value, scope|
     scope.select { |row| row[:b] == value }

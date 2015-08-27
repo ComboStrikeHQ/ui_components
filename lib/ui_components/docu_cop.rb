@@ -37,17 +37,7 @@ module UiComponents
           mandatory: options[:mandatory] == true,
           description: options.require(:description)
         }
-        define_accessors(name)
-      end
-
-      def define_accessors(name)
-        define_method(name) do
-          instance_variable_get(:"@#{name}")
-        end
-
-        define_method(:"#{name}=") do |value|
-          instance_variable_set(:"@#{name}", value)
-        end
+        attr_accessor name
       end
 
       def attributes

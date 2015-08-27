@@ -2,8 +2,9 @@
 
 This gem provides common UI components for all
 [ad2games](http://www.ad2games.com/) projects as well as related documentation.
-To view the documentation run the dummy app within the spec directory and
-point your browser to [localhost:3000/](http://localhost:3000/) or similar.
+To view the documentation run `rake styleguide` and point your browser to
+[localhost:3000/](http://localhost:3000/). To specify a different port
+run `rake styleguide[1234]` instead.
 
 ## Usage
 

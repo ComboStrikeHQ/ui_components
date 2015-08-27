@@ -20,3 +20,5 @@ load 'rails/tasks/engine.rake'
 load 'rails/tasks/statistics.rake'
 
 Bundler::GemHelper.install_tasks
+
+Dir['lib/tasks/*.rake'].each { |r| load r }

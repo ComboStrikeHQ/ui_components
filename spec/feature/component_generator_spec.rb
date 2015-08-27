@@ -5,7 +5,10 @@ RSpec.feature 'Component generator', :js do
 
   before do
     expect(Dir.exist?(test_component_path)).to be(false)
-    `bundle exec thor generate_component test_component`
+
+    output = `bundle exec thor generate_component test_component 2>&1`
+    fail output unless $CHILD_STATUS.success?
+
     expect(Dir.exist?(test_component_path)).to be(true)
     require test_component_path.join('test_component_cell')
   end

@@ -1,5 +1,3 @@
-# vim: syntax=ruby
-
 require 'thor/group'
 require 'active_support/core_ext/string'
 

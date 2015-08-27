@@ -2,7 +2,8 @@ require_relative '../../app/helpers/ui_components/view_helper'
 
 module UiComponents
   class Cell < ::Cell::ViewModel
-    include UiComponents::ViewHelper
+    include ViewHelper
+    include CellAttributes
     include DocuCop
 
     view_paths << Engine.root.join('app', 'cells')

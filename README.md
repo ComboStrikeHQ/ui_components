@@ -64,3 +64,10 @@ In order to create a component, you need to follow these 17 simple steps:
 6. Component specific Styles and Javascript should be added within
    `app/cells/my_component` as
    `my_component.scss` and `my_component.coffee` files respectively.
+
+
+## TODO
+
+* Move requiring of dependencies into individual components' JS and add
+  tests.
+* Add types to attribute definitions in cells.

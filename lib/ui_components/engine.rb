@@ -10,9 +10,8 @@ module UiComponents
     end
 
     def self.components_paths
-      Dir.glob(root.join('app', 'cells', '*'))
+      Dir[root.join('app/cells/*/')]
         .map { |path| Pathname.new(path) }
-        .select { |path| Dir.exist?(path) }
     end
   end
 end

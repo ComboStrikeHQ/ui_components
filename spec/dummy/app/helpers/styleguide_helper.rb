@@ -1,4 +1,4 @@
-module UiComponents::StyleguideHelper
+module StyleguideHelper
   def ui_component_example_call(name, example)
     if example.key?(:attributes)
       formatted_attributes = JSON.pretty_generate(example[:attributes]).gsub(/"([^"]+)":/, '\1:')

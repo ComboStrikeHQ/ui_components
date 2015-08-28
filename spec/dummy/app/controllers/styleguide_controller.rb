@@ -2,6 +2,6 @@ class StyleguideController < ApplicationController
   layout 'styleguide'
 
   def index
-    @components = UiComponents::Styleguide.components
+    @components = Styleguide.components
   end
 end

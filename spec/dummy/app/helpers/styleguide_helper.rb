@@ -4,7 +4,7 @@ module StyleguideHelper
       formatted_attributes = JSON.pretty_generate(example[:attributes]).gsub(/"([^"]+)":/, '\1:')
       "ui_component('#{name}', #{formatted_attributes})"
     else
-      example.values.first
+      example[:slim]
     end
   end
 

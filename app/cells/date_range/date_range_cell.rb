@@ -4,6 +4,10 @@ class DateRangeCell < FormCellBase
   attribute :label, description: 'A label.'
   attribute :ranges, description: 'A hash of selectable ranges of the form ' \
                                   '`{ label => [from_date, to_date] }`'
+  attribute :date_limit, description: 'The maximum span between the selected ' \
+    'start and end dates. Can have any property you can add to a ' \
+    '[moment](http://momentjs.com/docs/#/durations/creating/) object (i.e. ' \
+    'days, months)'
 
   def show
     [

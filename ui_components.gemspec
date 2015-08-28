@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ['ad2games']
   s.email = ['developers@ad2games.com']
   s.homepage = 'http://www.ad2games.com'
-  s.summary = 'ad2games UiComponents'
+  s.summary = 'UI components for ad2games projects'
   s.license = 'MIT'
 
   s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-bootstrap-chosen'
   s.add_dependency 'rails-assets-marked'
   s.add_dependency 'rails-assets-ajax-chosen'
+  s.add_dependency 'rails-assets-highlightjs'
 
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'

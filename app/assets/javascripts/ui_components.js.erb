@@ -15,3 +15,12 @@
 //= require marked
 
 //= require_tree .
+
+<% UiComponents::Engine.components_paths.each do |path| %>
+  <%
+    begin
+      require_asset path.basename
+    rescue Sprockets::FileNotFound
+    end
+  %>
+<% end %>

@@ -1,0 +1,178 @@
+// variables
+
+$brand-primary:   #ff5909;
+$gray-darker:     #222;
+$gray-dark:       #444;
+$gray:            #888;
+$gray-light:      #ccc;
+$gray-lighter:    #eee;
+$gray-white:      #f5f5f5;
+$white:           #fff;
+$black:           #000;
+
+// general
+
+body {
+  background-color: $gray-white;
+  padding-top: 50px;
+}
+
+// navbar
+
+.navbar {
+  background-color: $white;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+
+  a {
+    color: $gray;
+  }
+
+  li > a:hover {
+    background-color: $brand-primary;
+    color: $white;
+  }
+
+  .navbar-brand {
+    background: url(image_path('logo.svg')) no-repeat left center;
+    background-size: 60px;
+    font-size: 16px;
+    height: 50px;
+    margin: 0;
+    padding-left: 50px;
+
+    .environment {
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .company-name {
+      color: $black;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .icon-bar {
+    background-color: $gray-light;
+  }
+}
+
+// sidebar
+
+.sidebar {
+  padding-top: 30px;
+
+  a {
+    border-radius: 2px 0 0 2px;
+    color: $gray;
+
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+
+  .active {
+    border: 0 $brand-primary solid;
+    border-right-width: 4px;
+
+    a {
+      color: $brand-primary;
+    }
+  }
+
+  &.affix-top {
+    position: static;
+    width: 277px;
+  }
+
+  &.affix {
+    position: fixed;
+    width: 277px;
+  }
+}
+
+@media(max-width: 992px) {
+  .left-col {
+    display: none;
+  }
+}
+
+
+// main column
+
+.main-col {
+  background-color: $white;
+  border: 1px solid $gray-lighter;
+  min-height: 100vh;
+
+  h2 {
+    margin-top: -55px;
+    padding-top: 55px;
+  }
+
+  h3 {
+    color: $gray;
+    font-style: italic;
+  }
+
+  .component {
+    border-radius: 2px 2px 0 0;
+    border: 1px dashed $gray-light;
+    border-bottom: 0;
+    padding: 15px;
+
+    + pre {
+      border-radius: 0 0 2px 2px;
+      border-top-color: $gray-lighter;
+    }
+  }
+
+  hr {
+    border-color: $gray-white;
+    border-width: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+  table {
+    border-radius: 2px;
+    border: 1px solid $gray-light;
+    width: 100%;
+
+    td {
+      border-top: 1px solid $gray-lighter;
+      font-size: .9em;
+      padding: 5px 15px;
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: normal;
+      line-height: 1.3em;
+      padding: 10px;
+      text-align: left;
+      background-color: $gray-white;
+      color: $gray;
+      font-style: italic;
+      text-transform: uppercase;
+    }
+  }
+
+  pre {
+    border-radius: 2px;
+    border: 1px solid $gray-light;
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+td [data-toggle="markdown-readonly"] p:last-child {
+  margin: 0;
+}
+
+// Overrides
+
+.hljs {
+  background: transparent;
+}

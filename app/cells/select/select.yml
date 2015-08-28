@@ -1,0 +1,7 @@
+description: 'A searchable selectbox.'
+examples:
+  - slim: |
+      - bootstrap_form_for(:foo, url: '/') do |f|
+        = ui_component 'select', form: f,
+                                 name: 'foo',
+                                 select_options: [['Foo', 1], ['Bar', 2], ['Baz', 3]]

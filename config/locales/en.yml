@@ -3,3 +3,9 @@ en:
     markdown_textarea_cell:
       edit: Edit
       preview: Preview
+  styleguide:
+    index:
+      foo:
+        foo: 'Foo'
+        bar: 'Bar'
+        baz: 'Baz'

@@ -1,4 +1,10 @@
 class DateRangeCell < FormCellBase
+  attribute :form, mandatory: true, description: 'A form object.'
+  attribute :name, mandatory: true, description: 'The name attribute.'
+  attribute :label, description: 'A label.'
+  attribute :ranges, description: 'A hash of selectable ranges of the form ' \
+                                  '`{ label => [from_date, to_date] }`'
+
   def show
     [
       date_field(:from),

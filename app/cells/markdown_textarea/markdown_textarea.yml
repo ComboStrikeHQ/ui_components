@@ -1,0 +1,7 @@
+description: 'A Markdown editor with preview functionality.'
+examples:
+  - slim: |
+      - bootstrap_form_for(:foo, url: '/') do |f|
+        = ui_component 'markdown_textarea', form: f,
+                                            name: 'bar',
+                                            value: '# It works!'

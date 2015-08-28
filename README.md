@@ -89,3 +89,4 @@ A component consists of a bunch of files in a single directory in
 * Move requiring of dependencies into individual components' JS and add
   tests.
 * Add types to attribute definitions in cells.
+* Get rid of `UiComponents::FormHelper`.

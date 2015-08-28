@@ -6,6 +6,7 @@ module UiComponents
   end
 
   module FormHelper
+    # TODO: Move to own component.
     def modelless_form(options, &block)
       model_params = options[:params] || params[options[:name]]
       struct = ValidatedOpenStruct.new(model_params)
@@ -18,6 +19,7 @@ module UiComponents
       )
     end
 
+    # TODO: Move to DatagridFilterCell or own component.
     def datagrid_filters(form, filters, options = {})
       filter_markup = filters.map do |filter|
         ui_component(:datagrid_filter, options.merge(form: form, filter: filter))

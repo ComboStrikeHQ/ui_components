@@ -26,7 +26,7 @@ Use the helper method in the views:
 = ui_component(:select, form: form, options: @options)
 ```
 
-## Creating a component
+## Creating a Component
 
 In order to create a new component, come up with a great name and feed
 it to the generator:
@@ -35,7 +35,7 @@ it to the generator:
 thor generate_component GREAT_NAME
 ```
 
-### A component's components explained
+### A Component's Components Explained
 
 A component consists of a bunch of files in a single directory in
 `app/cells`:

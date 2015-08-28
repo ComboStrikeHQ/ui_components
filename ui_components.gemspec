@@ -36,7 +36,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-bootstrap-chosen'
   s.add_dependency 'rails-assets-marked'
   s.add_dependency 'rails-assets-ajax-chosen'
-  s.add_dependency 'rails-assets-highlightjs'
 
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'
@@ -48,4 +47,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'datagrid'
+  s.add_development_dependency 'rails-assets-highlightjs'
 end

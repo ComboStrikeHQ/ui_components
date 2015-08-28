@@ -3,6 +3,7 @@ class MarkdownTextareaCell < FormCellBase
   attribute :form, mandatory: true, description: 'A Rails form object.'
   attribute :value, description: "The textarea's content."
   attribute :rows, description: 'Number of rows.'
+  attribute :label, description: 'A label for the form input.'
 
   private
 

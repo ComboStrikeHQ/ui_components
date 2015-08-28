@@ -21,7 +21,7 @@ module UiComponents
     def validate_mandatory_attributes
       missing_attributes = self.class.attributes
         .select { |a| a[:mandatory] && public_send(a[:name]).nil? }
-      return unless missing_attributes.present?
+      return if missing_attributes.empty?
       fail MandatoryAttributeNotSet,
         'Following mandatory attribute(s) have not been provided: ' +
           missing_attributes.map { |m| m[:name] }.join(', ')

@@ -10,15 +10,38 @@ run `rake styleguide[1234]` instead.
 
 To include this gem in the next big ad2games thing, add it to the Gemfile:
 
+### Ruby
+
 ```ruby
 gem 'ui_components', git: 'https://github.com/ad2games/ui_components.git'
 ```
+### Javascript
 
 Require it in the application.js or wherever you want to use it:
 
 ```js
 //= require ui_components
 ```
+### Styles
+
+Import the styles in the application.css. First the Bootstrap 'variables' file for
+the project (to define colours etc.), then the a2g_ui_components.
+
+a2g_ui_components includes ad2games' bootstrap override styles, related to the navbar, buttons,
+form controls, toolbars, tables, etc.
+
+```css
+@import 'variables';
+@import 'a2g_ui_components';
+```
+
+Alternatively, instead import just the unthemed (default Bootstrap) styles in the application.css.
+
+```css
+@import 'ui_components';
+```
+
+### Helpers
 
 Use the helper method in the views:
 

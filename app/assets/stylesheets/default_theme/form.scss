@@ -1,0 +1,68 @@
+%form-control {
+  border-color: rgba($gray-darker, .1);
+  box-shadow: none;
+  border-radius: $border-radius-base;
+  background-clip: padding-box;
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    border: 1px solid rgba($brand-primary, .6);
+    box-shadow: none;
+  }
+}
+
+.form-control {
+  @extend %form-control;
+}
+
+.has-error {
+  .form-control {
+    @extend %form-control;
+    outline: 1px dashed $brand-danger;
+
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      @extend %form-control:focus;
+      outline: 1px dashed $brand-danger;
+    }
+  }
+}
+
+// Chosen select
+
+.chosen-container {
+
+  .chosen-single {
+    @extend %form-control;
+    cursor: pointer;
+  }
+
+  &.chosen-container-active .chosen-single {
+    @extend %form-control:focus;
+  }
+
+  .chosen-drop {
+    border-radius: 0 0 $border-radius-base $border-radius-base;
+    border-top: 0;
+    background-clip: padding-box;
+    box-shadow: $shadow-base;
+    margin-top: -2px;
+  }
+
+  &.chosen-container-single .chosen-search input {
+    border-radius: $border-radius-base;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &.chosen-container-single .chosen-results .highlighted {
+    background-color: $brand-primary;
+    border-radius: $border-radius-base;
+  }
+}

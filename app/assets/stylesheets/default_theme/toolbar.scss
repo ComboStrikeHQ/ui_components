@@ -1,0 +1,45 @@
+// form-group behaves like bootstrap's btn-group
+.btn-toolbar .form-group {
+  // scss-lint:disable PlaceholderInExtend
+  @extend .btn-group;
+}
+
+.toolbar {
+  // scss-lint:disable PlaceholderInExtend
+  @extend .btn-toolbar;
+  padding: $padding-base-vertical $padding-base 0;
+
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: $padding-base-vertical;
+  }
+}
+
+.toolbar-primary {
+  background-color: $brand-secondary;
+
+  .form-control,
+  .chosen-single {
+    border-color: transparent;
+
+    &:focus,
+    &:active,
+    &:hover {
+      border-color: rgba($brand-primary, .6);
+    }
+  }
+
+  .btn {
+    border-color: transparent;
+
+    &:hover,
+    &:hover:focus,
+    &:active,
+    &.active,
+    &:active:focus,
+    .open > &.dropdown-toggle {
+      background-color: darken($brand-secondary, 5%);
+    }
+  }
+}

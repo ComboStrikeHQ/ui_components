@@ -1,3 +1,13 @@
 .table > tbody > tr > td {
   vertical-align: middle;
 }
+
+.table > thead th {
+  font-family: $headings-font-family;
+  white-space: nowrap;
+  background-color: $body-bg;
+
+  > * {
+    display: inline-block;
+  }
+}

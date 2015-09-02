@@ -3,11 +3,17 @@
   background-clip: padding-box;
   transition: background-color .1s ease-out, border-color .1s, color .1s;
 
-  &:hover,
-  &:hover:focus,
-  &:active,
   &.active,
+  &.active.focus,
+  &.active:focus,
+  &.focus,
+  &.focus,
+  &:active,
+  &:active.focus,
   &:active:focus,
+  &:focus,
+  &:focus,
+  &:hover,
   .open > &.dropdown-toggle {
     // scss-lint:disable ImportantRule
     outline: none !important;
@@ -15,17 +21,6 @@
     background-color: $brand-secondary;
     border-color: darken($brand-secondary, 5%);
     color: $white;
-  }
-
-  &:focus,
-  &.focus,
-  &:hover:active {
-    // scss-lint:disable ImportantRule
-    outline: none !important;
-    box-shadow: none;
-    background-color: $white;
-    border-color: $brand-primary;
-    color: $brand-primary;
   }
 }
 

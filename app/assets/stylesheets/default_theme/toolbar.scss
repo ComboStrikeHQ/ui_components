@@ -33,11 +33,17 @@
   .btn {
     border-color: transparent;
 
-    &:hover,
-    &:hover:focus,
-    &:active,
     &.active,
+    &.active.focus,
+    &.active:focus,
+    &.focus,
+    &.focus,
+    &:active,
+    &:active.focus,
     &:active:focus,
+    &:focus,
+    &:focus,
+    &:hover,
     .open > &.dropdown-toggle {
       background-color: darken($brand-secondary, 5%);
     }

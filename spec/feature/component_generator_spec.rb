@@ -1,3 +1,5 @@
+require 'English'
+
 RSpec.feature 'Component generator', :js do
   let(:test_component_path) do
     UiComponents::Engine.root.join('app', 'cells', 'test_component')

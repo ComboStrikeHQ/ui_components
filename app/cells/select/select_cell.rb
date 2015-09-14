@@ -1,4 +1,5 @@
 class SelectCell < FormCellBase
+  attribute :disabled, description: 'Whether or not the field is disabled.'
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :name, mandatory: true, description: 'The name attribute.'
   attribute :select_options, description: 'Select options of the form `[[label, value]]`.'
@@ -30,7 +31,7 @@ class SelectCell < FormCellBase
 
   def html_options
     html_opts = { class: css_class }
-    html_opts.update(options.slice(:required, :multiple))
+    html_opts.update(options.slice(:required, :multiple, :disabled))
     html_opts[:data] = options.slice(:placeholder, :error, :width, :remote_options)
     html_opts
   end

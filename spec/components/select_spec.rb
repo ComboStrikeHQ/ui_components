@@ -42,6 +42,32 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
+  context 'disabling select box' do
+    context 'when disabled' do
+      let(:select_options) { { select_options: [], disabled: true } }
+
+      it 'disables the select box' do
+        expect(subject.css('select').attribute('disabled')).to be_present
+      end
+    end
+
+    context 'when explicitly enabled' do
+      let(:select_options) { { select_options: [], disabled: false } }
+
+      it 'enables the select box' do
+        expect(subject.css('select').attribute('disabled')).to be_nil
+      end
+    end
+
+    context 'default behavior' do
+      let(:select_options) { { select_options: [] } }
+
+      it 'enables the select box' do
+        expect(subject.css('select').attribute('disabled')).to be_nil
+      end
+    end
+  end
+
   context 'skipping the label' do
     let(:select_options) { { select_options: [], skip_label: true } }
 

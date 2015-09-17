@@ -26,32 +26,34 @@
   .main-col.col-md-9
     br/
     - @components.each_with_index do |component, index|
-      h2(id="sec#{index}")= component.to_s
+      div class="#{component.component_name}_component"
+        h2 id="sec#{index}"
+          = component.to_s
 
-      = ui_component('markdown_readonly', content: component.description)
+        = ui_component('markdown_readonly', content: component.description)
 
-      h3 Examples
+        h3 Examples
 
-      - component.examples.each do |example|
-        - if example[:description].present?
-          = ui_component('markdown_readonly', content: example[:description])
+        - component.examples.each do |example|
+          - if example[:description].present?
+            = ui_component('markdown_readonly', content: example[:description])
 
-        .component
-          = ui_component_execute_example_call(component.component_name, example)
+          .component
+            = ui_component_execute_example_call(component.component_name, example)
 
-        pre
-          code.ruby
-            = ui_component_example_call(component.component_name, example)
+          pre
+            code.ruby
+              = ui_component_example_call(component.component_name, example)
 
-      h3 Attributes
-      table
-        tr
-          th name
-          th mandatory?
-          th description
-        - component.attributes.each do |config|
+        h3 Attributes
+        table
           tr
-            td= config[:name]
-            td= config[:mandatory].to_s
-            td= ui_component('markdown_readonly', content: config[:description])
+            th name
+            th mandatory?
+            th description
+          - component.attributes.each do |config|
+            tr
+              td= config[:name]
+              td= config[:mandatory].to_s
+              td= ui_component('markdown_readonly', content: config[:description])
       hr/

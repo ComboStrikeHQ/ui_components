@@ -1,0 +1,23 @@
+description: "I didn't change the default description."
+examples:
+  - description: 'A simple modal.'
+    slim: |
+      = ui_component 'modal', id: 'alice',
+                              title: "Hello!",
+                              content: "'If you knew Time as well as I do,' said the Hatter, " \
+                                       "'you wouldn't talk about wasting IT. It's HIM.'"
+
+      button data-toggle="modal" data-target="#alice"
+        = 'Click me!'
+
+  - description: 'A modal with buttons.'
+    slim: |
+      = ui_component 'modal', id: 'hatter',
+                              title: "Hello!",
+                              content: "'If you knew Time as well as I do,' said the Hatter, " \
+                                       "'you wouldn't talk about wasting IT. It's HIM.'",
+                              buttons: [:close, :submit]
+
+      button data-toggle="modal" data-target="#hatter"
+        = 'Click me!'
+

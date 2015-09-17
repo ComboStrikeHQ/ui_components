@@ -9,13 +9,22 @@ class ModalCell < UiComponents::Cell
   def buttons
     @buttons.try(:map) do |button|
       case button
-      when :close
-        content_tag('button', type: 'button', class: 'btn btn-default', data: { dismiss: 'modal' }) do
-          'Close'
-        end
-      when :submit
-        tag('input', type: 'submit', class: 'btn btn-primary', value: 'Save')
+      when :close then close_button
+      when :submit then submit_button
+      else fail "'#{button}' button not implemented"
       end
     end.try(:join)
+  end
+
+  def close_button
+    content_tag('button', class: 'btn btn-default', data: { dismiss: 'modal' }) do
+      I18n.t('ui_components.modal.close')
+    end
+  end
+
+  def submit_button
+    tag('input', type: 'submit',
+                 class: 'btn btn-primary',
+                 value: I18n.t('ui_components.modal.save'))
   end
 end

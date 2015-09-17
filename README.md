@@ -110,6 +110,8 @@ A component consists of a bunch of files in a single directory in
 ## TODO
 
 * Move requiring of dependencies into individual components' JS and add
-  tests.
+  tests (take a look at the modal component to see how).
+* When updating to SASS 4, CSS should also be moved into the components'
+  directories.
 * Add types to attribute definitions in cells.
 * Get rid of `UiComponents::FormHelper`.

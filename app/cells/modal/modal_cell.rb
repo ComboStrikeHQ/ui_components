@@ -2,7 +2,8 @@ class ModalCell < UiComponents::Cell
   attribute :id, mandatory: true, description: 'The HTML id attribute.'
   attribute :content, mandatory: true, description: "The modal's content."
   attribute :title, description: 'A title.'
-  attribute :buttons, description: 'An array of button types. Valid types are `:close` and `:save`.'
+  attribute :buttons, description: 'An array of button types. ' \
+                                   'Valid types are `:close` and `:submit`.'
 
   private
 

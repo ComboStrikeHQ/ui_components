@@ -1,2 +1,2 @@
 #= require jquery
-#= require bootstrap/modal
+#= require bootstrap

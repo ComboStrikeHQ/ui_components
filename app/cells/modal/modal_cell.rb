@@ -25,8 +25,6 @@ class ModalCell < UiComponents::Cell
   end
 
   def submit_button
-    tag('input', type: 'submit',
-                 class: 'btn btn-primary',
-                 value: I18n.t('ui_components.modal.save'))
+    submit_tag(I18n.t('ui_components.modal.save'), class: 'btn btn-primary')
   end
 end

@@ -7,6 +7,11 @@ module UiComponents
     initializer 'ui_components.assets.precompile' do |app|
       app.config.assets.precompile += %w(styleguide.js
                                          styleguide.css)
+      app.config.assets.precompile +=
+        self.class.components_paths
+          .map(&:basename)
+          .map { |p| ["#{p}.js", "#{p}.css"] }
+          .flatten
     end
 
     def self.components_paths

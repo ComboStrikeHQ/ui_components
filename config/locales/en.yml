@@ -3,6 +3,9 @@ en:
     markdown_textarea_cell:
       edit: Edit
       preview: Preview
+    modal:
+      close: Close
+      save: Save
   styleguide:
     components:
       foo:

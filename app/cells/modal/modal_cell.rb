@@ -8,13 +8,14 @@ class ModalCell < UiComponents::Cell
   private
 
   def buttons
-    @buttons.try(:map) do |button|
+    return unless @buttons
+    @buttons.map do |button|
       case button
       when :close then close_button
       when :submit then submit_button
       else fail "'#{button}' button not implemented"
       end
-    end.try(:join)
+    end.join
   end
 
   def close_button

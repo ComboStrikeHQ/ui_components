@@ -28,9 +28,16 @@ body {
     color: $gray;
   }
 
-  li > a:hover {
-    background-color: $brand-primary;
-    color: $white;
+  li {
+
+    &.active > a {
+      color: $brand-primary;
+    }
+
+    > a:hover {
+      background-color: $brand-primary;
+      color: $white;
+    }
   }
 
   .navbar-brand {
@@ -111,7 +118,7 @@ body {
     padding-top: 55px;
   }
 
-  h3 {
+  h3, h4 {
     color: $gray;
     font-style: italic;
   }
@@ -119,10 +126,10 @@ body {
   .component {
     border-radius: 2px 2px 0 0;
     border: 1px dashed $gray-light;
-    border-bottom: 0;
     padding: 15px;
 
     + pre {
+      margin-top: -1px;
       border-radius: 0 0 2px 2px;
       border-top-color: $gray-lighter;
     }

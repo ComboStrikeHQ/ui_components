@@ -1,7 +1,11 @@
 class StyleguideController < ApplicationController
   layout 'styleguide'
 
-  def index
+  def components
     @components = Styleguide.components
+  end
+
+  def patterns
+    @patterns = Styleguide.patterns
   end
 end

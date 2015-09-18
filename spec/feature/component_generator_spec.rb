@@ -22,7 +22,7 @@ RSpec.feature 'Component generator', :js do
   scenario 'generates a new component' do
     visit '/'
 
-    expect(page).to have_content('TestComponentCell')
+    expect(page).to have_content('Test Component')
     expect(page).to have_content("I didn't change the default description.")
   end
 end

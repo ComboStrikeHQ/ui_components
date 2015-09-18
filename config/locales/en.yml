@@ -4,7 +4,7 @@ en:
       edit: Edit
       preview: Preview
   styleguide:
-    index:
+    components:
       foo:
         foo: 'Foo'
         bar: 'Bar'

@@ -8,5 +8,5 @@ html
     = javascript_include_tag 'styleguide'
     = csrf_meta_tags
   body
-    .container
-      = yield
+    = render 'navbar'
+    = yield

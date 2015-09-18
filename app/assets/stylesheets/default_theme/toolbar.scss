@@ -2,35 +2,50 @@
 .btn-toolbar .form-group {
   // scss-lint:disable PlaceholderInExtend
   @extend .btn-group;
+  margin-bottom: 0;
 }
 
 .toolbar {
   // scss-lint:disable PlaceholderInExtend
   @extend .btn-toolbar;
-  padding: $padding-base-vertical $padding-base 0;
+  padding-top: $padding-base-vertical;
+  margin: 0;
 
-  > * {
+  .btn-group,
+  .form-group,
+  [class*='col-'] > .btn,
+  [class*='col-'] > .btn:first-child {
     margin-top: 0;
-    margin-bottom: 0;
-    padding-bottom: $padding-base-vertical;
+    margin-bottom: $padding-base-vertical;
   }
 
+  .btn,
+  .btn-group,
+  .chosen-single,
   .form-control,
-  .chosen-single {
+  .form-group {
+    margin-left: $padding-small-horizontal;
     min-width: 100px;
+
+    &:first-child {
+      margin: 0;
+    }
   }
 }
 
 .toolbar-primary {
-  background-color: $brand-secondary;
+  background-color: $toolbar-primary-bg;
 
   .form-control,
   .chosen-single {
     border-color: transparent;
 
     &:focus,
+    &.focus,
     &:active,
-    &:hover {
+    &.active,
+    &:hover,
+    &.hover {
       border-color: rgba($brand-primary, .6);
     }
   }
@@ -38,19 +53,36 @@
   .btn {
     border-color: transparent;
 
-    &.active,
-    &.active.focus,
-    &.active:focus,
-    &.focus,
-    &.focus,
     &:active,
-    &:active.focus,
-    &:active:focus,
+    &.active,
     &:focus,
-    &:focus,
+    &.focus,
     &:hover,
+    &.hover,
     .open > &.dropdown-toggle {
       background-color: darken($brand-secondary, 5%);
+      color: $white;
+      border-color: darken($brand-secondary, 10%);
     }
+
+    &:active:focus,
+    &:active.focus,
+    &:active:hover,
+    &:active.hover,
+    &.active:focus,
+    &.active.focus {
+      background-color: darken($brand-secondary, 10%);
+      color: $white;
+      border-color: darken($brand-secondary, 10%);
+    }
+  }
+
+  .btn-default {
+    color: $white;
+  }
+
+  .btn[disabled],
+  .btn.disabled {
+    background-color: transparent;
   }
 }

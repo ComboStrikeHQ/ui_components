@@ -1,7 +1,83 @@
-.btn,
-.btn-default {
+.btn {
   background-clip: padding-box;
   transition: background-color .1s ease-out, border-color .1s, color .1s;
+
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
+  &:hover,
+  &.hover,
+  &:active:focus,
+  &:active.focus,
+  &:active:hover,
+  &:active.hover,
+  &.active:focus,
+  &.active.focus,
+  .open > &.dropdown-toggle {
+    // scss-lint:disable ImportantRule
+    outline: none !important;
+    box-shadow: none;
+  }
+}
+
+.btn-default {
+
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
+  &:hover,
+  &.hover,
+  .open > &.dropdown-toggle {
+    background-color: $btn-default-hover-bg;
+    border-color: $btn-default-hover-border;
+    color: $btn-default-hover-color;
+  }
+
+  &:active:focus,
+  &:active.focus,
+  &:active:hover,
+  &:active.hover,
+  &.active:focus,
+  &.active.focus {
+    background-color: $btn-default-hover-border;
+    border-color: $btn-default-hover-border;
+    color: $white;
+  }
+}
+
+.btn-primary {
+
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
+  &:hover,
+  &.hover,
+  .open > &.dropdown-toggle {
+    background-color: $btn-primary-hover-bg;
+    border-color: $btn-primary-hover-border;
+    color: $btn-primary-hover-color;
+  }
+
+  &:active:focus,
+  &:active.focus,
+  &:active:hover,
+  &:active.hover,
+  &.active:focus,
+  &.active.focus {
+    background-color: darken($btn-primary-hover-bg, 15%);
+    border-color: $btn-primary-hover-border;
+    color: $btn-primary-hover-color;
+  }
+}
+
+.btn[disabled],
+.btn.disabled {
+  border-color: rgba($gray, .3);
+  color: $gray;
+  background-color: rgba($gray-light, .3);
 
   &.active,
   &.active.focus,
@@ -11,19 +87,13 @@
   &:active,
   &:active.focus,
   &:active:focus,
+  &:active.hover,
+  &:active:hover,
   &:focus,
   &:focus,
-  &:hover,
-  .open > &.dropdown-toggle {
-    // scss-lint:disable ImportantRule
-    outline: none !important;
-    box-shadow: none;
-    background-color: $brand-secondary;
-    border-color: darken($brand-secondary, 5%);
-    color: $white;
+  &:hover {
+    border-color: rgba($gray, .3);
+    color: $gray;
+    background-color: rgba($gray-light, .3);
   }
-}
-
-.btn[disabled] {
-  color: $gray;
 }

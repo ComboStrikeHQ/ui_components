@@ -1,0 +1,37 @@
+.container
+  .row
+    .left-col.col-md-3
+      ul.sidebar.nav.nav-stacked.hidden-xs
+        - @components.each do |component|
+          li
+            a href="##{component.to_s.parameterize}"= component.title
+
+    .main-col.col-md-9
+      br/
+      - @components.each do |component|
+
+        h2(id=component.to_s.parameterize)= component.title
+        = ui_component('markdown_readonly', content: component.description)
+
+        h3 Examples
+        - component.examples.each do |example|
+          - if example[:description].present?
+            = ui_component('markdown_readonly', content: example[:description])
+          .component
+            = ui_component_execute_example_call(component.name, example)
+          pre
+            code.ruby
+              = ui_component_example_call(component.name, example)
+
+        h3 Attributes
+        table
+          tr
+            th name
+            th mandatory?
+            th description
+          - component.attributes.each do |config|
+            tr
+              td= config[:name]
+              td= config[:mandatory].to_s
+              td= ui_component('markdown_readonly', content: config[:description])
+        hr/

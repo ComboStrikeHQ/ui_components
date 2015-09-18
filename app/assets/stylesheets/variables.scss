@@ -19,7 +19,7 @@ $gray-light:             lighten($gray-base, 80%) !default;
 $gray-lighter:           lighten($gray-base, 95%) !default;
 
 $brand-primary:         #f04925 !default;
-$brand-secondary:       #263335 !default; // custom
+$brand-secondary:       #ffa500 !default; // custom
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
@@ -32,6 +32,8 @@ $brand-danger:          #d9534f !default;
 
 //** Background color for `<body>`.
 $body-bg:               #f5f5f5 !default;
+//** Background color for `.toolbar-primary` toolbars.
+$toolbar-primary-bg:    $brand-secondary !default; // custom
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
 
@@ -96,15 +98,15 @@ $icon-font-svg-id:        'glyphicons_halflingsregular' !default;
 //
 //## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
 
-$padding-base:              15px; // custom
+$padding-base:              15px !default; // custom
 $padding-base-vertical:     6px !default;
 $padding-base-horizontal:   12px !default;
 
-$padding-large:             ($padding-base * 2); // custom
+$padding-large:             ($padding-base * 2) !default; // custom
 $padding-large-vertical:    10px !default;
 $padding-large-horizontal:  16px !default;
 
-$padding-small:             ($padding-base / 3); // custom
+$padding-small:             ($padding-base / 3) !default; // custom
 $padding-small-vertical:    5px !default;
 $padding-small-horizontal:  10px !default;
 
@@ -156,13 +158,21 @@ $table-border-color:            darken($table-bg-accent, 20%) !default;
 
 $btn-font-weight:                normal !default;
 
-$btn-default-color:              $brand-primary !default;
-$btn-default-bg:                 #fff !default;
-$btn-default-border:             rgba($gray-darker, .1) !default;
+$btn-default-color:              $gray-dark !default;
+$btn-default-bg:                 rgba($white, .3) !default;
+$btn-default-border:             rgba($gray-darker, .2) !default;
 
-$btn-primary-color:              #fff !default;
-$btn-primary-bg:                 $brand-primary !default;
-$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+$btn-default-hover-color:        darken($brand-secondary, 5%) !default; // custom
+$btn-default-hover-bg:           darken($btn-default-bg, 5%) !default; // custom
+$btn-default-hover-border:       $brand-secondary !default; // custom
+
+$btn-primary-color:              $brand-primary !default;
+$btn-primary-bg:                 #fff !default;
+$btn-primary-border:             $brand-primary !default;
+
+$btn-primary-hover-color:        #fff !default;
+$btn-primary-hover-bg:           $brand-primary !default;
+$btn-primary-hover-border:       $brand-primary !default;
 
 $btn-success-color:              #fff !default;
 $btn-success-bg:                 $brand-success !default;
@@ -880,4 +890,4 @@ $dl-horizontal-offset:        $component-offset-horizontal !default;
 $hr-border:                   $gray-lighter !default;
 
 // NEVALY VARIABLES
-$shadow-base: 0 2px 4px -1px rgba($gray-darker, .2); // custom
+$shadow-base: 0 2px 4px -1px rgba($gray-darker, .2) !default; // custom

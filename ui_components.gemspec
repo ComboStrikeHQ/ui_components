@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'cells-slim', '>= 0.0.3'
 
   s.add_dependency 'slim-rails'
-  s.add_dependency 'sass-rails'
+  s.add_dependency 'sassc-rails'
   s.add_dependency 'compass-rails'
   s.add_dependency 'uglifier'
   s.add_dependency 'coffee-rails'

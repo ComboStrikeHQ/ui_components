@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'underscore-rails'
-  s.add_dependency 'rails-assets-jquery.floatThead'
+  s.add_dependency 'rails-assets-jquery.floatThead', '>= 1.3.0'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara-webkit'

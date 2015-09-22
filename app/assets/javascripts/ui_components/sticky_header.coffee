@@ -1,8 +1,8 @@
 setFloatThead = ->
   margin_top = $('.navbar-fixed-top, .navbar-static-top').height()
   $('table[data-toggle=sticky-header]').floatThead
-    useAbsolutePositioning: false
-    scrollingTop: margin_top
+    position: 'fixed'
+    top: margin_top
 
 # workaround for race condition between chosen and floatThead
 $(document).on 'uic:domchange', ->

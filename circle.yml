@@ -4,3 +4,5 @@ dependencies:
 test:
   pre:
     - bundle exec rake rubocop
+  post:
+    - cd spec/dummy; bundle exec rake assets:precompile

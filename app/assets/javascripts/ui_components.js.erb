@@ -7,7 +7,7 @@
 
 //= require jquery.floatThead/jquery.floatThead
 
-//= require chosen-jquery
+//= require chosen
 //= require ajax-chosen
 //= require bootstrap
 //= require bootstrap-datepicker/core
@@ -19,7 +19,7 @@
 <% UiComponents::Engine.components_paths.each do |path| %>
   <%
     begin
-      require_asset path.basename
+      require_asset path.basename.to_s
     rescue Sprockets::FileNotFound
     end
   %>

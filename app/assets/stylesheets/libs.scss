@@ -1,0 +1,6 @@
+@import 'bootstrap-datepicker3';
+@import 'bootstrap-daterangepicker';
+
+$chosen-sprite-path: image-path('chosen/chosen-sprite.png') !default;
+$chosen-sprite-retina-path: image-path('chosen/chosen-sprite@2x.png') !default;
+@import 'bootstrap-chosen';

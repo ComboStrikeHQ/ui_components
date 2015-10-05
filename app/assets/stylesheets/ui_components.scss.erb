@@ -1,17 +1,14 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-@import 'bootstrap-datepicker3';
-@import 'bootstrap-daterangepicker';
-
-@import 'bootstrap-chosen';
+@import 'libs';
 
 @import 'ui_components/*';
 
 <% UiComponents::Engine.components_paths.each do |path| %>
   <%
     begin
-      require_asset path.basename
+      require_asset path.basename.to_s
     rescue Sprockets::FileNotFound
     end
   %>

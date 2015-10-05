@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'slim-rails'
   s.add_dependency 'sassc-rails'
-  s.add_dependency 'compass-rails'
   s.add_dependency 'uglifier'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'turbolinks'
@@ -30,7 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'rails_bootstrap_navbar'
-  s.add_dependency 'chosen-rails'
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'rails-assets-bootstrap-daterangepicker', '< 2'
   s.add_dependency 'rails-assets-bootstrap-chosen'

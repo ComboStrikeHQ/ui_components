@@ -1,3 +1,7 @@
+#= require jquery
+#= require chosen
+#= require ajax-chosen
+
 # Selects all options of a multi-select box belonging to a optgroup, when
 # clicking on the optgroup label.
 init_group_selectable = (select) ->
@@ -15,6 +19,7 @@ $ ->
 
     data = $this.data()
     data.search_contains = true
+    data.allow_single_deselect = true
 
     $this.chosen data
 

@@ -1,6 +1,7 @@
 #= require jquery
 #= require chosen
 #= require ajax-chosen
+#= require underscore
 
 # Selects all options of a multi-select box belonging to a optgroup, when
 # clicking on the optgroup label.
@@ -17,16 +18,18 @@ $ ->
   $('.ui-components-select').each ->
     $this = $(this)
 
-    data = $this.data()
+    data = transform_keys $this.data(), underscore
     data.search_contains = true
-    data.allow_single_deselect = true
-
     $this.chosen data
 
     init_group_selectable($this)
 
-    if data.remoteOptions
+    if data.remote_options
       $this.ajaxChosen
         type: 'GET'
-        url: data.remoteOptions
+        url: data.remote_options
         dataType: 'json'
+
+underscore = (str) -> str.replace /[A-Z]/g, (m) -> '_' + m.toLowerCase()
+
+transform_keys = (obj, f) -> _.object _.map obj, (v, k) -> [f(k), v]

@@ -1,9 +1,14 @@
 description: "Renders filters for Datagrid. Filters are retrieved from a grid instance via it's `filters` method. See [the Datagrid docs](https://github.com/bogdan/datagrid/wiki/Filters) on how to implement filters for a grid."
 examples:
   - slim: |
-      - dummy_filter = OpenStruct.new options: { select: -> { [['Baz', 'baz']] } },
+      - string_filter = OpenStruct.new options: {},
+                                      type: :string,
+                                      name: 'string',
+                                      header: 'String'
+      - select_filter = OpenStruct.new options: { select: -> { [['Baz', 'baz']] } },
                                       type: :enum,
-                                      name: 'bar',
-                                      header: 'Bar'
+                                      name: 'select',
+                                      header: 'Select'
       - bootstrap_form_for(:foo, url: '/') do |f|
-        = ui_component('datagrid_filter', filter: dummy_filter, form: f)
+        = ui_component('datagrid_filter', filter: string_filter, form: f)
+        = ui_component('datagrid_filter', filter: select_filter, form: f)

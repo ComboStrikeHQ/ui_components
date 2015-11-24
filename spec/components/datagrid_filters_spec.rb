@@ -1,6 +1,6 @@
-RSpec.describe 'select', type: :helper do
+RSpec.describe 'datagrid filters', type: :helper do
   subject do
-    Nokogiri::HTML.parse(select)
+    Nokogiri::HTML.parse(filter)
   end
 
   let(:grid) { TestGrid.new }
@@ -11,17 +11,25 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
-  let(:select) do
+  let(:filter) do
     helper.datagrid_filters(form, grid.filters, width: '300px')
   end
 
   context 'with minimal required options' do
-    it 'renders the label with the correct for attribute' do
-      expect(subject.css('label').attr('for').to_s).to eq('test_grid_some_attribute')
+    it 'renders the labels with the correct for attribute and in the correct order' do
+      expect(subject.css('label').map { |l| l.attr('for').to_s }).to eq(%w(
+        test_grid_string_attribute
+        test_grid_select_attribute
+      ))
     end
 
     it 'renders the select with the correct id' do
-      expect(subject.css('select').attr('id').to_s).to eq('test_grid_some_attribute')
+      expect(subject.css('select').attr('id').to_s).to eq('test_grid_select_attribute')
+    end
+
+    it 'renders the string field with the correct id and input type' do
+      expect(subject.css('input').attr('id').to_s).to eq('test_grid_string_attribute')
+      expect(subject.css('input').attr('type').to_s).to eq('search')
     end
 
     it 'renders the correct options' do

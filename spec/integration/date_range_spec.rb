@@ -47,11 +47,11 @@ RSpec.feature 'Date Range', :js do
 
     chooser.click
     select_range 'Last Month'
-    expect(date(:from)).to eq((Date.today - 1.months).beginning_of_month.to_s)
-    expect(date(:to)).to eq((Date.today - 1.months).end_of_month.to_s)
+    expect(date(:from)).to eq((Date.today - 1.month).beginning_of_month.to_s)
+    expect(date(:to)).to eq((Date.today - 1.month).end_of_month.to_s)
 
-    expect(datepicker(:start)).to eq((Date.today - 1.months).beginning_of_month.to_s)
-    expect(datepicker(:end)).to eq((Date.today - 1.months).end_of_month.to_s)
+    expect(datepicker(:start)).to eq((Date.today - 1.month).beginning_of_month.to_s)
+    expect(datepicker(:end)).to eq((Date.today - 1.month).end_of_month.to_s)
   end
 
   scenario 'ranges are configurable' do

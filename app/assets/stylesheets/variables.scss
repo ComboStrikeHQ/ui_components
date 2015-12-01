@@ -143,13 +143,13 @@ $table-condensed-cell-padding:  5px !default;
 //** Default background color used for all tables.
 $table-bg:                      transparent !default;
 //** Background color used for `.table-striped`.
-$table-bg-accent:               rgba($black, .01) !default;
+$table-bg-accent:               rgba($black, .02) !default;
 //** Background color used for `.table-hover`.
 $table-bg-hover:                rgba($brand-secondary, .05) !default;
 $table-bg-active:               rgba($brand-secondary, .1) !default;
 
 //** Border color for table and cell borders.
-$table-border-color:            darken($table-bg-accent, 20%) !default;
+$table-border-color:            rgba($gray-dark, .1) !default;
 
 
 //== Buttons
@@ -305,7 +305,7 @@ $zindex-modal:             1050 !default;
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 
 // Extra small screen / phone
-//** Deprecated `$screen-xs` as of v3.0.1
+//** Deprecated `$screen-xs` as of v3.1
 $screen-xs:                  480px !default;
 //** Deprecated `$screen-xs-min` as of v3.2.0
 $screen-xs-min:              $screen-xs !default;

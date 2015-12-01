@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'slim-rails'
   s.add_dependency 'sassc-rails'
-  s.add_dependency 'sassc', '~> 1.7.0'
   s.add_dependency 'uglifier'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'turbolinks'

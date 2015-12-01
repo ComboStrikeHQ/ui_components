@@ -7,8 +7,6 @@ class DatagridFilterCell < FormCellBase
     case options[:filter].type
     when :enum
       ui_component(:select, select_options)
-    when :string
-      options[:form].search_field(name_option, label: header_option)
     else
       fail 'Filter not supported'
     end
@@ -16,19 +14,11 @@ class DatagridFilterCell < FormCellBase
 
   private
 
-  def header_option
-    options[:filter].header
-  end
-
-  def name_option
-    options[:filter].name
-  end
-
   def select_options
     options.slice(:form, :width).merge(
-      name: name_option,
+      name: options[:filter].name,
       select_options: options[:filter].options[:select].call,
-      label: header_option
+      label: options[:filter].header
     )
   end
 end

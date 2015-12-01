@@ -1,0 +1,11 @@
+- if grid.respond_to?(:html_column_groups) && grid.html_column_groups.present?
+  tr
+    - grid.html_column_groups.each do |column_group|
+      th colspan=column_group.columns.size
+        = column_group.name
+
+tr
+  - grid.html_columns.each do |column|
+    th class=column.options[:header_class]
+      = column.header
+      = datagrid_order_for(grid, column, options) if column.supports_order? && options[:order]

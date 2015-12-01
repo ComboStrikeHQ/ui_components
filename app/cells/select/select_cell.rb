@@ -33,7 +33,6 @@ class SelectCell < FormCellBase
     html_opts = { class: css_class }
     html_opts.update(options.slice(:required, :multiple, :disabled))
     html_opts[:data] = options.slice(:placeholder, :error, :width, :remote_options)
-    html_opts[:data][:allow_single_deselect] = !options[:required]
     html_opts
   end
 

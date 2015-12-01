@@ -1,13 +1,61 @@
-.table > tbody > tr > td {
-  vertical-align: middle;
-}
+.table {
+  thead {
+    background-color: $white;
 
-.table > thead th {
-  font-family: $headings-font-family;
-  white-space: nowrap;
-  background-color: $body-bg;
+    th {
+      border-color: $table-border-color;
+      border-style: dashed;
+      border-bottom-style: solid;
+      border-width: 1px;
+      color: $gray;
+      font-family: $headings-font-family;
+      text-transform: uppercase;
+      white-space: nowrap;
 
-  > * {
-    display: inline-block;
+      &:first-child {
+        border-left: 0;
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+
+      > * {
+        display: inline-block;
+      }
+
+      .order {
+        padding-left: $padding-small-horizontal;
+      }
+    }
+
+    tr:nth-child(2) th {
+      border-color: $table-border-color;
+      background-color: $body-bg;
+      font-size: .8em;
+      font-style: italic;
+      font-weight: normal;
+      text-transform: none;
+    }
+
+    tr:last-child th {
+      border-bottom: 1px solid $brand-primary;
+    }
+  }
+
+  td {
+    vertical-align: middle;
+    font-size: .9em;
+  }
+
+  .table {
+    background-color: $white;
+    border: 5px solid $table-border-color;
+    margin-bottom: 5px;
+  }
+
+  &.table-bordered thead th {
+    border-right-style: dashed;
+    border-left-style: dashed;
   }
 }

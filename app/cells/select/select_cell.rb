@@ -13,21 +13,28 @@ class SelectCell < FormCellBase
   attribute :remote_options, description: 'A URL path to load the options from.'
   attribute :inline, description: 'Whether or not the element should be rendered inline.'
   attribute :classes, description: 'CSS classes to be added to the element.'
+  attribute :label_col, description: 'CSS col class applied to the label, defaults to `col-sm-2`'
+  attribute :control_col,
+    description: 'CSS col class applied to the control, defaults to `col-sm-10`'
+  attribute :hide_label,
+    description: 'Hide the label, but keep it accessible to screen readers (e.g. Capybara)'
 
   def show
     options[:form].select(
       options[:name],
       select_options,
-      {
-        label: label,
-        include_blank: true,
-        skip_label: options.fetch(:skip_label, false)
-      },
+      control_options,
       html_options
     )
   end
 
   private
+
+  def control_options
+    options
+      .slice(:label, :skip_label, :hide_label, :label_col, :control_col)
+      .merge(include_blank: true)
+  end
 
   def html_options
     html_opts = { class: css_class }

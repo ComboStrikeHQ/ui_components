@@ -76,6 +76,14 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
+  context 'hiding the label' do
+    let(:select_options) { { select_options: [], hide_label: true } }
+
+    it 'skips the label' do
+      expect(subject.css('label.sr-only')).to be_present
+    end
+  end
+
   context 'with an instance variable set' do
     let(:select_options) { { name: 'game_id', select_options: [['Commander Keen', 23]] } }
 
@@ -84,6 +92,23 @@ RSpec.describe 'select', type: :helper do
 
       expect(subject.css('option[selected="selected"]').attr('value').to_s).to eq('23')
       expect(subject.css('option[selected="selected"]').text).to eq('Commander Keen')
+    end
+  end
+
+  context 'with label_col and control_col options provided' do
+    let(:form) do
+      helper.bootstrap_form_for :foo, url: '/', layout: :horizontal do |f|
+        return f
+      end
+    end
+
+    let(:select_options) do
+      { label_col: 'col-sm-1', control_col: 'col-sm-11' }
+    end
+
+    it 'sets the respective classes' do
+      expect(subject.css('.form-group > label.col-sm-1')).to be_present
+      expect(subject.css('.form-group > div.col-sm-11')).to be_present
     end
   end
 

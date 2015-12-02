@@ -18,6 +18,7 @@ class SelectCell < FormCellBase
     description: 'CSS col class applied to the control, defaults to `col-sm-10`'
   attribute :hide_label,
     description: 'Hide the label, but keep it accessible to screen readers (e.g. Capybara)'
+  attribute :help, description: 'Help text associated with the control'
 
   def show
     options[:form].select(
@@ -32,7 +33,7 @@ class SelectCell < FormCellBase
 
   def control_options
     options
-      .slice(:label, :skip_label, :hide_label, :label_col, :control_col)
+      .slice(:label, :skip_label, :hide_label, :label_col, :control_col, :help)
       .merge(include_blank: true)
   end
 

@@ -112,5 +112,13 @@ RSpec.describe 'select', type: :helper do
     end
   end
 
+  context 'with help text option provided' do
+    let(:select_options) { { help: 'Foo Bar' } }
+
+    it 'adds help block' do
+      expect(subject.css('.form-group > span.help-block').text).to eq('Foo Bar')
+    end
+  end
+
   pending 'with a model instance provided to the form'
 end

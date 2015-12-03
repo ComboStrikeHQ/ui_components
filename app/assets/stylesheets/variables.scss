@@ -59,9 +59,9 @@ $font-size-base:          14px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * .85)) !default; // ~12px
 
-$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
-$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
-$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
+$font-size-h1:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h2:            floor(($font-size-base * 1.9)) !default;
+$font-size-h3:            ceil(($font-size-base * 1.6)) !default; // ~22px
 $font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
 $font-size-h6:            ceil(($font-size-base * .85)) !default; // ~12px
@@ -73,7 +73,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    DINNextRoundedLTPro-Medium, inherit !default;
-$headings-font-weight:    500 !default;
+$headings-font-weight:    600 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
 
@@ -143,13 +143,13 @@ $table-condensed-cell-padding:  5px !default;
 //** Default background color used for all tables.
 $table-bg:                      transparent !default;
 //** Background color used for `.table-striped`.
-$table-bg-accent:               rgba($black, .01) !default;
+$table-bg-accent:               rgba($black, .02) !default;
 //** Background color used for `.table-hover`.
 $table-bg-hover:                rgba($brand-secondary, .05) !default;
 $table-bg-active:               rgba($brand-secondary, .1) !default;
 
 //** Border color for table and cell borders.
-$table-border-color:            darken($table-bg-accent, 20%) !default;
+$table-border-color:            rgba($gray-dark, .1) !default;
 
 
 //== Buttons
@@ -159,11 +159,11 @@ $table-border-color:            darken($table-bg-accent, 20%) !default;
 $btn-font-weight:                normal !default;
 
 $btn-default-color:              $gray-dark !default;
-$btn-default-bg:                 rgba($white, .3) !default;
+$btn-default-bg:                 rgba($gray, .1) !default;
 $btn-default-border:             rgba($gray-darker, .2) !default;
 
 $btn-default-hover-color:        darken($brand-secondary, 5%) !default; // custom
-$btn-default-hover-bg:           darken($btn-default-bg, 5%) !default; // custom
+$btn-default-hover-bg:           $white !default; // custom
 $btn-default-hover-border:       $brand-secondary !default; // custom
 
 $btn-primary-color:              $brand-primary !default;
@@ -305,7 +305,7 @@ $zindex-modal:             1050 !default;
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 
 // Extra small screen / phone
-//** Deprecated `$screen-xs` as of v3.0.1
+//** Deprecated `$screen-xs` as of v3.1
 $screen-xs:                  480px !default;
 //** Deprecated `$screen-xs-min` as of v3.2.0
 $screen-xs-min:              $screen-xs !default;

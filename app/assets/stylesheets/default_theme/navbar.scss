@@ -1,25 +1,61 @@
 .navbar {
+  background-color: $white;
+  border: 0;
+  box-shadow: 0 1px 4px rgba($black, .2);
 
   .navbar-brand {
-    padding-bottom: 5px;
-    padding-top: 5px;
+    background: url(image_path('logo.svg')) no-repeat $padding-base center;
+    font-size: 16px;
     line-height: ($navbar-height - 10px);
+    margin: 0;
+    padding: $padding-small-vertical 0 $padding-small-vertical 50px;
 
     img {
       height: 100%;
     }
+
+    .environment {
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .company-name {
+      color: $black;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  .icon-bar {
+    background-color: $gray-light;
   }
 
   .nav > li {
+    a {
+      color: $gray;
+    }
 
-    &.active a,
-    &.active a:hover {
-      font-family: DINNextRoundedLTPro-Medium;
+    &.active a {
+      color: $brand-primary;
+      font-family: $headings-font-family;
       text-transform: uppercase;
     }
+
+    &.active a:hover {
+      background-color: $brand-primary;
+      color: $white;
+    }
+  }
+
+  // TODO: is this necessary? shouldn't it be in bootstrap
+  .dropdown-menu .dropdown:hover .dropdown-menu {
+    display: block;
+    top: -50%;
+    left: 100%;
   }
 }
 
 body {
+  background-color: $body-bg;
   padding: $navbar-height 0 0;
 }

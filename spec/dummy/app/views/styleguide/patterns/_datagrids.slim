@@ -1,0 +1,46 @@
+h3 Header Groups
+p
+  |  For a double-row table header, set the :column_group attribute in each
+  |  column's class definition.
+
+.component
+  .table-responsive
+    = datagrid_table ExampleGrid.new,
+      html: { class: 'table table-striped table-hover' }
+
+pre
+  code.slim
+    | --- view.slim ---
+
+      .table-responsive
+        = datagrid_table ExampleGrid.new,
+        html: { class: 'table table-striped table-hover' }
+
+      --- grids/example_grid.rb ---
+
+      class ExampleGrid
+        include Datagrid
+
+        scope do
+          [
+            { a: 1, b: 5 },
+            { a: 2, b: 6 }
+          ]
+        end
+
+        column(:col_1, column_group: 'A') do |element|
+          element[:a]
+        end
+
+        column(:col_2, column_group: 'A') do |element|
+          element[:a]
+        end
+
+        column(:col_3, column_group: 'B') do |element|
+          element[:b]
+        end
+
+        column(:col_4, column_group: 'B') do |element|
+          element[:b]
+        end
+      end

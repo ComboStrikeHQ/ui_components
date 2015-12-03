@@ -24,14 +24,16 @@
               = ui_component_example_call(component.name, example)
 
         h3 Attributes
-        table
-          tr
-            th name
-            th mandatory?
-            th description
-          - component.attributes.each do |config|
+        table.table.table-striped.table-bordered.table-hover
+          thead
             tr
-              td= config[:name]
-              td= config[:mandatory].to_s
-              td= ui_component('markdown_readonly', content: config[:description])
+              th name
+              th mandatory?
+              th description
+          tbody
+            - component.attributes.each do |config|
+              tr
+                td= config[:name]
+                td= config[:mandatory].to_s
+                td= ui_component('markdown_readonly', content: config[:description])
         hr/

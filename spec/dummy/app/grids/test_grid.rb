@@ -11,15 +11,7 @@ class TestGrid
   end
 
   filter(
-    :string_attribute,
-    :string,
-    header: 'String Header'
-  ) do |value, scope|
-    scope.select { |row| row[:a] == value.to_i }
-  end
-
-  filter(
-    :select_attribute,
+    :some_attribute,
     :enum,
     select: -> { [['a', 5], ['b', 6]] },
     header: 'B'

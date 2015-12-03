@@ -8,7 +8,7 @@ RSpec.feature 'Date Range', :js do
   end
 
   def date(type)
-    find(:fillable_field, "fox[report_range_#{type}]", visible: false).value
+    find("[name='fox[report_range_#{type}]']", visible: false).value
   end
 
   def datepicker(type)

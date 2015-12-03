@@ -7,7 +7,7 @@ examples:
                               content: "'If you knew Time as well as I do,' said the Hatter, " \
                                        "'you wouldn't talk about wasting IT. It's HIM.'"
 
-      button data-toggle="modal" data-target="#alice"
+      button.btn.btn-default data-toggle="modal" data-target="#alice"
         = 'Click me!'
 
   - description: 'A modal with buttons.'
@@ -18,6 +18,5 @@ examples:
                                        "'you wouldn't talk about wasting IT. It's HIM.'",
                               buttons: [:close, :submit]
 
-      button data-toggle="modal" data-target="#hatter"
+      button.btn.btn-default data-toggle="modal" data-target="#hatter"
         = 'Click me!'
-

@@ -20,12 +20,7 @@ class DateRangeCell < FormCellBase
   private
 
   def date_field(type)
-    options[:form].text_field(
-      "#{options[:name]}_#{type}",
-      id: "#{id}_#{type}",
-      skip_label: true,
-      style: 'display: none'
-    )
+    options[:form].hidden_field("#{options[:name]}_#{type}", id: "#{id}_#{type}")
   end
 
   def select_div

@@ -34,6 +34,10 @@
   }
 }
 
+.form-inline .control-label {
+  margin-right: $padding-small;
+}
+
 // Chosen select
 
 .chosen-container {

@@ -31,23 +31,18 @@
   }
 
   .nav > li {
-    a {
-      color: $gray;
-    }
-
-    &.active a {
+    &.active > a {
       color: $brand-primary;
       font-family: $headings-font-family;
       text-transform: uppercase;
     }
 
-    &.active a:hover {
+    &.active > a:hover {
       background-color: $brand-primary;
       color: $white;
     }
   }
 
-  // TODO: is this necessary? shouldn't it be in bootstrap
   .dropdown-menu .dropdown:hover .dropdown-menu {
     display: block;
     top: -50%;

@@ -1,17 +1,17 @@
 .navbar.navbar-fixed-top
   .container
-    .row
+    .navbar-header
+      a.navbar-brand href="/"
+        span.company-name= 'ad2games '
+        span.environment styleguide
       button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand href="/"
-        span.company-name= 'ad2games '
-        span.environment styleguide
-      nav.collapse.navbar-collapse role="navigation"
-        ul.nav.navbar-nav.pull-right
-          li class=('active' if params['action'] == 'components')
-            a href=styleguide_components_path  Components
-          li class=('active' if params['action'] == 'patterns')
-            a href=styleguide_patterns_path  Patterns
+    nav.collapse.navbar-collapse role="navigation"
+      ul.nav.navbar-nav.pull-right
+        li class=('active' if params['action'] == 'components')
+          a href=styleguide_components_path  Components
+        li class=('active' if params['action'] == 'patterns')
+          a href=styleguide_patterns_path  Patterns

@@ -11,6 +11,12 @@
   padding-top: $padding-base-vertical;
   margin: 0;
 
+  label {
+    font-weight: normal;
+    font-style: italic;
+    font-size: .9em;
+  }
+
   .btn-group,
   .form-group,
   [class*='col-'] > .btn,
@@ -25,16 +31,19 @@
   .form-control,
   .form-group {
     margin-left: $padding-small-horizontal;
-    min-width: 100px;
 
     &:first-child {
-      margin: 0;
+      margin-left: 0;
     }
   }
 }
 
 .toolbar-primary {
   background-color: $toolbar-primary-bg;
+
+  label {
+    color: $white;
+  }
 
   .form-control,
   .chosen-single {

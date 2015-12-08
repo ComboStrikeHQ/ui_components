@@ -38,6 +38,10 @@
   }
 }
 
+.toolbar-default {
+  background-color: $gray-lighter;
+}
+
 .toolbar-primary {
   background-color: $toolbar-primary-bg;
 
@@ -94,4 +98,20 @@
   .btn.disabled {
     background-color: transparent;
   }
+}
+
+.nav-tabs {
+  border-bottom-color: $body-bg;
+
+  li {
+    margin-bottom: 0;
+
+    &.active a {
+      background-color: $white;
+    }
+  }
+}
+
+.row > .nav-tabs {
+  padding: 0 $padding-base;
 }

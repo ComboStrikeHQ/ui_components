@@ -18,10 +18,8 @@ $(document).on 'uic:domchange', (e) ->
 
   defaults = {
     ranges: ranges,
-    startDate: yesterday,
-    endDate: yesterday,
     opens: 'right',
-    format: 'YYYY-MM-DD',
+    format: 'YYYY-MM-DD'
   }
 
   $(e.target).find('.ui-components-date-range').each (_i, el) ->
@@ -29,19 +27,19 @@ $(document).on 'uic:domchange', (e) ->
     $start_input = $($el.data().start)
     $end_input = $($el.data().end)
 
-    start_date = _.find [$start_input.val(), yesterday],
+    start_date = _.find [$el.data('startDate'), $start_input.val(), yesterday],
                         (val) -> val && val.toString().length > 0
-    end_date = _.find [$end_input.val(), yesterday],
+    end_date = _.find [$el.data('endDate'), $end_input.val(), yesterday],
                       (val) -> val && val.toString().length > 0
 
-    start_date = moment(start_date)
-    end_date = moment(end_date)
+    options = _.extend({},
+      defaults,
+      _.pick($el.data(), ['dateLimit', 'ranges']),
+      { startDate: start_date, endDate: end_date })
 
-    options = {}
-    _.extend(options, defaults)
-    _.extend(options, _.pick($el.data(), ['dateLimit', 'ranges']))
-    _.extend(options, { startDate: start_date, endDate: end_date })
     options.ranges = _.mapObject(options.ranges, (v, k) -> _.map(v, (v) -> moment(v)))
+    options.startDate = moment(options.startDate)
+    options.endDate = moment(options.endDate)
 
     callback = (start, end) ->
       end.startOf('day')

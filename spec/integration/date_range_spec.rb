@@ -8,7 +8,7 @@ RSpec.feature 'Date Range', :js do
   end
 
   def date(type)
-    find(:fillable_field, "fox[report_range_#{type}]", visible: false).value
+    find(:fillable_field, "my_form[my_date_range_#{type}]", visible: false).value
   end
 
   def datepicker(type)
@@ -68,5 +68,14 @@ RSpec.feature 'Date Range', :js do
     link.click
 
     expect(field.text).to eq('Next 10 days (2015-06-22 - 2015-07-01)')
+  end
+
+  scenario 'start/end dates are configurable' do
+    visit '/date_range_start_end_date'
+    field = find('.ui-components-date-range')
+
+    expect(field.text).to eq('Custom Range (2016-01-01 - 2016-01-21)')
+    expect(date(:from)).to eq('2016-01-01')
+    expect(date(:to)).to eq('2016-01-21')
   end
 end

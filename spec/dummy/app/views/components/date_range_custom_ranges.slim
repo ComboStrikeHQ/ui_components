@@ -1,5 +1,5 @@
-= bootstrap_form_for :fox do |form|
+= bootstrap_form_for :my_form do |form|
   = ui_component(:date_range,
     form: form,
-    name: 'report_range',
+    name: 'my_date_range',
     ranges: { 'Next 10 days' => [Date.new(2015, 6, 22), Date.new(2015, 7, 1)] })

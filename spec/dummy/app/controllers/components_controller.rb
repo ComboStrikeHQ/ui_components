@@ -10,6 +10,10 @@ class ComponentsController < ApplicationController
     render layout: 'single_component'
   end
 
+  def form_submit
+    render json: params
+  end
+
   private
 
   def example_index

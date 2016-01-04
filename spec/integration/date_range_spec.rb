@@ -78,4 +78,21 @@ RSpec.feature 'Date Range', :js do
     expect(date(:from)).to eq('2016-01-01')
     expect(date(:to)).to eq('2016-01-21')
   end
+
+  scenario 'submits enclosing form on value change' do
+    visit '/date_range_submit_on_change'
+    find('.ui-components-date-range').click
+    find('li', text: 'Custom Range').click
+    within('.calendar.second') do
+      find('td:not(.off)', text: '21').click
+    end
+    within('.calendar.first') do
+      find('td:not(.off)', text: '22').click
+    end
+    click_on 'Apply'
+
+    params = JSON.parse(page.body)['my_form']
+    expect(Date.parse(params['my_date_range_from']).day).to eq(21)
+    expect(Date.parse(params['my_date_range_to']).day).to eq(22)
+  end
 end

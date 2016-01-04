@@ -19,11 +19,13 @@ $(document).on 'uic:domchange', (e) ->
   defaults = {
     ranges: ranges,
     opens: 'right',
-    format: 'YYYY-MM-DD'
+    format: 'YYYY-MM-DD',
+    submitOnChange: false
   }
 
   $(e.target).find('.ui-components-date-range').each (_i, el) ->
     $el = $(el)
+    $form = $el.parents('form')
     $start_input = $($el.data().start)
     $end_input = $($el.data().end)
 
@@ -34,14 +36,14 @@ $(document).on 'uic:domchange', (e) ->
 
     options = _.extend({},
       defaults,
-      _.pick($el.data(), ['dateLimit', 'ranges']),
+      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange']),
       { startDate: start_date, endDate: end_date })
 
     options.ranges = _.mapObject(options.ranges, (v, k) -> _.map(v, (v) -> moment(v)))
     options.startDate = moment(options.startDate)
     options.endDate = moment(options.endDate)
 
-    callback = (start, end) ->
+    reset = (start, end) ->
       end.startOf('day')
 
       $start_input.val(start.format('YYYY-MM-DD'))
@@ -56,6 +58,12 @@ $(document).on 'uic:domchange', (e) ->
         label + ' (' + start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD') + ')'
       )
 
+    callback = (start, end) ->
+      reset(start, end)
+
+      if ($el.data().submitOnChange)
+        $form.submit()
+
     $el.daterangepicker(options, callback)
 
-    callback(options.startDate, options.endDate)
+    reset(options.startDate, options.endDate)

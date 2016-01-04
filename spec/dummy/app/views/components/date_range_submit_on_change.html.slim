@@ -1,0 +1,4 @@
+= bootstrap_form_for(:my_form, url: '/form_submit') do |f|
+    = ui_component('date_range', form: f,
+                                 name: 'my_date_range',
+                                 submit_on_change: true)

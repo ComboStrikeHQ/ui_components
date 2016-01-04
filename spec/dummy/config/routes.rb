@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/select_async_data' => 'search#search'
   get '/components/*name/:example_index' => 'components#new_show'
   get '/*name' => 'components#show'
+  match '/form_submit' => 'components#form_submit', via: :all
 end

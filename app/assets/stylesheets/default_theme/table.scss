@@ -47,7 +47,8 @@
     }
   }
 
-  td {
+  td,
+  > tbody > tr > td {
     vertical-align: middle;
     font-size: .9em;
   }

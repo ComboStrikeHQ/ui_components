@@ -23,6 +23,10 @@
 
 .btn {
   @extend %btn;
+
+  .glyphicon {
+    padding: 0 2px;
+  }
 }
 
 %btn-default {

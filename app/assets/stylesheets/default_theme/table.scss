@@ -47,7 +47,10 @@
     }
   }
 
-  td {
+  // '> tbody > tr > td' to override bootstrap
+  // 'td' to cover tables without tbody
+  td,
+  > tbody > tr > td {
     vertical-align: middle;
     font-size: .9em;
   }

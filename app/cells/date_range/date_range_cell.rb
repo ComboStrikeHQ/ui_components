@@ -8,6 +8,10 @@ class DateRangeCell < FormCellBase
     'start and end dates. Can have any property you can add to a ' \
     '[moment](http://momentjs.com/docs/#/durations/creating/) object (i.e. ' \
     'days, months)'
+  attribute :start_date, description: 'Default start date'
+  attribute :end_date, description: 'Default end date'
+  attribute :submit_on_change, description: 'Whether the enclosing form should be ' \
+    'automatically submitted on value change'
 
   def show
     [
@@ -35,8 +39,9 @@ class DateRangeCell < FormCellBase
   end
 
   def data
-    options.slice(:ranges, :date_limit)
-      .merge(start: "##{id}_from", end: "##{id}_to")
+    options.slice(:ranges, :date_limit, :submit_on_change).merge(
+      start_date: start_date.to_s, end_date: end_date.to_s,
+      start: "##{id}_from", end: "##{id}_to")
   end
 
   def id

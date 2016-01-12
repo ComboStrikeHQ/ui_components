@@ -1,0 +1,15 @@
+.well {
+  box-shadow: none;
+  border: 0;
+
+  > .form-group:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// rubocop rule disabled so i can extend the existing Bootstrap class
+// scss-lint:disable PlaceholderInExtend
+.panel-header {
+  @extend .modal-header;
+  padding: $padding-small;
+}

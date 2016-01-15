@@ -17,10 +17,9 @@ RSpec.describe 'datagrid filters', type: :helper do
 
   context 'with minimal required options' do
     it 'renders the labels with the correct for attribute and in the correct order' do
-      expect(subject.css('label').map { |l| l.attr('for').to_s }).to eq(%w(
-        test_grid_string_attribute
-        test_grid_select_attribute
-      ))
+      expect(subject.css('label').map { |l| l.attr('for').to_s }).to eq(
+        %w(test_grid_string_attribute test_grid_select_attribute)
+      )
     end
 
     it 'renders the select with the correct id' do

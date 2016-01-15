@@ -24,7 +24,7 @@ module UiComponents
       return if missing_attributes.empty?
       fail MandatoryAttributeNotSet,
         'Following mandatory attribute(s) have not been provided: ' +
-          missing_attributes.map { |m| m[:name] }.join(', ')
+        missing_attributes.map { |m| m[:name] }.join(', ')
     end
 
     class MandatoryAttributeNotSet < StandardError; end

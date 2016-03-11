@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.feature 'Markdown Textarea', :js do
   def preview_html
     find(:css, '.tab-pane.active').base.inner_html.strip

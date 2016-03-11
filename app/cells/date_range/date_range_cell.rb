@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DateRangeCell < FormCellBase
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :name, mandatory: true, description: 'The name attribute.'

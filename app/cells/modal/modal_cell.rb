@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ModalCell < UiComponents::Cell
   attribute :id, mandatory: true, description: 'The HTML id attribute.'
   attribute :content, mandatory: true, description: "The modal's content."
@@ -13,7 +14,7 @@ class ModalCell < UiComponents::Cell
       case button
       when :close then close_button
       when :submit then submit_button
-      else fail "'#{button}' button not implemented"
+      else raise "'#{button}' button not implemented"
       end
     end.join
   end

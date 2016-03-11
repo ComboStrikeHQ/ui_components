@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Gem.loaded_specs['ui_components'].dependencies.each do |gem|
   require gem.name if gem.type == :runtime
 end

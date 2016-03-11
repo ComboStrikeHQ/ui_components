@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ChosenSelect
   def chosen_select(item_text, options)
     field = find_field(options[:from], visible: false)

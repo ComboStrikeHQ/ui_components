@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe 'datagrid filters', type: :helper do
   subject do
     Nokogiri::HTML.parse(filter)

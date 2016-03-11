@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
   get '/' => 'styleguide#components', as: :styleguide_components
   get '/patterns' => 'styleguide#patterns', as: :styleguide_patterns

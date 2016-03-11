@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SelectCell < FormCellBase
   attribute :disabled, description: 'Whether or not the field is disabled.'
   attribute :form, mandatory: true, description: 'A form object.'

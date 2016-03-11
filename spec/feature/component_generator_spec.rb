@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'English'
 
 RSpec.feature 'Component generator', :js do
@@ -9,7 +10,7 @@ RSpec.feature 'Component generator', :js do
     expect(Dir.exist?(test_component_path)).to be(false)
 
     output = `bundle exec thor generate_component test_component 2>&1`
-    fail output unless $CHILD_STATUS.success?
+    raise output unless $CHILD_STATUS.success?
 
     expect(Dir.exist?(test_component_path)).to be(true)
     require test_component_path.join('test_component_cell')

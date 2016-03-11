@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MarkdownTextareaCell < FormCellBase
   attribute :name, mandatory: true, description: "The textarea's name attribute."
   attribute :form, mandatory: true, description: 'A Rails form object.'
@@ -20,7 +21,7 @@ class MarkdownTextareaCell < FormCellBase
       data: { toggle: 'markdown', target: "##{preview_id}" }
     }
 
-    opts.merge!(value: options[:value]) if options[:value]
+    opts[:value] = options[:value] if options[:value]
 
     opts
   end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module UiComponents
   class ValidatedOpenStruct < OpenStruct
     def self.validators_on(*)

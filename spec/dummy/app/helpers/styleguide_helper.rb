@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module StyleguideHelper
   def ui_component_example_call(name, example)
     if example.key?(:attributes)
@@ -14,7 +15,7 @@ module StyleguideHelper
     elsif example.key?(:slim)
       Slim::Template.new { example.values.last }.render(self).html_safe
     else
-      fail "Not sure what to do with '#{example.keys.first}' kind of example"
+      raise "Not sure what to do with '#{example.keys.first}' kind of example"
     end
   end
 end

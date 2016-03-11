@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.feature 'Date Range', :js do
   def chooser(text = nil)
     find('.ui-components-date-range', text: text)

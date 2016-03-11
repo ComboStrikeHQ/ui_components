@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe 'date_range', type: :helper do
   subject do
     Nokogiri::HTML.parse(date_range)
@@ -22,8 +23,8 @@ RSpec.describe 'date_range', type: :helper do
     let(:date_range) { helper.ui_component('date_range', form: form, name: 'bar') }
 
     it 'renders no label' do
-      expect(subject.css('label')).to_not be_present
-      expect(subject.css('label').text).to_not eq('Foo')
+      expect(subject.css('label')).not_to be_present
+      expect(subject.css('label').text).not_to eq('Foo')
     end
   end
 end

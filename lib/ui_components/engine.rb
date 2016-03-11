@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module UiComponents
   class Engine < ::Rails::Engine
     initializer 'ui_components.assets.add_load_paths' do |app|

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module UiComponents
   module CellAttributes
     extend ActiveSupport::Concern
@@ -22,7 +23,7 @@ module UiComponents
       missing_attributes = self.class.attributes
         .select { |a| a[:mandatory] && public_send(a[:name]).nil? }
       return if missing_attributes.empty?
-      fail MandatoryAttributeNotSet,
+      raise MandatoryAttributeNotSet,
         'Following mandatory attribute(s) have not been provided: ' +
         missing_attributes.map { |m| m[:name] }.join(', ')
     end

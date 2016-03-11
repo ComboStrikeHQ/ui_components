@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative '../../app/helpers/ui_components/view_helper'
 
 module UiComponents

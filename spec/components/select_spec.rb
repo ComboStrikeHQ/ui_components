@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe 'select', type: :helper do
   subject do
     Nokogiri::HTML.parse(select)

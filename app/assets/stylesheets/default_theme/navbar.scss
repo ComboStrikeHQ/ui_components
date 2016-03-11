@@ -4,7 +4,7 @@
   box-shadow: 0 1px 4px rgba($black, .2);
 
   .navbar-brand {
-    background: url(image_path('logo.svg')) no-repeat $padding-base center;
+    background: url(image-path('logo.svg')) no-repeat $padding-base center;
     font-size: 16px;
     line-height: ($navbar-height - 10px);
     margin: 0;

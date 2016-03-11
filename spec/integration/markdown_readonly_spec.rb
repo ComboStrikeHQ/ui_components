@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.feature 'Markdown readonly', :js do
   scenario 'is rendered' do
     visit '/markdown_readonly'

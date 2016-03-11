@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.feature 'Form helper', :js do
   scenario 'renders a form with fields populated from params' do
     visit '/form_helper?fox[answer]=42'

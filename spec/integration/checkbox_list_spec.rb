@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.feature 'Checkbox list', :js do
   scenario 'values are rendered as a list of checkboxes' do
     visit '/checkbox_list'

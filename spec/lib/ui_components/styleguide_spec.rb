@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe Styleguide do
   describe '.components' do
     it 'returns a list of cells' do

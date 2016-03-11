@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module UiComponents
   module DocuCop
     extend ActiveSupport::Concern
@@ -13,12 +14,12 @@ module UiComponents
 
       def examples
         documentation[:examples].presence ||
-          fail("No examples provided for #{name} component")
+          raise("No examples provided for #{name} component")
       end
 
       def description
         documentation[:description].presence ||
-          fail("No description provided for '#{name}' component")
+          raise("No description provided for '#{name}' component")
       end
 
       def documentation

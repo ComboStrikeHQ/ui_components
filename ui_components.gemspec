@@ -15,7 +15,13 @@ Gem::Specification.new do |s|
   s.summary = 'UI components for ad2games projects'
   s.license = 'MIT'
 
-  s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files = Dir[
+    '{app,lib}/**/*',
+    'vendor/assets/bower_components/**/*',
+    'MIT-LICENSE',
+    'Rakefile',
+    'README.rdoc'
+  ]
 
   s.add_dependency 'rails', '~> 4.2.0'
   s.add_dependency 'cells', '>= 4.0.0.beta2'
@@ -31,20 +37,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap_form'
   s.add_dependency 'rails_bootstrap_navbar'
   s.add_dependency 'bootstrap-datepicker-rails'
-  s.add_dependency 'rails-assets-bootstrap-daterangepicker', '< 2'
-  s.add_dependency 'rails-assets-bootstrap-chosen'
-  s.add_dependency 'rails-assets-marked'
-  s.add_dependency 'rails-assets-ajax-chosen'
+  s.add_dependency 'bower-rails'
 
   s.add_dependency 'jquery-turbolinks'
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'underscore-rails'
-  s.add_dependency 'rails-assets-jquery.floatThead', '>= 1.3.0'
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara-webkit'
   s.add_development_dependency 'pry-rails'
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'datagrid'
-  s.add_development_dependency 'rails-assets-highlightjs'
 end

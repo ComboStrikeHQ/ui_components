@@ -1,3 +1,3 @@
 /*eslint-disable spaced-comment*/
-//= require highlightjs
+//= require highlightjs/highlight.pack
 //= require ./styleguide/highlight_init

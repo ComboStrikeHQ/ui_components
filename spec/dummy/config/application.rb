@@ -9,7 +9,6 @@ require 'sprockets/railtie'
 Bundler.require(*Rails.groups)
 require 'ui_components'
 require_relative '../lib/styleguide'
-require 'rails-assets-highlightjs'
 
 module Dummy
   class Application < Rails::Application

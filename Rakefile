@@ -23,3 +23,6 @@ load 'rails/tasks/statistics.rake'
 Bundler::GemHelper.install_tasks
 
 Dir['lib/tasks/*.rake'].each { |r| load r }
+
+load 'tasks/bower.rake'
+task build: :'bower:update:prune'

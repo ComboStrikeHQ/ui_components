@@ -13,7 +13,7 @@ To include this gem in the next big ad2games thing, add it to the Gemfile:
 ### Ruby
 
 ```ruby
-gem 'ui_components', git: 'https://github.com/ad2games/ui_components.git'
+gem 'ad2games-ui_components'
 ```
 ### Javascript
 

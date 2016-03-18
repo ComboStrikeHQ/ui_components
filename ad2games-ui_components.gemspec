@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
+require 'ui_components/version'
 
 Gem::Specification.new do |s|
   s.name = 'ad2games-ui_components'
 
-  s.version = '2.0.0'
+  s.version = UiComponents::VERSION
 
   s.authors = ['ad2games']
   s.email = ['developers@ad2games.com']

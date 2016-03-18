@@ -107,6 +107,13 @@ A component consists of a bunch of files in a single directory in
 * `app/cells/my_component/my_component.scss` <br/>
   All CSS related to the component goes here.
 
+## Development
+
+The bower assets are not included in the repository. Instead they are
+packaged in to the gem when `rake release` is being run. For
+development this means you need to call `rake bower:purge
+bower:install:development` manually.
+
 ## TODO
 
 * Move requiring of dependencies into individual components' JS and add

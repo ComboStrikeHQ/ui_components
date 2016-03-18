@@ -1,6 +1,6 @@
 #= require jquery
-#= require chosen
-#= require ajax-chosen
+#= require chosen/chosen.jquery
+#= require ajax-chosen/lib/ajax-chosen
 #= require underscore
 
 # Selects all options of a multi-select box belonging to a optgroup, when

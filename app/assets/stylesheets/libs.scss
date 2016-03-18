@@ -1,6 +1,6 @@
 @import 'bootstrap-datepicker3';
-@import 'bootstrap-daterangepicker';
+@import 'bootstrap-daterangepicker/daterangepicker-bs3';
 
 $chosen-sprite-path: image-path('chosen/chosen-sprite.png') !default;
 $chosen-sprite-retina-path: image-path('chosen/chosen-sprite@2x.png') !default;
-@import 'bootstrap-chosen';
+@import 'bootstrap-chosen/bootstrap-chosen.scss'; // scss-lint:disable ImportPath

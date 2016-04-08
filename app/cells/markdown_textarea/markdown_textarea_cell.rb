@@ -16,7 +16,7 @@ class MarkdownTextareaCell < FormCellBase
     opts = {
       skip_label: true,
       rows: options[:rows] || 10,
-      control_col: 'col-sm-12',
+      control_col: 'col-sm-12'.dup,
       label_col: '',
       data: { toggle: 'markdown', target: "##{preview_id}" }
     }

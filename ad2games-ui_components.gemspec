@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.files = Dir[
-    '{app,lib}/**/*',
+    '{app,lib,config}/**/*',
     'vendor/assets/bower_components/**/*',
     'MIT-LICENSE',
     'Rakefile',

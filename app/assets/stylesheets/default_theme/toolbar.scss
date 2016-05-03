@@ -36,6 +36,17 @@
       margin-left: 0;
     }
   }
+
+  .form-group .form-group {
+    margin: 0;
+  }
+
+  // React components
+  .Select {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 200px;
+  }
 }
 
 .toolbar-default {

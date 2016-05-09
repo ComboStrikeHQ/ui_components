@@ -14,6 +14,8 @@
   &:active.hover,
   &.active:focus,
   &.active.focus,
+  &.active:hover,
+  &.active.hover,
   .open > &.dropdown-toggle {
     // scss-lint:disable ImportantRule
     outline: none !important;
@@ -48,7 +50,9 @@
   &:active:hover,
   &:active.hover,
   &.active:focus,
-  &.active.focus {
+  &.active.focus,
+  &.active:hover,
+  &.active.hover {
     background-color: $btn-default-hover-border;
     border-color: $btn-default-hover-border;
     color: $white;
@@ -78,7 +82,9 @@
   &:active:hover,
   &:active.hover,
   &.active:focus,
-  &.active.focus {
+  &.active.focus,
+  &.active:hover,
+  &.active.hover {
     background-color: darken($btn-primary-hover-bg, 15%);
     border-color: $btn-primary-hover-border;
     color: $btn-primary-hover-color;

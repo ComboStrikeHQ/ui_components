@@ -53,6 +53,33 @@
     vertical-align: middle;
     min-width: 200px;
   }
+
+  // toolbar checkboxes appear as toggleable buttons
+  .ui-components-checkbox-list li {
+    margin-left: $padding-small;
+    float: left;
+  }
+
+  .checkbox {
+    @extend .btn;
+    @extend .btn-sm;
+    @extend .btn-default;
+
+    // scss-lint:disable QualifyingElement
+    input[type='checkbox'] {
+      position: absolute;
+      display: none;
+    }
+
+    label {
+      font-style: normal;
+      font-size: 1em;
+    }
+
+    &.active {
+      @extend .btn.active;
+    }
+  }
 }
 
 .toolbar-default {

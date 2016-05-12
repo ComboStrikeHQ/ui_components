@@ -1,7 +1,7 @@
 .navbar {
   background-color: $white;
   border: 0;
-  box-shadow: 0 1px 4px rgba($black, .2);
+  box-shadow: 0 2px 3px rgba($black, .2);
 
   .navbar-brand {
     background: url(image-path('logo.svg')) no-repeat $padding-base center;
@@ -42,10 +42,16 @@
     }
   }
 
-  .dropdown-menu .dropdown:hover .dropdown-menu {
-    display: block;
-    top: -50%;
-    left: 100%;
+  .dropdown-menu {
+    border: 0;
+    box-shadow: 0 2px 3px rgba($black, .2);
+
+    // submenu
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      top: -50%;
+      left: 100%;
+    }
   }
 }
 

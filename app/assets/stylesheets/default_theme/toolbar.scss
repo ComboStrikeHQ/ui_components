@@ -25,7 +25,8 @@
   .btn-group,
   .form-group,
   [class*='col-'] > .btn,
-  [class*='col-'] > .btn:first-child {
+  [class*='col-'] > .btn:first-child,
+  li > .btn {
     margin-top: 0;
     margin-bottom: $padding-base-vertical;
   }
@@ -107,13 +108,9 @@
     }
   }
 
-  .btn {
+  %toolbar-default-btn {
     border-color: transparent;
 
-    &:active,
-    &.active,
-    &:focus,
-    &.focus,
     &:hover,
     &.hover,
     .open > &.dropdown-toggle {
@@ -122,16 +119,24 @@
       border-color: darken($brand-secondary, 10%);
     }
 
+    &:active,
+    &.active,
+    &:focus,
+    &.focus,
     &:active:focus,
     &:active.focus,
-    &:active:hover,
-    &:active.hover,
     &.active:focus,
-    &.active.focus {
+    &.active.focus,
+    &:active:hover,
+    &.active:hover {
       background-color: darken($brand-secondary, 10%);
       color: $white;
-      border-color: darken($brand-secondary, 10%);
+      border-color: transparent;
     }
+  }
+
+  .btn {
+    @extend %toolbar-default-btn;
   }
 
   .btn-default {
@@ -141,5 +146,23 @@
   .btn[disabled],
   .btn.disabled {
     background-color: transparent;
+  }
+
+  // btn-groups from lists
+  .btn-group li {
+
+    > .btn {
+      margin-bottom: 0;
+    }
+
+    &.active > .btn {
+      @extend %toolbar-default-btn.active;
+    }
+
+    &.active > .btn:focus,
+    &.active > .btn.focus,
+    &.active > .btn:hover {
+      @extend %toolbar-default-btn.active.focus;
+    }
   }
 }

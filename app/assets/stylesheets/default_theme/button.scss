@@ -33,10 +33,6 @@
 
 %btn-default {
 
-  &:active,
-  &.active,
-  &:focus,
-  &.focus,
   &:hover,
   &.hover,
   .open > &.dropdown-toggle {
@@ -45,14 +41,16 @@
     color: $btn-default-hover-color;
   }
 
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
   &:active:focus,
   &:active.focus,
-  &:active:hover,
-  &:active.hover,
   &.active:focus,
   &.active.focus,
-  &.active:hover,
-  &.active.hover {
+  &:active:hover,
+  &.active:hover {
     background-color: $btn-default-hover-border;
     border-color: $btn-default-hover-border;
     color: $white;
@@ -65,10 +63,6 @@
 
 %btn-primary {
 
-  &:active,
-  &.active,
-  &:focus,
-  &.focus,
   &:hover,
   &.hover,
   .open > &.dropdown-toggle {
@@ -77,14 +71,16 @@
     color: $btn-primary-hover-color;
   }
 
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
   &:active:focus,
   &:active.focus,
-  &:active:hover,
-  &:active.hover,
   &.active:focus,
   &.active.focus,
-  &.active:hover,
-  &.active.hover {
+  &:active:hover,
+  &.active:hover {
     background-color: darken($btn-primary-hover-bg, 15%);
     border-color: $btn-primary-hover-border;
     color: $btn-primary-hover-color;

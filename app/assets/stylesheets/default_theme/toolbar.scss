@@ -11,6 +11,41 @@
   padding-top: $padding-base-vertical;
   margin: 0;
 
+  ul,
+  .pager {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // toolbar elements with margin-bottom
+  // scss-lint:disable SelectorFormat
+  .btn,
+  .chosen-single,
+  .control-label,
+  .form-control,
+  .Select,
+  input,
+  label {
+    margin-bottom: $padding-base-vertical;
+  }
+
+  // toolbar elements with margin-left
+  .btn-group,
+  .btn,
+  .chosen-single,
+  .form-control,
+  .form-group {
+    margin-left: $padding-small-horizontal;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    > & {
+      margin-left: 0;
+    }
+  }
+
   label {
     font-weight: normal;
     font-style: italic;
@@ -22,69 +57,30 @@
     }
   }
 
-  .btn-group,
-  .form-group,
-  [class*='col-'] > .btn,
-  [class*='col-'] > .btn:first-child,
-  li > .btn {
-    margin-top: 0;
-    margin-bottom: $padding-base-vertical;
-  }
-
-  .btn,
-  .btn-group,
-  .chosen-single,
-  .form-control,
-  .form-group {
-    margin-left: $padding-small-horizontal;
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-
-  .form-group .form-group {
-    margin: 0;
-  }
-
-  // React components
+  // React Select component
   // scss-lint:disable SelectorFormat
   .Select {
     display: inline-block;
     vertical-align: middle;
     min-width: 200px;
-  }
 
-  // toolbar checkboxes appear as toggleable buttons
-  .ui-components-checkbox-list li {
-    margin-left: $padding-small;
-    float: left;
-  }
-
-  .checkbox {
-    @extend .btn;
-    @extend .btn-sm;
-    @extend .btn-default;
-
-    // scss-lint:disable QualifyingElement
-    input[type='checkbox'] {
-      position: absolute;
-      display: none;
-    }
-
-    label {
-      font-style: normal;
-      font-size: 1em;
-    }
-
-    &.active {
-      @extend .btn.active;
+    .Select-control,
+    .Select-placeholder,
+    .Select-input {
+      line-height: 31px;
+      height: 31px;
     }
   }
 }
 
 .toolbar-default {
-  background-color: $gray-lighter;
+  background-color: $body-bg;
+  border-bottom: 1px solid darken($body-bg, 3%);
+
+  .toolbar-primary + & {
+    border: 1px solid darken($body-bg, 3%);
+    border-top: 0;
+  }
 }
 
 .toolbar-primary {
@@ -148,12 +144,13 @@
     background-color: transparent;
   }
 
+  // TODO: is this needed?
   // btn-groups from lists
   .btn-group li {
 
-    > .btn {
-      margin-bottom: 0;
-    }
+    // > .btn {
+    //   margin-bottom: 0;
+    // }
 
     &.active > .btn {
       @extend %toolbar-default-btn.active;

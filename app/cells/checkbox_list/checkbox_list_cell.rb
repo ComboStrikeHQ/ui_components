@@ -4,6 +4,8 @@ class CheckboxListCell < UiComponents::Cell
   attribute :name, mandatory: true, description: 'The name attribute.'
   attribute :values, mandatory: true, description: 'The value attributes of the checkboxes.'
   attribute :two_columns, description: 'Whether the checkboxes appear in two columns.'
+  attribute :checkbox_class, description: 'extra classes per list-item.'
+  attribute :wrapper_class, description: 'extra classes for the ul/wrapper element'
 
   def show
     content_tag(:ul, box_li_tags, class: css_class)
@@ -12,12 +14,12 @@ class CheckboxListCell < UiComponents::Cell
   private
 
   def css_class
-    "ui-components-checkbox-list #{'two-columns' if options[:two_columns]}"
+    "ui-components-checkbox-list #{'two-columns' if options[:two_columns]} #{wrapper_class}"
   end
 
   def box_li_tags
     boxes.map do |box|
-      content_tag(:li, box)
+      content_tag(:li, box, class: checkbox_class)
     end.join.html_safe
   end
 

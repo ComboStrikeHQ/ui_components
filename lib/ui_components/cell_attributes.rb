@@ -6,7 +6,7 @@ module UiComponents
     def initialize(*args)
       super
       options.except(:controller).each do |k, v|
-        public_send(:"#{k}=", v)
+        public_send(:"#{k}=", v) if respond_to?(:"#{k}=")
       end
       validate_mandatory_attributes
     end

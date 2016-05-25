@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 Gem.loaded_specs['ad2games-ui_components'].dependencies.each do |gem|
-  # TODO: remove when cells-rails follows the gem convention to have a primary file
-  if gem.name == 'cells-rails'
-    require 'cells/rails'
-    next
-  end
   require gem.name if gem.runtime?
 end
 

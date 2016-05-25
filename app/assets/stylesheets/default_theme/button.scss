@@ -160,3 +160,27 @@ ul.btn-group {
     @extend %btn-primary.active;
   }
 }
+
+.btn {
+  svg {
+    vertical-align: middle;
+    height: 1.2em;
+    width: 1.2em;
+  }
+
+  &.btn-primary svg {
+    fill: $btn-primary-color;
+  }
+
+  &.btn-primary:hover svg {
+    fill: $btn-primary-hover-color;
+  }
+
+  &.btn-default svg {
+    fill: $btn-default-color;
+  }
+
+  &.btn-default:hover svg {
+    fill: $btn-default-hover-color;
+  }
+}

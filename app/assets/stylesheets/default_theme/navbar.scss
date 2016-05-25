@@ -6,7 +6,7 @@
   .navbar-brand {
     background: url(image-path('logo.svg')) no-repeat $padding-base center;
     font-size: 16px;
-    line-height: ($navbar-height - 10px);
+    line-height: ($navbar-height - ($padding-small-vertical * 2));
     margin: 0;
     padding: $padding-small-vertical 0 $padding-small-vertical 50px;
 

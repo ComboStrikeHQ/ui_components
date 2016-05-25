@@ -55,6 +55,14 @@
     &:first-child {
       margin-left: 0;
     }
+
+    + .form-control,
+    + .form-group,
+    + .input-group,
+    + input
+    + select {
+      margin-left: 0;
+    }
   }
 
   // React Select component
@@ -113,6 +121,10 @@
       background-color: darken($brand-secondary, 5%);
       color: $white;
       border-color: darken($brand-secondary, 10%);
+
+      svg {
+        fill: $white;
+      }
     }
 
     &:active,
@@ -128,6 +140,10 @@
       background-color: darken($brand-secondary, 10%);
       color: $white;
       border-color: transparent;
+
+      svg {
+        fill: $white;
+      }
     }
   }
 
@@ -137,6 +153,10 @@
 
   .btn-default {
     color: $white;
+
+    svg {
+      fill: $white;
+    }
   }
 
   .btn[disabled],
@@ -161,5 +181,20 @@
     &.active > .btn:hover {
       @extend %toolbar-default-btn.active.focus;
     }
+  }
+}
+
+.input-group .input-group-btn,
+.input-group .input-group-addon {
+  @extend %toolbar-default-btn;
+
+  &:first-child {
+    margin-left: 0;
+    border-radius: $border-radius-base 0 0 $border-radius-base;
+  }
+
+  &:last-child {
+    margin-left: 0;
+    border-radius: 0 $border-radius-base $border-radius-base 0;
   }
 }

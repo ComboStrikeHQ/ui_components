@@ -2,6 +2,10 @@
   background-clip: padding-box;
   transition: background-color .1s ease-out, border-color .1s, color .1s;
 
+  .glyphicon {
+    padding: 0 2px;
+  }
+
   &:active,
   &.active,
   &:focus,
@@ -20,14 +24,6 @@
     // scss-lint:disable ImportantRule
     outline: none !important;
     box-shadow: none;
-  }
-}
-
-.btn {
-  @extend %btn;
-
-  .glyphicon {
-    padding: 0 2px;
   }
 }
 
@@ -57,10 +53,6 @@
   }
 }
 
-.btn-default {
-  @extend %btn-default;
-}
-
 %btn-primary {
 
   &:hover,
@@ -87,10 +79,6 @@
   }
 }
 
-.btn-primary {
-  @extend %btn-primary;
-}
-
 %btn-disabled {
   border-color: rgba($gray, .3);
   color: $gray;
@@ -113,6 +101,47 @@
     color: $gray;
     background-color: rgba($gray-light, .3);
   }
+}
+
+.btn {
+  @extend %btn;
+
+  svg {
+    vertical-align: middle;
+    height: 1.2em;
+    width: 1.2em;
+  }
+
+  &.btn-default svg {
+    fill: $btn-default-color;
+  }
+
+  &.btn-default:hover svg {
+    fill: $btn-default-hover-color;
+  }
+
+  &.btn-default:active svg,
+  &.btn-default:focus svg {
+    fill: $btn-default-hover-bg;
+  }
+
+  &.btn-primary svg {
+    fill: $btn-primary-color;
+  }
+
+  &.btn-primary:hover svg,
+  &.btn-primary:active svg,
+  &.btn-primary:focus svg {
+    fill: $btn-primary-hover-color;
+  }
+}
+
+.btn-default {
+  @extend %btn-default;
+}
+
+.btn-primary {
+  @extend %btn-primary;
 }
 
 .btn[disabled],
@@ -158,29 +187,5 @@ ul.btn-group {
 
   .active > .btn-primary {
     @extend %btn-primary.active;
-  }
-}
-
-.btn {
-  svg {
-    vertical-align: middle;
-    height: 1.2em;
-    width: 1.2em;
-  }
-
-  &.btn-primary svg {
-    fill: $btn-primary-color;
-  }
-
-  &.btn-primary:hover svg {
-    fill: $btn-primary-hover-color;
-  }
-
-  &.btn-default svg {
-    fill: $btn-default-color;
-  }
-
-  &.btn-default:hover svg {
-    fill: $btn-default-hover-color;
   }
 }

@@ -143,19 +143,3 @@
     background-color: transparent;
   }
 }
-
-.nav-tabs {
-  border-bottom-color: $body-bg;
-
-  li {
-    margin-bottom: 0;
-
-    &.active a {
-      background-color: $white;
-    }
-  }
-}
-
-.row > .nav-tabs {
-  padding: 0 $padding-base;
-}

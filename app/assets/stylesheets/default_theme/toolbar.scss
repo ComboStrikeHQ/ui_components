@@ -29,6 +29,10 @@
     margin-bottom: $padding-base-vertical;
   }
 
+  .chosen-container .chosen-drop {
+    margin-top: -($padding-base-vertical + 1px);
+  }
+
   // toolbar elements with margin-left
   .btn-group,
   .btn,

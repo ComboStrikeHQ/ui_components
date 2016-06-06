@@ -1,3 +1,4 @@
+// scss-lint:disable all
 .applyBtn.btn.btn-small.btn-sm.btn-success {
   @extend .btn-primary;
 }
@@ -80,3 +81,4 @@
   background-color: $brand-secondary;
   border-color: $brand-secondary;
 }
+// scss-lint:enable all

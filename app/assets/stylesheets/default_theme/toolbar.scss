@@ -183,13 +183,8 @@
     background-color: transparent;
   }
 
-  // TODO: is this needed?
-  // btn-groups from lists
+  // btn-groups from lists (extend li.active state to child .btn)
   .btn-group li {
-
-    // > .btn {
-    //   margin-bottom: 0;
-    // }
 
     &.active > .btn {
       @extend %toolbar-default-btn.active;

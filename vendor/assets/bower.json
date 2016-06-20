@@ -8,6 +8,7 @@
     "jquery.floatThead": "1.4.1",
     "highlightjs": "9.2.0",
     "underscore": "1.8.3",
-    "jquery": "< 3.0.0"
+    "jquery": "<3",
+    "jquery-ujs": "1.2.1"
   }
 }

@@ -2,6 +2,10 @@
   background-clip: padding-box;
   transition: background-color .1s ease-out, border-color .1s, color .1s;
 
+  .glyphicon {
+    padding: 0 2px;
+  }
+
   &:active,
   &.active,
   &:focus,
@@ -23,20 +27,8 @@
   }
 }
 
-.btn {
-  @extend %btn;
-
-  .glyphicon {
-    padding: 0 2px;
-  }
-}
-
 %btn-default {
 
-  &:active,
-  &.active,
-  &:focus,
-  &.focus,
   &:hover,
   &.hover,
   .open > &.dropdown-toggle {
@@ -45,30 +37,24 @@
     color: $btn-default-hover-color;
   }
 
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
   &:active:focus,
   &:active.focus,
-  &:active:hover,
-  &:active.hover,
   &.active:focus,
   &.active.focus,
-  &.active:hover,
-  &.active.hover {
+  &:active:hover,
+  &.active:hover {
     background-color: $btn-default-hover-border;
     border-color: $btn-default-hover-border;
     color: $white;
   }
 }
 
-.btn-default {
-  @extend %btn-default;
-}
-
 %btn-primary {
 
-  &:active,
-  &.active,
-  &:focus,
-  &.focus,
   &:hover,
   &.hover,
   .open > &.dropdown-toggle {
@@ -77,22 +63,20 @@
     color: $btn-primary-hover-color;
   }
 
+  &:active,
+  &.active,
+  &:focus,
+  &.focus,
   &:active:focus,
   &:active.focus,
-  &:active:hover,
-  &:active.hover,
   &.active:focus,
   &.active.focus,
-  &.active:hover,
-  &.active.hover {
+  &:active:hover,
+  &.active:hover {
     background-color: darken($btn-primary-hover-bg, 15%);
     border-color: $btn-primary-hover-border;
     color: $btn-primary-hover-color;
   }
-}
-
-.btn-primary {
-  @extend %btn-primary;
 }
 
 %btn-disabled {
@@ -117,6 +101,47 @@
     color: $gray;
     background-color: rgba($gray-light, .3);
   }
+}
+
+.btn {
+  @extend %btn;
+
+  svg {
+    vertical-align: middle;
+    height: 1.2em;
+    width: 1.2em;
+  }
+
+  &.btn-default svg {
+    fill: $btn-default-color;
+  }
+
+  &.btn-default:hover svg {
+    fill: $btn-default-hover-color;
+  }
+
+  &.btn-default:active svg,
+  &.btn-default:focus svg {
+    fill: $btn-default-hover-bg;
+  }
+
+  &.btn-primary svg {
+    fill: $btn-primary-color;
+  }
+
+  &.btn-primary:hover svg,
+  &.btn-primary:active svg,
+  &.btn-primary:focus svg {
+    fill: $btn-primary-hover-color;
+  }
+}
+
+.btn-default {
+  @extend %btn-default;
+}
+
+.btn-primary {
+  @extend %btn-primary;
 }
 
 .btn[disabled],

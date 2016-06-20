@@ -11,6 +11,45 @@
   padding-top: $padding-base-vertical;
   margin: 0;
 
+  ul,
+  .pager {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  // toolbar elements with margin-bottom
+  // scss-lint:disable SelectorFormat
+  .btn,
+  .chosen-single,
+  .control-label,
+  .form-control,
+  .Select,
+  input,
+  label {
+    margin-bottom: $padding-base-vertical;
+  }
+
+  .chosen-container .chosen-drop {
+    margin-top: -($padding-base-vertical + 1px);
+  }
+
+  // toolbar elements with margin-left
+  .btn-group,
+  .btn,
+  .chosen-single,
+  .form-control,
+  .form-group {
+    margin-left: $padding-small-horizontal;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    > & {
+      margin-left: 0;
+    }
+  }
+
   label {
     font-weight: normal;
     font-style: italic;
@@ -20,70 +59,55 @@
     &:first-child {
       margin-left: 0;
     }
-  }
 
-  .btn-group,
-  .form-group,
-  [class*='col-'] > .btn,
-  [class*='col-'] > .btn:first-child {
-    margin-top: 0;
-    margin-bottom: $padding-base-vertical;
-  }
-
-  .btn,
-  .btn-group,
-  .chosen-single,
-  .form-control,
-  .form-group {
-    margin-left: $padding-small-horizontal;
-
-    &:first-child {
+    + .form-control,
+    + .form-group,
+    + .input-group,
+    + input,
+    + select {
       margin-left: 0;
     }
   }
 
-  .form-group .form-group {
-    margin: 0;
-  }
-
-  // React components
+  // React Select component
   // scss-lint:disable SelectorFormat
   .Select {
     display: inline-block;
     vertical-align: middle;
     min-width: 200px;
+
+    .Select-control,
+    .Select-placeholder,
+    .Select-input {
+      line-height: 31px;
+      height: 31px;
+    }
   }
 
-  // toolbar checkboxes appear as toggleable buttons
-  .ui-components-checkbox-list li {
-    margin-left: $padding-small;
-    float: left;
-  }
+  .input-group .input-group-btn,
+  .input-group .input-group-addon {
+    @extend %toolbar-default-btn;
 
-  .checkbox {
-    @extend .btn;
-    @extend .btn-sm;
-    @extend .btn-default;
-
-    // scss-lint:disable QualifyingElement
-    input[type='checkbox'] {
-      position: absolute;
-      display: none;
+    &:first-child {
+      margin-left: 0;
+      border-radius: $border-radius-base 0 0 $border-radius-base;
     }
 
-    label {
-      font-style: normal;
-      font-size: 1em;
-    }
-
-    &.active {
-      @extend .btn.active;
+    &:last-child {
+      margin-left: 0;
+      border-radius: 0 $border-radius-base $border-radius-base 0;
     }
   }
 }
 
 .toolbar-default {
-  background-color: $gray-lighter;
+  background-color: $body-bg;
+  border-bottom: 1px solid darken($body-bg, 3%);
+
+  .toolbar-primary + & {
+    border: 1px solid darken($body-bg, 3%);
+    border-top: 0;
+  }
 }
 
 .toolbar-primary {
@@ -107,39 +131,69 @@
     }
   }
 
-  .btn {
+  %toolbar-default-btn {
     border-color: transparent;
 
-    &:active,
-    &.active,
-    &:focus,
-    &.focus,
     &:hover,
     &.hover,
     .open > &.dropdown-toggle {
       background-color: darken($brand-secondary, 5%);
       color: $white;
       border-color: darken($brand-secondary, 10%);
+
+      svg {
+        fill: $white;
+      }
     }
 
+    &:active,
+    &.active,
+    &:focus,
+    &.focus,
     &:active:focus,
     &:active.focus,
-    &:active:hover,
-    &:active.hover,
     &.active:focus,
-    &.active.focus {
+    &.active.focus,
+    &:active:hover,
+    &.active:hover {
       background-color: darken($brand-secondary, 10%);
       color: $white;
-      border-color: darken($brand-secondary, 10%);
+      border-color: transparent;
+
+      svg {
+        fill: $white;
+      }
     }
+  }
+
+  .btn {
+    @extend %toolbar-default-btn;
   }
 
   .btn-default {
     color: $white;
+
+    svg {
+      fill: $white;
+    }
   }
 
   .btn[disabled],
   .btn.disabled {
     background-color: transparent;
+  }
+
+  // btn-groups from lists (extend li.active state to child .btn)
+  .btn-group li {
+
+    &.active > .btn {
+      @extend %toolbar-default-btn.active;
+    }
+
+    &.active > .btn:focus,
+    &.active > .btn.focus,
+    &.active > .btn:hover {
+      @extend %toolbar-default-btn.active.focus;
+    }
   }
 }

@@ -38,9 +38,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'bower-rails'
 
-  s.add_dependency 'jquery-turbolinks'
-  s.add_dependency 'jquery-rails'
-
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'capybara-webkit'
   s.add_development_dependency 'pry-rails'

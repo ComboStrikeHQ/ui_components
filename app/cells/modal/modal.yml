@@ -16,7 +16,8 @@ examples:
                               title: "Hello!",
                               content: "'If you knew Time as well as I do,' said the Hatter, " \
                                        "'you wouldn't talk about wasting IT. It's HIM.'",
-                              buttons: [:close, :submit]
+                              buttons: [:close, :submit],
+                              extra_class: 'modal-sm'
 
       button.btn.btn-default data-toggle="modal" data-target="#hatter"
         = 'Click me!'

@@ -9,7 +9,7 @@ RSpec.feature 'Date Range', :js do
   end
 
   def date(type)
-    find(:fillable_field, "my_form[my_date_range_#{type}]", visible: false).value
+    find("#date_range_my_form_my_date_range_#{type}", visible: false).value
   end
 
   def datepicker(type)

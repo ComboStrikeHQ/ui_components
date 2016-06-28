@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 class SelectCell < FormCellBase
+  DATA_ATTRIBUTES = %i(
+    placeholder
+    error
+    width
+    remote_options
+    disable_search
+  ).freeze
   attribute :disabled, description: 'Whether or not the field is disabled.'
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :name, mandatory: true, description: 'The name attribute.'
@@ -20,6 +27,7 @@ class SelectCell < FormCellBase
   attribute :hide_label,
     description: 'Hide the label, but keep it accessible to screen readers (e.g. Capybara)'
   attribute :help, description: 'Help text associated with the control'
+  attribute :disable_search, description: 'Hide the search input'
 
   def show
     options[:form].select(
@@ -39,11 +47,9 @@ class SelectCell < FormCellBase
   end
 
   def html_options
-    html_opts = { class: css_class }
-    html_opts.update(options.slice(:required, :multiple, :disabled))
-    html_opts[:data] = options.slice(:placeholder, :error, :width, :remote_options)
-    html_opts[:data][:allow_single_deselect] = !options[:required]
-    html_opts
+    options
+      .slice(:required, :multiple, :disabled)
+      .merge(class: css_class, data: data_options)
   end
 
   def select_options
@@ -55,5 +61,9 @@ class SelectCell < FormCellBase
     classes << 'chosen-inline' if options[:inline]
     classes << options[:classes] if options[:classes]
     classes.join(' ')
+  end
+
+  def data_options
+    options.slice(*DATA_ATTRIBUTES).merge(allow_single_deselect: !options[:required])
   end
 end

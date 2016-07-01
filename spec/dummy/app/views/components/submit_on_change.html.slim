@@ -1,6 +1,0 @@
-= bootstrap_form_tag method: :get do |f|
-  = f.select :element, options_for_select([%w(SomeOption yes)]), {},
-    data: { toggle: 'submit-on-change' }
-
-- if params[:element] == 'yes'
-  p Success

@@ -1,7 +1,0 @@
-- if params[:use_model].blank?
-  = bootstrap_form_tag do |f|
-    = ui_component(:markdown_textarea, form: f, name: :hello, value: 'test')
-
-- if params[:use_model].present?
-  = modelless_form name: :test, params: { hello: 'test_from_model' } do |f|
-    = ui_component(:markdown_textarea, form: f, name: :hello)

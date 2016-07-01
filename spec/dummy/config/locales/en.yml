@@ -1,9 +1,0 @@
-en:
-  components:
-    show:
-      type: Type
-      report_rage: Report Range
-      list:
-        apple: Apple
-        banana: Orange
-        kiwi: Kiwi

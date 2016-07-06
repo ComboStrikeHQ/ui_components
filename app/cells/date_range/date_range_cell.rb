@@ -11,7 +11,8 @@ class DateRangeCell < FormCellBase
     'days, months)'
   attribute :start_date, description: 'Default start date'
   attribute :end_date, description: 'Default end date'
-  attribute :opens, description: "Direction in which the dropdown opens. Accepts: 'right' (default), 'left', 'center'"
+  attribute :opens, description: 'Direction in which the dropdown opens. ' \
+    "Accepts: 'right' (default), 'left', 'center'"
   attribute :submit_on_change, description: 'Whether the enclosing form should be ' \
     'automatically submitted on value change'
 

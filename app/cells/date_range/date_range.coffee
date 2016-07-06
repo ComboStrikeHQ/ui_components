@@ -33,12 +33,11 @@ $(document).on 'uic:domchange', (e) ->
                         (val) -> val && val.toString().length > 0
     end_date = _.find [$el.data('endDate'), $end_input.val(), yesterday],
                       (val) -> val && val.toString().length > 0
-    opens = _.find [$el.data('opens')]
 
     options = _.extend({},
       defaults,
-      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange']),
-      { startDate: start_date, endDate: end_date, opens: opens })
+      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange', 'opens']),
+      { startDate: start_date, endDate: end_date })
 
     options.ranges = _.mapObject(options.ranges, (v, k) -> _.map(v, (v) -> moment(v)))
     options.startDate = moment(options.startDate)

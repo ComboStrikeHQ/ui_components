@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'uglifier'
   s.add_dependency 'coffee-rails'
-  s.add_dependency 'turbolinks'
+  s.add_dependency 'turbolinks', '< 5'
 
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bootstrap_form'

@@ -13,6 +13,7 @@ module StyleguideHelper
     if example.key?(:attributes)
       eval ui_component_example_call(name, example) # rubocop:disable Lint/Eval
     elsif example.key?(:slim)
+      # rubocop:disable Rails/OutputSafety
       Slim::Template.new { example.values.last }.render(self).html_safe
     else
       raise "Not sure what to do with '#{example.keys.first}' kind of example"

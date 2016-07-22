@@ -44,7 +44,8 @@ class DateRangeCell < FormCellBase
   def data
     options.slice(:ranges, :date_limit, :opens, :submit_on_change).merge(
       start_date: start_date.to_s, end_date: end_date.to_s,
-      start: "##{id}_from", end: "##{id}_to")
+      start: "##{id}_from", end: "##{id}_to"
+    )
   end
 
   def id

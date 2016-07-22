@@ -28,6 +28,7 @@ class MarkdownTextareaCell < FormCellBase
 
   def form_group
     form.__send__(:form_group_builder, name, label: label) do
+      # rubocop:disable Rails/OutputSafety
       yield.html_safe
     end
   end

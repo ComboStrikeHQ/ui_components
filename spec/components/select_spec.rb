@@ -89,7 +89,7 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { name: 'game_id', select_options: [['Commander Keen', 23]] } }
 
     it "pre-selects the instance's attribute's value" do
-      assign(:foo, double('some object', game_id: 23))
+      assign(:foo, OpenStruct.new(game_id: 23))
 
       expect(subject.css('option[selected="selected"]').attr('value').to_s).to eq('23')
       expect(subject.css('option[selected="selected"]').text).to eq('Commander Keen')

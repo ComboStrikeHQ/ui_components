@@ -18,9 +18,7 @@ class CheckboxListCell < UiComponents::Cell
   end
 
   def box_li_tags
-    boxes.map do |box|
-      content_tag(:li, box, class: checkbox_class)
-    end.join.html_safe
+    safe_join(boxes.map { |box| content_tag(:li, box, class: checkbox_class) }.to_a)
   end
 
   def boxes

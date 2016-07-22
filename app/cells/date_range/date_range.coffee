@@ -2,6 +2,7 @@ $(document).on 'uic:domchange', (e) ->
   today = -> moment().startOf('day')
   yesterday = today().subtract(1, 'days')
   ranges = {
+    'Today': [today(), today()],
     'Yesterday': [yesterday, yesterday],
     'Last 7 Days': [today().subtract(7, 'days'), yesterday],
     'Last 14 Days': [today().subtract(14, 'days'), yesterday],

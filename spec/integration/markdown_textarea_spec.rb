@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 RSpec.feature 'Markdown Textarea', :js do
   def preview_html
-    find(:css, '.tab-pane.active').base.inner_html.strip
+    find(:css, '.tab-pane.active')['innerHTML'].strip
   end
 
   it 'has an edit and preview tab for markdown text' do

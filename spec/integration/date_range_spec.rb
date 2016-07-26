@@ -98,7 +98,7 @@ RSpec.feature 'Date Range', :js do
     end
     click_on 'Apply'
 
-    params = JSON.parse(page.body)['my_form']
+    params = JSON.parse(find('pre').text)['my_form']
     expect(Date.parse(params['my_date_range_from']).day).to eq(21)
     expect(Date.parse(params['my_date_range_to']).day).to eq(22)
   end

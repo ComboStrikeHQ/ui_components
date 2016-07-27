@@ -2,7 +2,6 @@ $(document).on 'uic:domchange', (e) ->
   today = -> moment().startOf('day')
   yesterday = today().subtract(1, 'days')
   ranges = {
-    'Today': [today(), today()],
     'Yesterday': [yesterday, yesterday],
     'Last 7 Days': [today().subtract(7, 'days'), yesterday],
     'Last 14 Days': [today().subtract(14, 'days'), yesterday],
@@ -21,7 +20,8 @@ $(document).on 'uic:domchange', (e) ->
     ranges: ranges,
     opens: 'right',
     format: 'YYYY-MM-DD',
-    submitOnChange: false
+    submitOnChange: false,
+    today: false
   }
 
   $(e.target).find('.ui-components-date-range').each (_i, el) ->
@@ -30,6 +30,8 @@ $(document).on 'uic:domchange', (e) ->
     $start_input = $($el.data().start)
     $end_input = $($el.data().end)
 
+
+
     start_date = _.find [$el.data('startDate'), $start_input.val(), yesterday],
                         (val) -> val && val.toString().length > 0
     end_date = _.find [$el.data('endDate'), $end_input.val(), yesterday],
@@ -37,10 +39,12 @@ $(document).on 'uic:domchange', (e) ->
 
     options = _.extend({},
       defaults,
-      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange', 'opens']),
+      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange', 'opens', 'today']),
       { startDate: start_date, endDate: end_date })
 
     options.ranges = _.mapObject(options.ranges, (v, k) -> _.map(v, (v) -> moment(v)))
+    options.ranges = _.extend({}, {'Today': [today(), today()]}, options.ranges) if options.today
+
     options.startDate = moment(options.startDate)
     options.endDate = moment(options.endDate)
 

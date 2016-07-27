@@ -22,12 +22,6 @@ RSpec.feature 'Date Range', :js do
     expect(datepicker(:start)).to eq(Date.yesterday.to_s)
     expect(datepicker(:end)).to eq(Date.yesterday.to_s)
 
-    chooser("Yesterday (#{Date.yesterday} - #{Date.yesterday})").click
-
-    select_range('Today')
-    expect(date(:from)).to eq(Date.today.to_s)
-    expect(date(:to)).to eq(Date.today.to_s)
-
     chooser.click
     select_range('Last 7 Days')
     expect(date(:from)).to eq((Date.today - 7.days).to_s)
@@ -75,6 +69,16 @@ RSpec.feature 'Date Range', :js do
     link.click
 
     expect(field.text).to eq('Next 10 days (2015-06-22 - 2015-07-01)')
+  end
+
+  scenario 'today option present' do
+    visit '/date_range_today'
+
+    chooser.click
+
+    select_range('Today')
+    expect(date(:from)).to eq(Date.today.to_s)
+    expect(date(:to)).to eq(Date.today.to_s)
   end
 
   scenario 'start/end dates are configurable' do

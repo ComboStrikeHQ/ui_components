@@ -15,6 +15,7 @@ class DateRangeCell < FormCellBase
     "Accepts: 'right' (default), 'left', 'center'"
   attribute :submit_on_change, description: 'Whether the enclosing form should be ' \
     'automatically submitted on value change'
+  attribute :today, description: 'Whether to include a today optionn the selection'
 
   def show
     [
@@ -42,7 +43,7 @@ class DateRangeCell < FormCellBase
   end
 
   def data
-    options.slice(:ranges, :date_limit, :opens, :submit_on_change).merge(
+    options.slice(:ranges, :date_limit, :opens, :submit_on_change, :today).merge(
       start_date: start_date.to_s, end_date: end_date.to_s,
       start: "##{id}_from", end: "##{id}_to"
     )

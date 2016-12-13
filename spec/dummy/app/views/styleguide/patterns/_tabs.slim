@@ -1,16 +1,60 @@
+h3 Content Tabs
+
+p Content tabs are used to separate content into exclusive 'panes'.
+
+.component
+  ul.nav.nav-tabs
+    li.active
+      a href='#content-tabs-kame' data-toggle='tab' Kame
+    li
+      a href='#content-tabs-hame' data-toggle='tab' Hame
+    li
+      a href='#content-tabs-haaa' data-toggle='tab' Haaa
+  .tab-content
+    #content-tabs-kame.tab-pane.active
+      .panel-body
+        h2 Kame...
+    #content-tabs-hame.tab-pane
+      .panel-body
+        h2 ...hame...
+    #content-tabs-haaa.tab-pane
+      .panel-body
+        h2 ...HAAAaaa!
+
+pre
+  code.slim
+    | ul.nav.nav-tabs
+        li.active
+          a href='#content-tabs-kame' data-toggle='tab' Kame
+        li
+          a href='#content-tabs-hame' data-toggle='tab' Hame
+        li
+          a href='#content-tabs-haaa' data-toggle='tab' Haaa
+
+      .tab-content
+        #content-tabs-kame.tab-pane.active
+            h2 Kame...
+        #content-tabs-hame.tab-pane
+            h2 ...hame...
+        #content-tabs-haaa.tab-pane
+            h2 ...HAAAaaa!
+
+
 h3 Toolbar Tabs
-p
-  | Tabs can also be included above toolbars (any toolbar variation - default or primary) using the following structure.
+
+p Tabs can also be included above toolbars (any toolbar variation - default or primary) using the following structure.
+p Toolbar tabs are useful as a high-level filter - altering the perspective on the same (or closely related) dataset, functionality and presentation.
+
 .component
   .row.toolbar-tabs
     .col-xs-12
       ul.nav.nav-tabs
         li.active
-          a href='#tabs' data-toggle='tab'
-            = 'title 1'
+          a href='#toolbar-tabs-kame' data-toggle='tab' Kame
         li
-          a href='#tabs' data-toggle='tab'
-            = 'title 2'
+          a href='#toolbar-tabs-hame' data-toggle='tab' Hame
+        li
+          a href='#toolbar-tabs-haaa' data-toggle='tab' Haaa
   .row
     .col-xs-12
       .toolbar.toolbar-default

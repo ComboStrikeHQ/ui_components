@@ -1,0 +1,36 @@
+h3 Toolbar Tabs
+p
+  | Tabs can also be included above toolbars (any toolbar variation - default or primary) using the following structure.
+.component
+  .row.toolbar-tabs
+    .col-xs-12
+      ul.nav.nav-tabs
+        li.active
+          a href='#tabs' data-toggle='tab'
+            = 'title 1'
+        li
+          a href='#tabs' data-toggle='tab'
+            = 'title 2'
+  .row
+    .col-xs-12
+      .toolbar.toolbar-default
+        .container-fluid
+          .row
+            .col-xs-12
+              .btn.btn-default Default
+
+pre
+  code.slim
+    | .row.toolbar-tabs
+        .col-xs-12
+          ul.nav.nav-tabs
+            li.active
+              a href='#tabs' data-toggle='tab'
+                = 'title 1'
+            li
+              a href='#tabs' data-toggle='tab'
+                = 'title 2'
+      .row
+        .col-xs-12
+          .toolbar.toolbar-default
+            ...

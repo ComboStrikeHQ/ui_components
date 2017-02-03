@@ -100,6 +100,33 @@ td [data-toggle="markdown-readonly"] p:last-child {
   margin: 0;
 }
 
+.swatch {
+  width: 100%;
+  padding-bottom: 50%;
+
+  &.orange { background-color: #f24725; }
+  &.yellow { background-color: #f58720; }
+  &.light { background-color: #d4d9df; }
+  &.dark { background-color: #333b48; }
+  &.darker { background-color: #253335; }
+  &.greyscale {
+    padding-bottom: 5%;
+    background-color: #ffffff;
+    background-image: -webkit-linear-gradient(left, #ffffff, #000000);
+    background-image:    -moz-linear-gradient(left, #ffffff, #000000);
+    background-image:      -o-linear-gradient(left, #ffffff, #000000);
+    background-image:         linear-gradient(to right, #ffffff, #000000);
+  }
+}
+
+.font {
+  font-size: 2em;
+}
+.brandon-text-bold { font-family: 'BrandonTextWeb-Bold' }
+.brandon-text { font-family: 'BrandonTextWeb-Regular' }
+.montserrat { font-family: 'montserrat', sans-serif; }
+.open-sans { font-family: 'Open Sans', sans-serif; }
+
 // Overrides
 
 .hljs {

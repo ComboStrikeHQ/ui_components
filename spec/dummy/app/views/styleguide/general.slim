@@ -1,0 +1,14 @@
+.container
+  .row
+    .left-col.col-md-3
+      ul.sidebar.nav.nav-stacked.hidden-xs
+        - @guidelines.each_key do |name|
+          li
+            a href="##{name.parameterize}"= name
+
+    .main-col.col-md-9
+      br/
+      - @guidelines.each do |name, path|
+        h2(id=name.parameterize)= name
+        = render file: path
+        hr/

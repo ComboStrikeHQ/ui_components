@@ -49,7 +49,7 @@ $link-hover-decoration: none !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  DINNextRoundedLTPro-Light, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  'BrandonTextWeb-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -72,7 +72,7 @@ $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
 
 //** By default, this inherits from the `<body>`.
-$headings-font-family:    DINNextRoundedLTPro-Medium !default;
+$headings-font-family:    'BrandonTextWeb-Bold' !default;
 $headings-font-weight:    600 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;

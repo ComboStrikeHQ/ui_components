@@ -4,6 +4,7 @@ module UiComponents
     initializer 'ui_components.assets.add_load_paths' do |app|
       app.config.assets.paths += self.class.components_paths
       app.config.assets.paths << root.join('vendor/assets/bower_components')
+      app.config.assets.paths << root.join('app', 'assets', 'fonts')
     end
 
     initializer 'ui_components.assets.precompile' do |app|

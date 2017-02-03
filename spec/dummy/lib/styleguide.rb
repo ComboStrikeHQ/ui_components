@@ -12,4 +12,11 @@ class Styleguide
       obj[pattern_name] = Rails.root.join(file)
     end
   end
+
+  def self.guidelines
+    Dir['app/views/styleguide/general/*'].each_with_object({}) do |file, obj|
+      guideline_name = File.basename(file, '.slim').titleize
+      obj[guideline_name] = Rails.root.join(file)
+    end
+  end
 end

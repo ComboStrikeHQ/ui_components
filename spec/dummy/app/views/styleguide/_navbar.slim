@@ -11,7 +11,9 @@
         span.icon-bar
     nav.collapse.navbar-collapse role="navigation"
       ul.nav.navbar-nav.pull-right
+        li class=('active' if params['action'] == 'general')
+          a href=styleguide_general_path  General Guidelines
         li class=('active' if params['action'] == 'components')
-          a href=styleguide_components_path  Components
+          a href=styleguide_components_path  UI Components
         li class=('active' if params['action'] == 'patterns')
-          a href=styleguide_patterns_path  Patterns
+          a href=styleguide_patterns_path  UI Patterns

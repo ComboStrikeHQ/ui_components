@@ -9,6 +9,7 @@ $gray-lighter:    #eee;
 $gray-white:      #f5f5f5;
 $white:           #fff;
 $black:           #000;
+$body-bg:         #f5f5f5;
 
 // sidebar
 
@@ -82,10 +83,9 @@ $black:           #000;
   }
 
   hr {
-    border-color: $gray-lighter;
+    border-color: $body-bg;
     border-width: 15px;
-    margin-bottom: 15px;
-    margin-top: 60px;
+    margin: 60px -10px 15px;
   }
 
   pre {

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 RSpec.describe 'select', type: :helper do
-  subject do
+  subject(:rendered) do
     Nokogiri::HTML.parse(select)
   end
 
@@ -19,11 +19,11 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { select_options: [] } }
 
     it 'renders the label with the correct for attribute' do
-      expect(subject.css('label').attr('for').to_s).to eq('foo_bar')
+      expect(rendered.css('label').attr('for').to_s).to eq('foo_bar')
     end
 
     it 'renders the select with the correct id' do
-      expect(subject.css('select').attr('id').to_s).to eq('foo_bar')
+      expect(rendered.css('select').attr('id').to_s).to eq('foo_bar')
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { select_options: [], label: 'Game' } }
 
     it 'uses this label' do
-      expect(subject.css('label').text).to eq('Game')
+      expect(rendered.css('label').text).to eq('Game')
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { select_options: [], classes: %w(some classes) } }
 
     it 'adds the classes' do
-      expect(subject.css('select').first.attributes['class'].value).to include('some classes')
+      expect(rendered.css('select').first.attributes['class'].value).to include('some classes')
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe 'select', type: :helper do
       let(:select_options) { { select_options: [], disabled: true } }
 
       it 'disables the select box' do
-        expect(subject.css('select').attribute('disabled')).to be_present
+        expect(rendered.css('select').attribute('disabled')).to be_present
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe 'select', type: :helper do
       let(:select_options) { { select_options: [], disabled: false } }
 
       it 'enables the select box' do
-        expect(subject.css('select').attribute('disabled')).to be_nil
+        expect(rendered.css('select').attribute('disabled')).to be_nil
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.describe 'select', type: :helper do
       let(:select_options) { { select_options: [] } }
 
       it 'enables the select box' do
-        expect(subject.css('select').attribute('disabled')).to be_nil
+        expect(rendered.css('select').attribute('disabled')).to be_nil
       end
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { select_options: [], skip_label: true } }
 
     it 'skips the label' do
-      expect(subject.css('label')).to be_empty
+      expect(rendered.css('label')).to be_empty
     end
   end
 
@@ -81,7 +81,7 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { select_options: [], hide_label: true } }
 
     it 'skips the label' do
-      expect(subject.css('label.sr-only')).to be_present
+      expect(rendered.css('label.sr-only')).to be_present
     end
   end
 
@@ -91,8 +91,8 @@ RSpec.describe 'select', type: :helper do
     it "pre-selects the instance's attribute's value" do
       assign(:foo, OpenStruct.new(game_id: 23))
 
-      expect(subject.css('option[selected="selected"]').attr('value').to_s).to eq('23')
-      expect(subject.css('option[selected="selected"]').text).to eq('Commander Keen')
+      expect(rendered.css('option[selected="selected"]').attr('value').to_s).to eq('23')
+      expect(rendered.css('option[selected="selected"]').text).to eq('Commander Keen')
     end
   end
 
@@ -108,8 +108,8 @@ RSpec.describe 'select', type: :helper do
     end
 
     it 'sets the respective classes' do
-      expect(subject.css('.form-group > label.col-sm-1')).to be_present
-      expect(subject.css('.form-group > div.col-sm-11')).to be_present
+      expect(rendered.css('.form-group > label.col-sm-1')).to be_present
+      expect(rendered.css('.form-group > div.col-sm-11')).to be_present
     end
   end
 
@@ -117,7 +117,7 @@ RSpec.describe 'select', type: :helper do
     let(:select_options) { { help: 'Foo Bar' } }
 
     it 'adds help block' do
-      expect(subject.css('.form-group > span.help-block').text).to eq('Foo Bar')
+      expect(rendered.css('.form-group > span.help-block').text).to eq('Foo Bar')
     end
   end
 

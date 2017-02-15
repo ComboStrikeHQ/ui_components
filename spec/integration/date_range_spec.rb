@@ -25,40 +25,40 @@ RSpec.feature 'Date Range', :js do
     chooser("Yesterday (#{Date.yesterday} - #{Date.yesterday})").click
 
     select_range('Today')
-    expect(date(:from)).to eq(Date.today.to_s)
-    expect(date(:to)).to eq(Date.today.to_s)
+    expect(date(:from)).to eq(Time.zone.today.to_s)
+    expect(date(:to)).to eq(Time.zone.today.to_s)
 
     chooser.click
     select_range('Last 7 Days')
-    expect(date(:from)).to eq((Date.today - 7.days).to_s)
+    expect(date(:from)).to eq((Time.zone.today - 7.days).to_s)
     expect(date(:to)).to eq(Date.yesterday.to_s)
 
-    expect(datepicker(:start)).to eq((Date.today - 7.days).to_s)
+    expect(datepicker(:start)).to eq((Time.zone.today - 7.days).to_s)
     expect(datepicker(:end)).to eq(Date.yesterday.to_s)
 
     chooser.click
     select_range 'Last 14 Days'
-    expect(date(:from)).to eq((Date.today - 14.days).to_s)
+    expect(date(:from)).to eq((Time.zone.today - 14.days).to_s)
     expect(date(:to)).to eq(Date.yesterday.to_s)
 
-    expect(datepicker(:start)).to eq((Date.today - 14.days).to_s)
+    expect(datepicker(:start)).to eq((Time.zone.today - 14.days).to_s)
     expect(datepicker(:end)).to eq(Date.yesterday.to_s)
 
     chooser.click
     select_range 'Month to Date'
-    expect(date(:from)).to eq(Date.today.beginning_of_month.to_s)
-    expect(date(:to)).to eq(Date.today.to_s)
+    expect(date(:from)).to eq(Time.zone.today.beginning_of_month.to_s)
+    expect(date(:to)).to eq(Time.zone.today.to_s)
 
-    expect(datepicker(:start)).to eq(Date.today.beginning_of_month.to_s)
-    expect(datepicker(:end)).to eq(Date.today.to_s)
+    expect(datepicker(:start)).to eq(Time.zone.today.beginning_of_month.to_s)
+    expect(datepicker(:end)).to eq(Time.zone.today.to_s)
 
     chooser.click
     select_range 'Last Month'
-    expect(date(:from)).to eq((Date.today - 1.month).beginning_of_month.to_s)
-    expect(date(:to)).to eq((Date.today - 1.month).end_of_month.to_s)
+    expect(date(:from)).to eq((Time.zone.today - 1.month).beginning_of_month.to_s)
+    expect(date(:to)).to eq((Time.zone.today - 1.month).end_of_month.to_s)
 
-    expect(datepicker(:start)).to eq((Date.today - 1.month).beginning_of_month.to_s)
-    expect(datepicker(:end)).to eq((Date.today - 1.month).end_of_month.to_s)
+    expect(datepicker(:start)).to eq((Time.zone.today - 1.month).beginning_of_month.to_s)
+    expect(datepicker(:end)).to eq((Time.zone.today - 1.month).end_of_month.to_s)
   end
 
   scenario 'ranges are configurable' do

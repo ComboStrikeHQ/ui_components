@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Metrics/BlockLength
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'ui_components/version'
 
@@ -45,4 +46,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'datagrid'
   s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'dotenv-rails'
+  s.add_development_dependency 'simplecov'
 end

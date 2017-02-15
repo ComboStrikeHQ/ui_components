@@ -6,7 +6,8 @@ RSpec.feature 'Styleguide', :js do
 
     visit '/'
 
-    expect(page.status_code).to eq(200)
+    click_on 'UI Components'
+
     expect(page).to have_css('h1', text: 'Hello, John!')
     expect(page).to have_content('A basic example.')
   end

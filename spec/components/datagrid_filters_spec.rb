@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 RSpec.describe 'datagrid filters', type: :helper do
-  subject do
+  subject(:rendered) do
     Nokogiri::HTML.parse(filter)
   end
 
@@ -18,23 +18,23 @@ RSpec.describe 'datagrid filters', type: :helper do
 
   context 'with minimal required options' do
     it 'renders the labels with the correct for attribute and in the correct order' do
-      expect(subject.css('label').map { |l| l.attr('for').to_s }).to eq(
+      expect(rendered.css('label').map { |l| l.attr('for').to_s }).to eq(
         %w(test_grid_string_attribute test_grid_select_attribute)
       )
     end
 
     it 'renders the select with the correct id' do
-      expect(subject.css('select').attr('id').to_s).to eq('test_grid_select_attribute')
+      expect(rendered.css('select').attr('id').to_s).to eq('test_grid_select_attribute')
     end
 
     it 'renders the string field with the correct id and input type' do
-      expect(subject.css('input').attr('id').to_s).to eq('test_grid_string_attribute')
-      expect(subject.css('input').attr('type').to_s).to eq('search')
+      expect(rendered.css('input').attr('id').to_s).to eq('test_grid_string_attribute')
+      expect(rendered.css('input').attr('type').to_s).to eq('search')
     end
 
     it 'renders the correct options' do
-      expect(subject.css('option').map { |a| a.attr('value') }).to eq(['', '5', '6'])
-      expect(subject.css('option').map(&:text)).to eq(['', 'a', 'b'])
+      expect(rendered.css('option').map { |a| a.attr('value') }).to eq(['', '5', '6'])
+      expect(rendered.css('option').map(&:text)).to eq(['', 'a', 'b'])
     end
   end
 end

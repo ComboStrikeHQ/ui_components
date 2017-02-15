@@ -32,5 +32,6 @@ RSpec.configure do |config|
 
   config.before :each do
     JS_LOGGER.rewind
+    JS_LOGGER.truncate(0)
   end
 end

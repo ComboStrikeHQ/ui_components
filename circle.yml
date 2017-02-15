@@ -9,3 +9,4 @@ test:
     - bundle exec rake bower:install
   post:
     - bundle exec rake app:assets:precompile
+    - bundle exec codeclimate-test-reporter

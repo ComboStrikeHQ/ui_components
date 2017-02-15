@@ -47,4 +47,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'datagrid'
   s.add_development_dependency 'poltergeist'
   s.add_development_dependency 'dotenv-rails'
+  s.add_development_dependency 'simplecov'
 end

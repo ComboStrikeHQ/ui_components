@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 ENV['RAILS_ENV'] = 'test'
 
-if ENV['CODECLIMATE_REPO_TOKEN']
-  require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
+if ENV['CI'] || ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start do
+    minimum_coverage 98
+    add_filter '/spec/dummy'
+    add_filter '/spec/support'
+  end
 end
 
 require File.expand_path('../dummy/config/environment.rb', __FILE__)

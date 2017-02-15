@@ -1,6 +1,8 @@
 dependencies:
-  post:
-    - bundle update
+  pre:
+    - gem install bundler -v 1.13.7
+  override:
+    - bundle _1.13.7_ check || bundle _1.13.7_ install
 test:
   pre:
     - bundle exec rake rubocop

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
 class SelectCell < FormCellBase
-  DATA_ATTRIBUTES = %i(
+  DATA_ATTRIBUTES = %i[
     placeholder
     error
     width
     remote_options
     disable_search
-  ).freeze
+  ].freeze
   attribute :disabled, description: 'Whether or not the field is disabled.'
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :name, mandatory: true, description: 'The name attribute.'
@@ -57,7 +58,7 @@ class SelectCell < FormCellBase
   end
 
   def css_class
-    classes = %w(form-control ui-components-select chosen)
+    classes = %w[form-control ui-components-select chosen]
     classes << 'chosen-inline' if options[:inline]
     classes << options[:classes] if options[:classes]
     classes.join(' ')

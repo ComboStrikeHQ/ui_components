@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ModalCell < UiComponents::Cell
   attribute :id, mandatory: true, description: 'The HTML id attribute.'
   attribute :content, mandatory: true, description: "The modal's content."

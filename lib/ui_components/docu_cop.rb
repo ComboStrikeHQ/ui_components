@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module UiComponents
   module DocuCop
     extend ActiveSupport::Concern
@@ -24,7 +25,7 @@ module UiComponents
 
       def documentation
         file = Engine.root.join('app', 'cells', name, "#{name}.yml")
-        YAML.load(File.read(file)).deep_symbolize_keys
+        YAML.safe_load(File.read(file)).deep_symbolize_keys
       end
     end
   end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'English'
 
 RSpec.feature 'Component generator', :js do
@@ -10,7 +11,7 @@ RSpec.feature 'Component generator', :js do
 
   before do
     expect(Dir.exist?(test_component_path)).to be(false)
-    GenerateComponent.start(%w(test_component))
+    GenerateComponent.start(%w[test_component])
     expect(Dir.exist?(test_component_path)).to be(true)
     require test_component_path.join('test_component_cell')
   end

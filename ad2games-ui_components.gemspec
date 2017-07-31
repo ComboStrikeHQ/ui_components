@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# rubocop:disable Metrics/BlockLength
+
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 require 'ui_components/version'
 

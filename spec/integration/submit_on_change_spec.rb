@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.feature 'Submit on change form element', :js do
   scenario 'selecting a value submits the form' do
     visit '/submit_on_change'

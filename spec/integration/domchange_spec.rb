@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.feature 'uic:domchange event', :js do
   scenario 'the DOM is ready' do
     visit '/domchange'

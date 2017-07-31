@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class FormCellBase < UiComponents::Cell
   include ActionView::Helpers::FormOptionsHelper
 

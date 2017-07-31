@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class DatagridFilterCell < FormCellBase
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :filter, mandatory: true, description: 'A Datagrid filter object.'

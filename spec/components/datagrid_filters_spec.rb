@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe 'datagrid filters', type: :helper do
   subject(:rendered) do
     Nokogiri::HTML.parse(filter)
@@ -19,7 +20,7 @@ RSpec.describe 'datagrid filters', type: :helper do
   context 'with minimal required options' do
     it 'renders the labels with the correct for attribute and in the correct order' do
       expect(rendered.css('label').map { |l| l.attr('for').to_s }).to eq(
-        %w(test_grid_string_attribute test_grid_select_attribute)
+        %w[test_grid_string_attribute test_grid_select_attribute]
       )
     end
 

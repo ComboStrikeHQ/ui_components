@@ -4,4 +4,5 @@ examples:
       - bootstrap_form_for(:foo, url: '/') do |f|
         = ui_component 'date_range', form: f,
                                      name: 'foo',
-                                     date_limit: { days: 7 }
+                                     date_limit: { days: 7 },
+                                     max_date: Date.current

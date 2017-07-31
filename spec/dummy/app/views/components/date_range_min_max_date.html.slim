@@ -1,0 +1,7 @@
+= bootstrap_form_for(:my_form, url: '/') do |f|
+  = ui_component 'date_range', form: f,
+                               name: 'my_date_range',
+                               start_date: Date.new(2016, 1, 15),
+                               end_date: Date.new(2016, 1, 16),
+                               min_date: Date.new(2016, 1, 3),
+                               max_date: Date.new(2016, 1, 23)

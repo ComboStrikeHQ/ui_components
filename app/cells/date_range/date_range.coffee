@@ -37,7 +37,7 @@ $(document).on 'uic:domchange', (e) ->
 
     options = _.extend({},
       defaults,
-      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange', 'opens']),
+      _.pick($el.data(), ['dateLimit', 'ranges', 'submitOnChange', 'opens', 'minDate', 'maxDate']),
       { startDate: start_date, endDate: end_date })
 
     options.ranges = _.mapObject(options.ranges, (v, k) -> _.map(v, (v) -> moment(v)))

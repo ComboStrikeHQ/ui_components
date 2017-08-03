@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module UiComponents
   class Engine < ::Rails::Engine
     initializer 'ui_components.assets.add_load_paths' do |app|
@@ -8,16 +9,16 @@ module UiComponents
     end
 
     initializer 'ui_components.assets.precompile' do |app|
-      app.config.assets.precompile += %w(styleguide.js
-                                         styleguide.css)
+      app.config.assets.precompile += %w[styleguide.js
+                                         styleguide.css]
       app.config.assets.precompile +=
         self.class.components_paths
           .map(&:basename)
           .map { |p| ["#{p}.js", "#{p}.css"] }
           .flatten
 
-      app.config.assets.precompile += %w(chosen/chosen-sprite.png
-                                         chosen/chosen-sprite@2x.png)
+      app.config.assets.precompile += %w[chosen/chosen-sprite.png
+                                         chosen/chosen-sprite@2x.png]
     end
 
     def self.components_paths

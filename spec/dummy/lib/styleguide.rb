@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Styleguide
   def self.components
     UiComponents::Engine.components_paths.map do |path|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe 'date_range', type: :helper do
   subject(:rendered) do
     Nokogiri::HTML.parse(date_range)

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CheckboxListCell < UiComponents::Cell
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :name, mandatory: true, description: 'The name attribute.'

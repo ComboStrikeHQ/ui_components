@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Gem.loaded_specs['ad2games-ui_components'].dependencies.each do |gem|
   require gem.name if gem.runtime?
 end

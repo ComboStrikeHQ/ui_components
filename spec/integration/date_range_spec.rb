@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.feature 'Date Range', :js do
   def chooser(text = nil)
     find('.ui-components-date-range', text: text)
@@ -84,6 +85,17 @@ RSpec.feature 'Date Range', :js do
     expect(field.text).to eq('Custom Range (2016-01-01 - 2016-01-21)')
     expect(date(:from)).to eq('2016-01-01')
     expect(date(:to)).to eq('2016-01-21')
+  end
+
+  scenario 'min/max dates are configurable' do
+    visit '/date_range_min_max_date'
+    find('.ui-components-date-range').click
+    find('li', text: 'Custom Range').click
+
+    within('.calendar.second') do
+      find_all('td.available', count: 21)
+      expect(all('td.available').map { |td| td.text.to_i }).to eq((3..23).to_a)
+    end
   end
 
   scenario 'submits enclosing form on value change' do

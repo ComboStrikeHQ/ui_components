@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class DateRangeCell < FormCellBase
   attribute :form, mandatory: true, description: 'A form object.'
   attribute :name, mandatory: true, description: 'The name attribute.'
@@ -15,6 +16,8 @@ class DateRangeCell < FormCellBase
     "Accepts: 'right' (default), 'left', 'center'"
   attribute :submit_on_change, description: 'Whether the enclosing form should be ' \
     'automatically submitted on value change'
+  attribute :min_date, description: 'The earliest date a user may select'
+  attribute :max_date, description: 'The latest date a user may select'
 
   def show
     [
@@ -42,10 +45,15 @@ class DateRangeCell < FormCellBase
   end
 
   def data
-    options.slice(:ranges, :date_limit, :opens, :submit_on_change).merge(
-      start_date: start_date.to_s, end_date: end_date.to_s,
+    options.slice(:ranges, :date_limit, :opens, :submit_on_change).merge(dates).merge(
       start: "##{id}_from", end: "##{id}_to"
     )
+  end
+
+  def dates
+    %i[start_date end_date min_date max_date].each_with_object({}) do |attribute, hash|
+      hash[attribute] = public_send(attribute).to_s.presence
+    end
   end
 
   def id

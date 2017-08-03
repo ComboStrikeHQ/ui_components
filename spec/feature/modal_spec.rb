@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.feature 'Modal component', :js do
   scenario 'a simple modal is triggered' do
     visit '/components/modal/0'

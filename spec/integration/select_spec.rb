@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.feature 'Select', :js do
   scenario 'is selectable' do
     visit '/select'

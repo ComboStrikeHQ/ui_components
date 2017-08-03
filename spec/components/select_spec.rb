@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.describe 'select', type: :helper do
   subject(:rendered) do
     Nokogiri::HTML.parse(select)
@@ -36,7 +37,7 @@ RSpec.describe 'select', type: :helper do
   end
 
   context 'with additional classes' do
-    let(:select_options) { { select_options: [], classes: %w(some classes) } }
+    let(:select_options) { { select_options: [], classes: %w[some classes] } }
 
     it 'adds the classes' do
       expect(rendered.css('select').first.attributes['class'].value).to include('some classes')

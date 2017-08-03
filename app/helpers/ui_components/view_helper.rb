@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module UiComponents
   module ViewHelper
     def ui_component(name, options = {})

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.feature 'Select', :js do
   it 'allows deselecting a selected option for optional fields' do
     visit '/components/select/0'

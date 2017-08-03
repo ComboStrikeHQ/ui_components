@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module StyleguideHelper
   def ui_component_example_call(name, example)
     if example.key?(:attributes)

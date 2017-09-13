@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
     'README.rdoc'
   ]
 
-  s.add_dependency 'rails', '< 5.1'
+  s.add_dependency 'rails', '>= 4.2', '< 5.1'
   s.add_dependency 'cells', '~> 4.1.1'
   s.add_dependency 'cells-rails', '~> 0.0.5'
   s.add_dependency 'cells-slim', '>= 0.0.3'

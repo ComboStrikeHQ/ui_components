@@ -52,7 +52,8 @@ class DateRangeCell < FormCellBase
 
   def dates
     %i[start_date end_date min_date max_date].each_with_object({}) do |attribute, hash|
-      hash[attribute] = public_send(attribute).to_s.presence
+      value = public_send(attribute).to_s
+      hash[attribute] = value if value.present?
     end
   end
 

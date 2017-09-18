@@ -60,6 +60,16 @@ RSpec.feature 'Date Range', :js do
 
     expect(datepicker(:start)).to eq((Time.zone.today - 1.month).beginning_of_month.to_s)
     expect(datepicker(:end)).to eq((Time.zone.today - 1.month).end_of_month.to_s)
+
+    chooser.click
+    select_range 'Custom Range'
+    expect(date(:from)).to eq((Time.zone.today - 1.month).beginning_of_month.to_s)
+    expect(date(:to)).to eq((Time.zone.today - 1.month).end_of_month.to_s)
+    expect(datepicker(:start)).to eq((Time.zone.today - 1.month).beginning_of_month.to_s)
+    expect(datepicker(:end)).to eq((Time.zone.today - 1.month).end_of_month.to_s)
+    within('.calendar.second') do
+      expect(page).to have_selector('.icon-arrow-left')
+    end
   end
 
   scenario 'ranges are configurable' do
